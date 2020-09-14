@@ -1,0 +1,166 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.container{
+    width: 1330px;
+}
+.nav{
+    width: 40px;
+    height: 100%;
+    background-color: silver;
+ }
+.language a{
+    border-bottom: 1px solid black;
+    color: #0d0d0d;
+    font-size: 17px;
+    text-decoration: none;
+}
+.language {
+padding-top: 5px;
+}
+.section1{
+    width: 100%;
+    height: 800px;
+    background-image: url("https://shopbag.herokuapp.com/images/slider1.jpg");
+}
+.box-top{
+    margin-top: 10px;
+}
+.navbar-default {
+    margin-left: 526px;
+    height: 42px;
+    margin-top: -77px;
+}
+.form-control{
+    width: 753px;
+    height: 41px;
+}
+.box13{
+    float: bottom;
+    padding-top: 50px;
+}
+.section2 h1{
+    font-size:50px ;
+}
+.container ul {
+    font-size: 15px;
+}
+.container ul li{
+    text-decoration: none;
+    display: inline-table;
+    width: 150px;
+}
+.section1 .container .menu ul li{
+    text-decoration: none;
+    display: inline-table;
+    width: 100px;
+    position: relative;
+}
+.container ul li a{
+    color: silver;
+    text-decoration: none;
+}
+.section1 .container .box-top2 ul li a{
+    color: white;
+    text-decoration: none;
+}
+.container ul li a:hover{
+    color: #fa703d;
+}
+.section2 .container ul li{
+    text-decoration: none;
+    display: inline-table;
+    width: 150px;
+}
+.section1 .menu ul li > .sub-menu{
+    display: none;
+    position: absolute;
+    line-height: 20px;
+}
+.section1 .menu ul li:hover > .sub-menu{
+    display: block;
+}
+.sub-menu{
+    background-color: #eae8e8;
+    width:110px;
+    height: 50px;
+    border-top: 2px solid #1a1a1a;
+}
+.sub-menu a{
+    margin-top: 5px;
+    margin-left: 5px;
+    text-decoration: none;
+}
+.sp1-1 i{
+    color: silver;
+    margin-left: 5px;
+    float: left;
+}
+.sp1-1 a{
+    color: black;
+    text-decoration: none;
+}
+.sp1-1 a:hover{
+    color: #fa703d;
+}
+.section2{
+    background-color: #eeeaea;
+}
+.section2 .container{
+    background-color: whitesmoke;
+}
+.box-border{
+    width: 50px;
+    height: 50px;
+    background-color: red;
+    border-radius : 100%;
+    float: right;
+}
+.border-box2{
+    height: 50px;
+}
+.section2 .container .box3{
+    padding-top: 40px;
+}
+.box3 button{
+    border: 1px solid black;
+    width: 250px;
+    height: 45px;
+}
+.section2 .container .box3 {
+    padding-top: 1270px;
+    padding-bottom: 50px;
+}
+.section2 .container .box3 button:hover {
+    background-color: #d44141;
+    color: white;
+}
+.bar2{
+    background-color: #0c0c0c;
+}
+.section3 .bar2 li{
+    line-height: 30px;
+}
+.bar2-1 a i{
+    font-size: 35px;
+    color: silver;
+    margin-left: 27px;
+}
+.bar2-1 a i:hover{
+    color: #fa703d;
+}
+.bar2 li:hover{
+    color: #fa703d;
+}
+.c-input{
+    margin-left: -441px;
+}
+ section1 > input{
+    width: 530px;
+}
+.form-control{
+    margin-top: 15px;
+    width: 530px;
+}

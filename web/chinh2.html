@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="vendors/bootstrap3.3.7/css/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="vendors/fontawesome/css/all.css"/>
+    <link rel="stylesheet" type="text/css" href="vendors/nivoslider/themes/default/default.css"/>
+    <link rel="stylesheet" type="text/css" href="vendors/nivoslider/nivo-slider.css"/>
+    <link rel="stylesheet" type="text/css" href="css/twotime.css">
+</head>
+<body>
+<section class="section1">
+    <nav style="background-color: white;">
+        <div class="container">
+            <div class="col-xs-3 language">
+                <a class="active" href="#" TITLE="VIETNAM">VN</a>
+                <a href="#" title="ENGLISH">EN</a>
+            </div>
+            <div class="col-xs-9 menu">
+                <ul class="text-center h1" style="float: right;margin-top: 10px;">
+                    <li><a href="#">My Account</a>
+                    <ul class="sub-menu">
+                        <li><a href="#" data-toggle="modal" data-target="#formlogin">sign in</a></li>
+                        <li><a href="#" data-toggle="modal" data-target="#formlogin2" >sign up</a></li>
+                    </ul></li>
+                    <li><a href="#">WishList</a></li>
+                    <li><a href="#">Shopping cat</a></li>
+                    <li><a href="#">Checkout</a></li>
+                </ul>
+                <ul>
+                    <li>
+                         <a class="right" href="#"><svg class="bi bi-cart4" width="21px" height="21px" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                             <path fill-rule="evenodd" d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l.5 2H5V5H3.14zM6 5v2h2V5H6zm3 0v2h2V5H9zm3 0v2h1.36l.5-2H12zm1.11 3H12v2h.61l.5-2zM11 8H9v2h2V8zM8 8H6v2h2V8zM5 8H3.89l.5 2H5V8zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"/>
+                </svg></a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="box-top">
+           <div class="col-xs-3 box12">
+              <img src="https://shopbag.herokuapp.com/images/logo.gif" width="150px" height="150px"/>
+           </div>
+           <div class="col-xs-9 box13">
+              <form action="" method="get">
+                  <input type="text" class="col-xs-10 form-control center-block" id="search-top" placeholder="What are you looking for?" style="margin: 36px 0px">
+                  <button type="submit" class="col-xs-2 navbar-default center-block" style="outline: none">
+                      <i class="fas fa-search"></i>
+                  </button>
+              </form>
+            </div>
+        </div>
+        <div class="box-top2">
+             <div class="container">
+                 <ul class="text-center">
+                     <li><a href="#"><strong>HOME</strong></a></li>
+                     <li><a href="#"><strong>ACCESSORIES</strong></a></li>
+                     <li><a href="#"><strong>ALLPRODUCT</strong></a></li>
+                     <li><a href="#"><strong>HOT</strong></a></li>
+                     <li><a href="#"><strong>TRADEMANK</strong></a></li>
+                     <li><a href="#"><strong>BLOG</strong></a></li>
+                 </ul>
+             </div>
+        </div>
+    </div>
+    <div class="modal fade" id="formlogin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="col-xs-12 modal-body">
+                    <div class="modal-content">
+                        <div style="margin-bottom: 10px;" class="madal-header"><h3 class="text-center">đăng nhập</h3></div>
+                        <div class="modal-body">
+                            <from action="#" method="post">
+                                <div class="from-group">
+                                    <input class="form-control" type="email" name="emal" placeholder="email"/>
+                                </div>
+                                <div class="from-group">
+                                    <input class="form-control" type="password" name="password" placeholder="password"/>
+                                </div>
+                                <div class="from-group">
+                                    <button style="margin-top: 10px;" type="submit" class="btn btn-danger">đăng nhập</button>
+                                </div>
+                            </from>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="modal fade" id="formlogin2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="col-xs-12 modal-body">
+                    <div class="modal-content">
+                        <div style="margin-bottom: 10px;" class="madal-header"><h3 class="text-center">đăng kí</h3></div>
+                        <div class="modal-body">
+                            <from action="#" method="post">
+                                <div class="from-group">
+                                    <input class="form-control" type="First Name" name="First Name" placeholder="First Name"/><br/>
+                                </div>
+                                <div class="from-group">
+                                    <input class="form-control" type="Last Name" name="Last Name" placeholder="Last Name"/><br/>
+                                </div>
+                                <div class="from-group">
+                                    <input class="form-control" type="email" name="email" placeholder="Email"/><br/>
+                                </div>
+                                <div class="from-group">
+                                    <input class="form-control" type="password" name="password" placeholder="password"/><br/>
+                                    <div class="box1-2">
+                                        <a style="margin-left: 179px;" class="btn" href="#"><font color="black">Forgot your password?</font></a>
+                                    </div>
+                                </div>
+                                <div class="from-group">
+                                    <button style="margin-top: 10px;width: 150px;" type="submit" class="center-block btn btn-danger">đăng kí</button>
+                                </div>
+                            </from>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="section2">
+    <div class="container">
+        <h1 class="text-center"><STRONG>New arruivals</STRONG></h1>
+        <div class="text-center box2"><ul>
+            <li><a href="#">ALL</a></li>
+            <li><a href="#">HANDBAG</a></li>
+            <li><a href="#">BACKPACS</a></li>
+            <li><a href="#">SUITCARE</a></li>
+        </ul>
+    </div>
+    <div class="sp">
+        <div class="col-xs-12 ps1">
+            <div class="col-md-3 sp1-1">
+                <div class="box-border"><p class="text-center"><font color="white">sale 15%</font></p></div>
+                <img src="https://shopbag.herokuapp.com/images/pr5.png" width="250px"/>
+                <div clas="center-block"><i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                </div>
+                <br/>
+                <h4 class="text-center"><a href="#"> Donec vel nunc sit amet tellus vitae</a></h4>
+                <h3 class="text-center"><font class="x1" color="black"><strike>125,4$</strike></font><font color="#ff4500">100$</font></h3>
+            </div>
+            <div class="col-md-3 sp1-1">
+                 <div class="border-box2"></div>
+                <img src="https://shopbag.herokuapp.com/images/pr3.png"width="250px"/>
+                <div><i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                </div>
+                <br/>
+                <h4 class="text-center"><a href="#"> Donec vel nunc sit amet tellus vitae</a></h4>
+                <h3 class="text-center"><font color="#ff4500">125,4$</font></h3>
+            </div>
+            <div class="col-md-3 sp1-1"><div class="box-border"><p class="text-center"><font color="white">sale 15%</font></p></div>
+                <img src="https://shopbag.herokuapp.com/images/pr1.png" width="250px"/>
+                <div>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                </div>
+                <br/>
+                <h4 class="text-center"><a href="#"> Donec vel nunc sit amet tellus vitae</a></h4>
+                <h3 class="text-center"><font class="x1" color="black"><strike>125,4$</strike></font><font color="#ff4500">100$</font></h3>
+            </div>
+            <div class="col-md-3 sp1-1">
+                <div class="border-box2"></div>
+                <img src="https://shopbag.herokuapp.com/images/pr4.png" width="250px"/>
+                <div>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                </div>
+                <br/>
+                <h4 class="text-center"><a href="#"> Donec vel nunc sit amet tellus vitae</a></h4>
+                <h3 class="text-center"><font color="#ff4500">125,4$</font></h3>
+            </div>
+        </div>
+        <div class="ps2">
+            <div class="col-md-3 sp1-1">
+                <div class="border-box2"></div>
+                <img src="https://shopbag.herokuapp.com/images/pr5.png" width="250px"/>
+                <div>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <br/>
+                <h4 class="text-center"><a href="#"> Donec vel nunc sit amet tellus vitae</a></h4>
+                <h3 class="text-center"><font color="#ff4500">125,4$</font></h3>
+            </div>
+            <div class="col-md-3 sp1-1">
+            <div class="box-border"><p class="text-center"><font color="white">sale 15%</font></p></div>
+                <img src="https://shopbag.herokuapp.com/images/pr3.png"width="250px"/>
+                <div>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <br/>
+                <h4 class="text-center"><a href="#"> Donec vel nunc sit amet tellus vitae</a></h4>
+                <h3 class="text-center"><font class="x1" color="black"><strike>125,4$</strike></font><font color="#ff4500">100$</font></h3>
+            </div>
+            <div class="col-md-3 sp1-1">
+                <div class="border-box2"></div>
+                <img src="https://shopbag.herokuapp.com/images/pr1.png" width="250px"/>
+                <div>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <br/>
+                <h4 class="text-center"><a href="#"> Donec vel nunc sit amet tellus vitae</a></h4>
+                <h3 class="text-center"><font color="#ff4500">125,4$</font></h3>
+            </div>
+            <div class="col-md-3 sp1-1">
+                <div class="border-box2"></div>
+                <img src="https://shopbag.herokuapp.com/images/pr4.png" width="250px"/>
+                <div>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <br/>
+                <h4 class="text-center"><a href="#"> Donec vel nunc sit amet tellus vitae</a></h4>
+                <h3 class="text-center"><font color="#ff4500">125,4$</font></h3>
+            </div>
+        </div>
+        <div class="ps3">
+            <div class="col-md-3 sp1-1">
+                <div class="border-box2"></div>
+                <img src="https://shopbag.herokuapp.com/images/pr5.png" width="250px"/>
+                <div>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <br/>
+                <h4 class="text-center"><a href="#"> Donec vel nunc sit amet tellus vitae</a></h4>
+                <h3 class="text-center"><font color="#ff4500">125,4$</font></h3>
+            </div>
+            <div class="col-md-3 sp1-1">
+                <div class="border-box2"></div>
+                <img src="https://shopbag.herokuapp.com/images/pr3.png" width="250px"/>
+                <div>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <br/>
+                <h4 class="text-center"><a href="#"> Donec vel nunc sit amet tellus vitae</a></h4>
+                <h3 class="text-center"><font color="#ff4500">125,4$</font></h3>
+            </div>
+            <div class="col-md-3 sp1-1">
+                <div class="box-border"><p class="text-center"><font color="white">sale 15%</font></p></div>
+                <img src="https://shopbag.herokuapp.com/images/pr1.png" width="250px"/>
+                <div>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <br/>
+                <h4 class="text-center"><a href="#"> Donec vel nunc sit amet tellus vitae</a></h4>
+                <h3 class="text-center"><font class="x1" color="black"><strike>125,4$</strike></font><font color="#ff4500">100$</font></h3>
+            </div>
+            <div class="col-md-3 sp1-1">
+                <div class="border-box2"></div>
+                <img src="https://shopbag.herokuapp.com/images/pr4.png" width="250px"/>
+                <div>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <br/>
+                <h4 class="text-center"><a href="#"> Donec vel nunc sit amet tellus vitae</a></h4>
+                <h3 class="text-center"><font color="#ff4500">125,4$</font></h3>
+            </div>
+        </div>
+
+    </div>
+        <div class="box3">
+            <form methob="post" action="#">
+                <button class="center-block btn" type="submit"><strong>LOAD MORE ITEM</strong></button>
+            </form>
+        </div>
+    </div>
+</section>
+<section class="section3">
+    <div class="bar">
+        <img src="https://shopbag.herokuapp.com/images/eb3adeb624fddca385ec.jpg" height="100%" width=" 1528px"/>
+    </div>
+    <div class="bar2">
+        <div class="container">
+            <div class="col-xs-12">
+            <div style="margin-top: 35px;" class="col-md-6 left bar2-1">
+                <div class="col-md-2 bar2-1-1">
+                    <h5><strong><font color="#f5f5f5"> COMPANY INFORMATION</font></strong></h5>
+                    <ul>
+                        <li>About Us</li>
+                        <li>Affiliate Program</li>
+                        <li>Fashion Blogger</li>
+                        <li>Discount For Students</li>
+                    </ul>
+                </div>
+                <div style="padding-left: 100px"; class="col-md-2 bar2-1-2">
+                    <h5><strong><font color="#f5f5f5">CUSTOMER SUPPORT</font></strong></h5>
+                    <ul>
+                        <li>Customer Support</li>
+                        <li>Return Product</li>
+                        <li>Login Instruction,Register</li>
+                        <li>Discount For Students</li>
+                        <li>Information security policy</li>
+                    </ul>
+                </div>
+                <div style="padding-left: 180px" class="col-md-2 bar2-1-3">
+                    <h5><strong><font color="#f5f5f5">CUSTOMER SERVICE</font></strong></h5>
+                    <ul>
+                        <li>Contact us</li>
+                        <li>Payment methods</li>
+                        <li>Reward Points</li>
+                    </ul>
+                </div>
+            </div>
+            <div style="margin-top: 45px;" class="col-md-6 right bar2-1">
+                <div class="col-md-6">
+                    <p><strong><font color="#f5f5f5">CONNECT WITH US</font></strong></p>
+                    <div style="padding-top: 25px;" class="x1">
+                    <a style="margin-left: -40px;" href="facebook.com"><i class="fab fa-facebook-f"></i></a>
+                    <a href="instagram.com"><i class="fab fa-instagram " style="font-weight: 700"></i></a>
+                    <a href="twitter.com"><i class="fab fa-twitter"></i></a>
+                    <a href="youtube.com"><i class="fab fa-youtube"></i></a>
+                    <a href="google.com"><i class="fab fa-google"></i></a></p>
+                    </div>
+                    <p style="margin-left: -15px;padding-top: 10px;">SIGN UP TO RECEIVE NEWS FROM SHEIN</p>
+                </div>
+                <div style=" margin-left: 125px;line-height: 41px;" class="col-md-2">
+                    <p><strong><font color="#f5f5f5">APP</font></strong></p>
+                    <p><a href="#"><i class="fab fa-apple"></i></a>
+                        <a href="#"><i class="fab fa-android"></i></a>
+                    </p>
+                    <div class="c-input">
+                        <input style="width: 290px;height: 40px;" placeholder="Enter your email" type="email" class="j-footer-subscribe">
+                    </div>
+                  </div>
+               </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="vendors/bootstrap3.3.7/js/bootstrap.js"></script>
+<script type="text/javascript">
+    $(window).load(function() {
+        $('#slider').nivoSlider({
+            effect:'random',
+            slices: 15,
+            boxCols: 8,
+            boxRows: 4,
+            animSpeed: 500,
+            pauseTime: 3000,
+            startSlide: 0,
+            directionNav:false,
+            controlNav:false,
+            controlNavThumbs:false,
+            pauseOnHover:true,
+            manualAdvance:false,
+            prevText:'Prev',
+            nextText:'Next',
+            randomStart:false,
+            beforeChange:function(){},
+            afterChange:function(){},
+            slideshowEnd:function(){},
+            lastSlide:function(){},
+            afterLoad:function(){}
+        });
+    });
+</script>
+<script type="text/javascript">
+    var url = new URL(location.href);
+    var id = url.searchParams.get("id_img");
+    $.ajax({
+        url: "http://demodatabase.herokuapp.com/?id_img="+id,
+        method:"GET",
+        success:function (result) {
+            for (i=0;i<result.length;i++){
+                var image_home = '<div class="col-md-13 pro-item">\n'+
+                    '<div class="thumbnail">\n'+
+                    '    <div class="img">\n'+
+                    '<div class="api-product"><img src="'+result[i].url_img+'"/></div>\n'+
+                    '    <div class="list">\n'+
+                    '    <ul>\n'+
+                    '   <li><a href="#"><i class="fas fa-shopping-cart ca"></i></a></li>\n'+
+                    '             <li><a href="#"><i class="far fa-heart ti"></i></a></li>\n'+
+                    '             <li><a href="#"><i class="fas fa-random rd"></i></a></li>\n'+
+                    '             <li><a href="#"><i class="far fa-eye ey"></i></a></li>\n'+
+                    '</ul>\n'+
+                    '</div>\n'+
+                    '</div>\n'+
+                    '<div class="text">\n'+
+                    '   <div class="rating">\n'+
+                    '   <i class="fas fa-star" style="font-size: 22px"></i>\n'+
+                    '   <i class="fas fa-star" style="font-size: 22px"></i>\n'+
+                    '   <i class="fas fa-star" style="font-size: 22px"></i>\n'+
+                    '   <i class="fas fa-star" style="font-size: 22px"></i>\n'+
+                    '   <i class="fas fa-star" style="font-size: 22px"></i>\n'+
+                    '   </div>\n'+
+                    '   </br>\n'+
+                    '   <p>\n'+
+                    '   <a href="Chitietsanpham.html?sp_id="'+result[i].sp_id+'>'+result[i].ten_sp+'</a>\n'+
+                    '</p>\n'+
+                    '<h4><strong><font color="red">$'+result[i].gia_ban+'</font></strong></h4>\n'+
+                    '</div>\n'+
+                    '</div>\n'+
+                    '</div>';
+                $("div.row.product_main").append(image_home);
+            }
+        }
+    });
+</script>
+</body>
+</html>

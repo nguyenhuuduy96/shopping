@@ -1,0 +1,156 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.container{
+    width: 1330px;
+}
+header{
+    height: 45px;
+    width: 100%;
+    background-color: #499fb8;
+}
+.section2{
+    background-image: url("https://wallpapercave.com/wp/wp4273565.jpg");
+    height: 830px;
+}
+.div1{
+    padding-top: 18px;
+}
+
+.container ul {
+    font-size: 15px;
+    float: right;
+    margin-left: 378px;
+}
+.container ul li{
+    text-decoration: none;
+    display: inline-table;
+    width: 100px;
+}
+.container ul li a{
+    color: #1a1a1a;
+    text-decoration: none;
+}
+.container ul li a:hover{
+    color: #fa703d;
+}
+.sesstion1-1 .div2{
+    border-left: 1px solid white;
+}
+
+.sesstion1-2 .boc1{
+    border: 1px solid silver;
+    width: 200px;
+    height: 35px;
+}
+.sesstion1-2 .boc1 p{
+    margin-left: 10px;
+    margin-top: 7px;
+}
+.sesstion1-2 .boc2 p{
+    margin-left: 4px;
+    margin-top: 5px;
+}
+.sesstion1-2 .boc2{
+    border: 1px solid silver;
+    width: 140px;
+    height: 30px;
+}
+.bi-calendar-day{
+    margin-left: 100px;
+}
+.bi-calendar-day1{
+    margin-left: 60px;
+}
+.boc21{
+    width: 80px;
+}
+.sesstion1-2 .boc21 p{
+    margin-left: 10px;
+    margin-top: 5px;
+}
+.sesstion1-2 .boc21{
+    border: 1px solid silver;
+    width: 140px;
+    height: 30px;
+    background-color: #f82525;
+    color: white;
+}
+.sesstion1-1{
+    height: 100px;
+    background-color: rgba(101, 95, 95, 0.4);
+}
+.div2 h4{
+    color: white;
+}
+.sesstion1-2{
+    float: bottom;
+    margin-bottom: 10px;
+}
+.section3{
+    background-color: #e0dfdf;
+    height: 70px;
+}
+.section3 > .container{
+    padding-top: 20px;
+}
+.section5{
+    background-image: url("https://lh3.googleusercontent.com/proxy/hrdCv5ReSTRQ9croSZRd1dChQiuu9KvDFIPTdEndmimLON4j-FG6lnFyOMLsLV0VW39iuydRumFzeE6nFJ4u6IboNmpzi0VjaMeaPswtcY-csB7vo3cMGZZDBiCcYfkSHqJ-ZdY");
+    height: 550px;
+}
+.section5-1{
+    background-color: rgba(245, 244, 244, 0.96);
+    height: 100%;
+}
+.section5 .section5-1   .img{
+    border: 2px solid white;
+}
+.img1{
+    border: 8px solid white;
+    transform: rotate(25deg);
+    margin-top: 43px;
+}
+.img2{
+    border: 8px solid white;
+    transform: rotate(20deg);
+    margin-top: 45px;
+}
+.img3{
+    border: 8px solid white;
+    transform: rotate(15deg);
+    margin-top: 56px;
+}
+.section6 .container ul li{
+    font-size: 12px;
+}
+.section6-1{
+    background-color: rgba(245, 244, 244, 1);
+    margin-top: 30px;
+    border-top:2px solid #e7e6e6;
+}
+.section6-2{
+    background-color: rgba(245, 244, 244, 1);
+    margin-top: 30px;
+}
+.section6 .container .col-md-2{
+    margin-top: 50px;
+}
+.section23 .bar2 li{
+    line-height: 30px;
+}
+.bar2-1 a i{
+    font-size: 35px;
+    color: silver;
+    margin-left: 27px;
+}
+
+.c-input{
+    margin-left: -441px;
+}
+
+.form-control{
+    margin-top: 15px;
+    width: 530px;
+}
