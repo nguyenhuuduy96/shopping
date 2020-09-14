@@ -206,7 +206,7 @@ $(document).ready(function(){
 		                success:function(data)
 		                {
 		                	// console.log(data.data)
-		                	
+		                	// return false;
 		                	// console.log(data.product);
 		                	// return false;
 		                	// return false;

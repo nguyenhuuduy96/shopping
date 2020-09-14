@@ -22,8 +22,8 @@ class ProductController extends Controller
     		$sizes = Size::all();
     		$colors = Color::all();
     		
-    		$product=Product::find(6);
-    		$color= $product->colors;
+    		// $product=Product::find(6);
+    		// $color= $product->colors;
     		$cates= ProductCategory::all();
   
 	return view('admin.product.list',['products'=>$products,'sizes'=>$sizes,'colors'=>$colors,'cates'=>$cates]);
@@ -103,14 +103,17 @@ class ProductController extends Controller
     public function save(Request $req){
     	
 
-    	
+    
 		$product = isset($req->id)? Product::find($req->id) : new Product();
+
 		$product->time_expired=date("Y-m-d",strtotime($req->date));
+
 		$product->slug = Str::slug($req->name.'-'.microtime());
 		$product->fill($req->all());
+		// return response()->json(['data'=>$product]);
 		$product->save();
-		
-    	// $product= Product::find(6);
+			
+  //   	$product= Product::find(6);
 		
 		// return response()->json(['product'=>$req->all()]);
 		foreach ($req->color_id as $key => $color) {
