@@ -11,14 +11,15 @@ use Auth;
 class CartController extends Controller
 {
     public function showCart(){
-        $carts=Cart::getContent();
+        $carts=Auth::check() ? Cart::session(Auth::user()->id)->getContent() : Cart::getContent();
+       
         $subtotla= Cart::getSubTotal();
         $qtys=[];
         foreach ($carts as $cart) {
             $middle= Middle::find($cart->id);
             array_push($qtys, $middle->stock);
         }
-
+        // dd($subtotla);
         return view('home.shoping-cart',compact('carts','subtotla','qtys'));
     }
 

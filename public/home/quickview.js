@@ -197,7 +197,8 @@ $(document).ready(function(){
 
                         <div class="header-cart-item-txt p-t-8">
                             <a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
-                                `+data.cart.name+`
+                                `+data.cart.name+`<p>`+data.cart.attributes.color+` - `+data.cart.attributes.size+`</p>
+
                             </a>
 
                             <span class="header-cart-item-info">
@@ -210,7 +211,9 @@ $(document).ready(function(){
                             
                         
                     </li>`;
-                $('#cartshow').append(cart)
+                $('#cartshow').append(cart);
+                 $('.js-modal1').removeClass('show-modal1');
+                 $('.js-panel-cart').addClass('show-header-cart');
                 console.log(data)
             }
 

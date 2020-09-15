@@ -39,7 +39,7 @@
                     
                     <!-- Logo desktop -->       
                     <a href="/" class="logo">
-                        <h1>VGS Shop</h1>
+                        <h1>Shop Fashion</h1>
                     </a>
 
                     <!-- Menu desktop -->

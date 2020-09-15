@@ -47,6 +47,7 @@ Route::group(['prefix'=>'admin-product','middleware' => 'auth'],function(){
 	Route::post('save-size','Admin\ProductController@savesize');
 	Route::get('search-product','Admin\ProductController@searchProduct');
 	Route::post('check','Admin\ProductController@checkphone');
+	Route::get('category','Admin\CategoryProductController@index')->name('list.cate');
 
 });
 // Route::group(['prefix'=>'user-auth'],function(){
@@ -63,7 +64,7 @@ Route::get('login','AuthController@login')->name('login');
 Route::post('check-phone','AuthController@checkPhonevery');
 Route::post('post-login','AuthController@activelogin');
 Route::get('logout','AuthController@logout')->name('logout');
-Route::get('admin-lte','Admin\CategoryProductController@index')->name('list.cate');
+
 Route::get('dashboard',function(){
 	return view('admin.dashboard');
 });
