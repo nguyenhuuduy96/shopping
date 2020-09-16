@@ -1,4 +1,4 @@
-# VGS-Itern
+# Shopping
 
 # Quản lý sản phẩm
 
