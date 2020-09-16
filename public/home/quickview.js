@@ -189,29 +189,36 @@ $(document).ready(function(){
                 name:product_name,
                 color:cartColor,price:price},
             success:function(data){
-                const price =new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'VND' }).format(data.cart.price);
-                const cart = `<li class="header-cart-item flex-w flex-t m-b-12">
+                
+                
+                let showcart = '';
+                console.log(data.carts['1']);
+                for(const cart in data.carts){
+                    // console.log(cart)
+                    // console.log(data.carts[cart].price)
+                    // return false;
+                const price =new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'VND' }).format(data.carts[cart].price);
+                showcart +=`<li class="header-cart-item flex-w flex-t m-b-12">
                         <div class="header-cart-item-img">
-                            <img src="`+data.cart.attributes.image+`" alt="IMG">
+                            <img src="`+data.carts[cart].attributes.image+`" alt="IMG">
                         </div>
-
                         <div class="header-cart-item-txt p-t-8">
                             <a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
-                                `+data.cart.name+`<p>`+data.cart.attributes.color+` - `+data.cart.attributes.size+`</p>
-
+                                `+data.carts[cart].name+`<p>`+data.carts[cart].attributes.color+` - `+data.carts[cart].attributes.size+`</p>
                             </a>
-
                             <span class="header-cart-item-info">
-                                `+data.cart.quantity+` x `+price+`
+                                `+data.carts[cart].quantity+` x `+price+`
                             </span>
                         </div>
-                        <button class="text-danger" onclick="deleteCart(this,`+data.cart.id+`)">
+                        <button class="text-danger" onclick="deleteCart(this,`+data.carts[cart].id+`)">
                             <i class="fas fa-trash-alt"></i>
-                        </button> 
-                            
+                        </button>      
                         
                     </li>`;
-                $('#cartshow').append(cart);
+
+                }
+                
+                $('#cartshow').html(showcart);
                  $('.js-modal1').removeClass('show-modal1');
                  $('.js-panel-cart').addClass('show-header-cart');
                 console.log(data)
@@ -260,7 +267,8 @@ $(document).ready(function(){
                     console.log(data)
                     const price =new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'VND' }).format(data.price.price);
                     // console.log(data.price);
-                    $('#price_detail').html(price);
+                    const showprice = `<input type="hidden" id="priceCart" name="priceCart" value="`+data.price.price+`">price`;
+                    $('#price_detail').html(showprice);
                     // console.log(data.id);
                 }
         })

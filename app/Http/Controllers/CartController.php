@@ -44,10 +44,10 @@ class CartController extends Controller
                 ));
             }
         
-            $cart = Cart::get($request->middle_id);
+            $carts=Auth::check() ? Cart::session(Auth::user()->id)->getContent() : Cart::getContent();
             // Cart::remove($request->middle_id);
             // dd($cart);
-            return response()->json(['cart'=>$cart]);
+            return response()->json(['carts'=>$carts]);
     }
     public function delete(Request $request){
         // return response()->json(['cart'=>$request->id]);
@@ -76,5 +76,11 @@ class CartController extends Controller
         $cart = Cart::get($request->id);
         $subtotla= Cart::getSubTotal();
         return response()->json(['cart'=>$cart,'subtotla'=>$subtotla]);
+    }
+    public function checkout(){
+        $carts=Auth::check() ? Cart::session(Auth::user()->id)->getContent() : Cart::getContent();
+       
+        $subtotla= Cart::getSubTotal();
+        return view('home.checkout',compact('carts','subtotla'));
     }
 }

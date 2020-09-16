@@ -53,6 +53,7 @@
 							{{$product->name}}
 							<input type="hidden" name="product_name" id="product_detail_name" value="{{$product->name}}">
 							<input type="hidden" name="product_detail_id" id="product_detail_id" value="{{$product->id}}">
+							<<input type="hidden" name="cartImage" id="cartImage" value="{{asset(isset($product->firstImage[0]->image)?$product->firstImage[0]->image:'img/default.jpg')}}">
 						</h4>
 
 						<span class="mtext-106 cl2" id="price_detail">
@@ -118,7 +119,7 @@
 										</div>
 									</div> --}}
 
-									<button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
+									<button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail " id="cart_add">
 										Add to cart
 									</button>
 								</div>
@@ -597,6 +598,9 @@
 		document.getElementById('price_detail').innerHTML=price;
 		console.log(price)
 	});
+
 </script>
+<script type="text/javascript" src="{{asset('home/js/productdetail.js')}}"></script>
+
 @endsection
 

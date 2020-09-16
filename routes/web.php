@@ -13,7 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('login-firebase','AuthController@loginfirebase')->name('login.firebase');
 
 Route::get('/', 'HomeCotroller@index')->name('home');
 Route::get('product/{slug?}','HomeCotroller@product')->name('home.product');
@@ -29,9 +28,7 @@ Route::group(['prefix'=>'cart'],function(){
 	Route::post('delete','CartController@delete')->name('cart.delete');
 	Route::get('shoping-cart','CartController@showCart')->name('cart.show');
 	Route::post('update','CartController@update')->name('cart.update');
-	Route::get('checkout',function(){
-		return view('home.checkout');
-	});
+	Route::get('checkout','CartController@checkout');
 });
 
 Route::group(['prefix'=>'admin-product','middleware' => 'auth'],function(){
@@ -50,14 +47,7 @@ Route::group(['prefix'=>'admin-product','middleware' => 'auth'],function(){
 	Route::get('category','Admin\CategoryProductController@index')->name('list.cate');
 
 });
-// Route::group(['prefix'=>'user-auth'],function(){
-// 	Route::post('check-phone','AuthController@checkPhonevery');
-// 	Route::post('active-login','AuthController@activelogin');
-// 	Route::get('register','AuthController@register')->name('user.register');
-// 	Route::post('save-register','AuthController@saveRegister')->name('save.register');
-// 	Route::get('logout','AuthController@logout')->name('user.logout');
 
-// });
 Route::get('register','AuthController@register')->name('register');
 Route::post('save-register','AuthController@saveregister')->name('save.register');
 Route::get('login','AuthController@login')->name('login');

@@ -79,7 +79,7 @@ $i=-1;
 							</p>
 						</div>
 
-						<div class="flex-c-m stext-101 size-119 bor13 p-lr-15 trans-04 pointer m-tb-10 btn btn-primary text-white">
+						<div class="flex-c-m stext-101 size-119 bor13 p-lr-15 trans-04 pointer m-tb-10 btn btn-primary text-white continue">
 							Continue
 						</div>
 					</div>
@@ -163,6 +163,9 @@ $i=-1;
     	
     	console.log(i)
     }
+    $('.continue').click(function(event) {
+    	window.location = '../cart/checkout';
+    });
 </script>
 @endsection
 

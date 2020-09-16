@@ -21,91 +21,24 @@
 				<span class="badge badge-secondary badge-pill">3</span>
 			</h4>
 			<ul class="list-group mb-3">
+				@foreach($carts as $cart)
 				<li class="list-group-item d-flex justify-content-between lh-condensed">
 					<div class="flex-w">
-						<img src="{{asset('img/default.jpg')}}" style="border-radius: 5px" width="75px" alt="">
-						<div class="my-0" >Product name
-							<p class="text-muted" style="font-size: 12px">Brief description</p></div>
+						<img src="{{$cart->attributes['image']}}" style="border-radius: 5px" width="75px" alt="">
+						<div class="my-0" >{{$cart->name}}
+							<p class="text-muted" style="font-size: 12px">{{$cart->attributes['color'] }} - {{$cart->attributes['size']}}</p></div>
+						
 						
 					</div>
-					<span class="text-muted">$12000000</span>
+					<span class="text-muted">{{ number_format($cart->price, 0, '.', '.') }}&nbsp;₫</span>
 				</li>
-				<li class="list-group-item d-flex justify-content-between lh-condensed">
-					<div class="flex-w">
-						<img src="{{asset('img/default.jpg')}}" style="border-radius: 5px" width="75px" alt="">
-						<div class="my-0" >Product name
-							<p class="text-muted" style="font-size: 12px">Brief description</p></div>
-						
-					</div>
-					<span class="text-muted">$12000000</span>
-				</li>
-				<li class="list-group-item d-flex justify-content-between lh-condensed">
-					<div class="flex-w">
-						<img src="{{asset('img/default.jpg')}}" style="border-radius: 5px" width="75px" alt="">
-						<div class="my-0" >Product name
-							<p class="text-muted" style="font-size: 12px">Brief description</p></div>
-						
-					</div>
-					<span class="text-muted">$12000000</span>
-				</li>
-
-				<li class="list-group-item d-flex justify-content-between lh-condensed">
-					<div class="flex-w">
-						<img src="{{asset('img/default.jpg')}}" style="border-radius: 5px" width="75px" alt="">
-						<div class="my-0" >Product name
-							<p class="text-muted" style="font-size: 12px">Brief description</p></div>
-						
-					</div>
-					<span class="text-muted">$12000000</span>
-				</li>
-				<li class="list-group-item d-flex justify-content-between lh-condensed">
-					<div class="flex-w">
-						<img src="{{asset('img/default.jpg')}}" style="border-radius: 5px" width="75px" alt="">
-						<div class="my-0" >Product name
-							<p class="text-muted" style="font-size: 12px">Brief description</p></div>
-						
-					</div>
-					<span class="text-muted">$12000000</span>
-				</li>
-				<li class="list-group-item d-flex justify-content-between lh-condensed">
-					<div class="flex-w">
-						<img src="{{asset('img/default.jpg')}}" style="border-radius: 5px" width="75px" alt="">
-						<div class="my-0" >Product name
-							<p class="text-muted" style="font-size: 12px">Brief description</p></div>
-						
-					</div>
-					<span class="text-muted">$12000000</span>
-				</li><li class="list-group-item d-flex justify-content-between lh-condensed">
-					<div class="flex-w">
-						<img src="{{asset('img/default.jpg')}}" style="border-radius: 5px" width="75px" alt="">
-						<div class="my-0" >Product name
-							<p class="text-muted" style="font-size: 12px">Brief description</p></div>
-						
-					</div>
-					<span class="text-muted">$12000000</span>
-				</li><li class="list-group-item d-flex justify-content-between lh-condensed">
-					<div class="flex-w">
-						<img src="{{asset('img/default.jpg')}}" style="border-radius: 5px" width="75px" alt="">
-						<div class="my-0" >Product name
-							<p class="text-muted" style="font-size: 12px">Brief description</p></div>
-						
-					</div>
-					<span class="text-muted">$12000000</span>
-				</li><li class="list-group-item d-flex justify-content-between lh-condensed">
-					<div class="flex-w">
-						<img src="{{asset('img/default.jpg')}}" style="border-radius: 5px" width="75px" alt="">
-						<div class="my-0" >Product name
-							<p class="text-muted" style="font-size: 12px">Brief description</p></div>
-						
-					</div>
-					<span class="text-muted">$12000000</span>
-				</li>
+				@endforeach
 				<li class="list-group-item d-flex justify-content-between lh-condensed">
 					<div>
 						<h6 class="my-0">Provisional price</h6>
 						
 					</div>
-					<span class="text-muted">$8</span>
+					<span class="text-muted">{{ number_format($subtotla, 0, '.', '.') }}&nbsp;₫</span>
 				</li>
 				
 				<li class="list-group-item d-flex justify-content-between bg-light">
@@ -117,11 +50,11 @@
 				</li>
 				<li class="list-group-item d-flex justify-content-between">
 					<span>Total (VND)</span>
-					<strong>$20</strong>
+					<strong>{{ number_format($subtotla, 0, '.', '.') }}&nbsp;₫</strong>
 				</li>
 			</ul>
 
-			<form class="card p-2">
+			<form class="card p-2" action="javascript:void(0)">
 				<div class="input-group">
 					<input type="text" class="form-control" placeholder="Promo code">
 					<div class="input-group-append">
