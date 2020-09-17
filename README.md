@@ -1,4 +1,4 @@
-# VGS-Itern
+# Shopping
 
 # Quản lý sản phẩm
 
@@ -8,14 +8,12 @@
 
 3. Một sản phẩm thì có nhiều ảnh và được đánh số thứ tự sắp xếp các ảnh được hiễn thị
 
-4. Dùng select 2 để tìm kiếm sản phẩm
+4. Sử dụng ajax thêm sửa xóa sản phẩm để không load lại trang
 
-5. Sử dụng ajax thêm sửa xóa sản phẩm để không load lại trang
+5. Command run project : php artisan serve
 
-6. Command run project : php artisan serve
+6. Câp nhập thư viện command : composer install
 
-7. Câp nhập thư viện command : composer install
+7. Cập nhật database command : php artisan migrate
 
-8. Cập nhật database command : php artisan migrate
-
-9. Login dùng Firebase check verify number phone javascript
+8. Login dùng Firebase check verify number phone javascript
