@@ -61,3 +61,5 @@ Route::get('dashboard',function(){
 Route::get('test',function(){
 	return view('test');
 });
+Route::post('payment','CartController@payment');
+Route::get('check-out-seccess/{bill_code}','CartController@CheckOutSuccess')->name('check.out.success');

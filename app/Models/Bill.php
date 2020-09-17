@@ -12,4 +12,7 @@ class Bill extends Model
     {
     	return $this->hasmany('App\Models\BillDetail','bill_id','id');
     } 
+    public function address(){
+    	return $this->belongsto('App\Models\Address','address_id','id');
+    }
 }

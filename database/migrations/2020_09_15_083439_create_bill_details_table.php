@@ -15,6 +15,7 @@ class CreateBillDetailsTable extends Migration
     {
         Schema::create('bill_details', function (Blueprint $table) {
             $table->id();
+            $table->text('name_product');
             $table->text('color');
             $table->text('size');
             $table->integer('quantity');

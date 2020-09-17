@@ -87,23 +87,24 @@
 
 				<div class="row">
 					<div class="col-md-5 mb-3">
-						<label for="country">Country</label>
-						<select class="custom-select d-block w-100" id="country" name="country">
+						<label for="country">City</label>
+						<select class="custom-select d-block w-100" id="city" name="city">
 							<option value="">Choose...</option>
-							<option>United States</option>
+							<option >Ha noi</option>
+							
 						</select>
-						<div class="error_country text-danger">
-							Please select a valid country.
+						<div class="error_city text-danger">
+							Please select a valid City.
 						</div>
 					</div>
 					<div class="col-md-4 mb-3">
-						<label for="state">State</label>
-						<select class="custom-select d-block w-100" id="state" name="state">
+						<label for="state">District</label>
+						<select class="custom-select d-block w-100" id="district" name="district">
 							<option value="">Choose...</option>
 							<option>California</option>
 						</select>
-						<div class="error_state text-danger">
-							Please provide a valid state.
+						<div class="error_district text-danger">
+							Please provide a valid district.
 						</div>
 					</div>
 					
@@ -137,8 +138,8 @@ $(document).ready(function() {
 		const name = $('#name').val();
 		const phone = $('#phone').val();
 		 var phone_regex =/((92|86|96|97|98|32|33|34|35|36|37|38|39|89|90|93|70|79|77|76|78|88|91|94|83|84|85|81|82|56|58|99|59)+([0-9]{7})\b)/g;
-		const country = $('#country').val();
-		const state = $('#state').val();
+		const city = $('#city').val();
+		const district = $('#district').val();
 		const address = $('#address').val();
 		console.log(name,phone)
 		if (name=="") {
@@ -159,17 +160,17 @@ $(document).ready(function() {
 			$('.error_phone').css('display','none');
 		}
 		
-		if (country=="") {
-			$('.error_country').css('display','block');
+		if (city=="") {
+			$('.error_city').css('display','block');
 			return false;
 		} else {
-			$('.error_country').css('display','none');
+			$('.error_city').css('display','none');
 		}
-		if (state=="") {
-			$('.error_state').css('display','block');
+		if (district=="") {
+			$('.error_district').css('display','block');
 			return false;
 		} else {
-			$('.error_state').css('display','none');
+			$('.error_district').css('display','none');
 		}
 		if (address=="") {
 			$('.error_address').css('display','block');
@@ -177,7 +178,25 @@ $(document).ready(function() {
 		} else {
 			$('.error_address').css('display','none');
 		}
-		return false;
+		$.ajax({
+			url: '../payment',
+			type: 'post',
+			data: {_token:CSRF_TOKEN,name:name,phone:phone,city:city,district:district,address:address},
+			success:function(data){
+				console.log(data.bill_code);
+				window.location = '../check-out-seccess/'+data.bill_code;
+			}
+		})
+		// .done(function() {
+		// 	console.log("success");
+		// })
+		// .fail(function() {
+		// 	console.log("error");
+		// })
+		// .always(function() {
+		// 	console.log("complete");
+		// });
+		
 		
 	})
 });

@@ -53,7 +53,8 @@
 							{{$product->name}}
 							<input type="hidden" name="product_name" id="product_detail_name" value="{{$product->name}}">
 							<input type="hidden" name="product_detail_id" id="product_detail_id" value="{{$product->id}}">
-							<<input type="hidden" name="cartImage" id="cartImage" value="{{asset(isset($product->firstImage[0]->image)?$product->firstImage[0]->image:'img/default.jpg')}}">
+							<input type="hidden" name="product_detail_slug" id="product_detail_slug" value="{{$product->slug}}">
+							<input type="hidden" name="cartImage" id="cartImage" value="{{asset(isset($product->firstImage[0]->image)?$product->firstImage[0]->image:'img/default.jpg')}}">
 						</h4>
 
 						<span class="mtext-106 cl2" id="price_detail">

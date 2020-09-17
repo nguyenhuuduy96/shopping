@@ -13,6 +13,7 @@ var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
                     // console.log(imageCart)
                     // return false;
                     const name = `<input type="hidden" name="product_id" class="product_id" value="`+data.product.id+`">
+                    <input type="hidden" name="slug" class="slug" value="`+data.product.slug+`">
                     <input type="hidden" name="product_name" id="product_name" value="`+data.product.name+`">
                     <input type="hidden" name="cartImage" id="cartImage" value="`+imageCart+`">`+data.product.name+``;
                     $('.js-name-detail').html(name);
@@ -165,6 +166,8 @@ $(document).ready(function(){
         let cartImage = $('#cartImage').val();
         let product_name = $('#product_name').val();
         let price = $('#priceCart').val();
+        let product_id = $('.product_id').val();
+        let slug = $('.slug').val();
         if (color=='') {
             $('.error_color_qv').html('vui long chon!');
             $('.error_color_qv').css('display','block');
@@ -187,7 +190,7 @@ $(document).ready(function(){
             data:{_token:CSRF_TOKEN,middle_id:middle_id,
                 image:cartImage,size:size,
                 name:product_name,
-                color:cartColor,price:price},
+                color:cartColor,price:price,product_id:product_id,slug:slug},
             success:function(data){
                 
                 
@@ -217,8 +220,9 @@ $(document).ready(function(){
                     </li>`;
 
                 }
-                
+                const subtotal = new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'VND' }).format(data.subtotla);
                 $('#cartshow').html(showcart);
+                $('.header-cart-total').html('Total: '+subtotal+'');
                  $('.js-modal1').removeClass('show-modal1');
                  $('.js-panel-cart').addClass('show-header-cart');
                 console.log(data)

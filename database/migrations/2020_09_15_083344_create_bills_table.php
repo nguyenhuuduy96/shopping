@@ -20,6 +20,8 @@ class CreateBillsTable extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->text('status');
             $table->integer('total');
+            $table->unsignedBigInteger('address_id');
+            $table->foreign('address_id')->references('id')->on('addresses')->onDelete('cascade');
             $table->timestamps();
         });
     }

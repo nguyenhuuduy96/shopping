@@ -8,6 +8,8 @@ $(document).ready(function(){
         let cartImage = $('#cartImage').val();
         let product_name = $('#product_detail_name').val();
         let price = $('#priceCart').val();
+        let product_id = $('#product_detail_id').val();
+        let slug = $('#product_detail_slug').val();
         console.log(size,cartColor,middle_id,cartImage,product_name,price)
         // return false;
         if (color=='') {
@@ -32,7 +34,7 @@ $(document).ready(function(){
             data:{_token:CSRF_TOKEN,middle_id:middle_id,
                 image:cartImage,size:size,
                 name:product_name,
-                color:cartColor,price:price},
+                color:cartColor,price:price,product_id:product_id,slug:slug},
             success:function(data){
                 
                 
@@ -63,7 +65,9 @@ $(document).ready(function(){
 
                 }
                 
+                const subtotal = new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'VND' }).format(data.subtotla);
                 $('#cartshow').html(showcart);
+                $('.header-cart-total').html('Total: '+subtotal+'');
                  $('.js-modal1').removeClass('show-modal1');
                  $('.js-panel-cart').addClass('show-header-cart');
                 console.log(data)
