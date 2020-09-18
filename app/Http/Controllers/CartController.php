@@ -97,7 +97,9 @@ class CartController extends Controller
         // dd($total);
         // return response()->json(['bill_code'=>$request->all()]);
         $checkuser = User::where('phone',$request->phone)->first();
-        if (empty($checkuser)) {
+        if (Auth::check()) {
+           $user = Auth::user();
+        }else if (empty($checkuser)) {
             $user= new User();
             $user->phone= $request->phone;
             $user->name=$request->name;

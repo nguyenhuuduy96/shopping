@@ -47,6 +47,12 @@ Route::group(['prefix'=>'admin-product','middleware' => 'auth'],function(){
 	Route::get('category','Admin\CategoryProductController@index')->name('list.cate');
 
 });
+Route::group(['prefix'=>'admin/bill'],function(){
+	Route::get('list','Admin\BillController@index')->name('admin.list.bill');
+	Route::post('confirm','Admin\BillController@confirm');
+	Route::post('cancel','Admin\BillController@cancel');
+	Route::get('detail/{bill_code}','Admin\BillController@detail')->name('admin.bill.detail');
+});
 
 Route::get('register','AuthController@register')->name('register');
 Route::post('save-register','AuthController@saveregister')->name('save.register');

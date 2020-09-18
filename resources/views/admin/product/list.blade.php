@@ -129,11 +129,11 @@
 
 												<label>color</label>
 												<select class="form-control" name="color_id[]" id="color_id" class="validatecolor"  style="width: 100%;">
-													<option value="">-- chọn --</option>
-													@foreach($colors as $color)
+													{{-- <option value="">-- chọn --</option> --}}
+													{{-- @foreach($colors as $color)
 													<option  
 													value="{{$color->id}}">{{$color->name}}</option>
-													@endforeach
+													@endforeach --}}
 												</select>
 											</div>
 											<div class="col-md-2">
@@ -141,10 +141,10 @@
 												<label>size</label>
 												<select class="form-control" name="size_id[]" class="validatesize" id="size_id"  style="width: 100%;">
 													<option value="">-- chọn --</option>
-													@foreach($sizes as $size)
+													{{-- @foreach($sizes as $size)
 													<option  
 													value="{{$size->id}}">{{$size->size}}</option>
-													@endforeach
+													@endforeach --}}
 												</select>
 											</div>
 
