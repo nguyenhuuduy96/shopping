@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Bill;
 use App\Models\BillDetail;
+
 use App\User;
+
 class BillController extends Controller
 {
     public function index(Request $request)
@@ -34,6 +36,8 @@ class BillController extends Controller
     }
     public function detail(Request $request,$bill_code){
     	$bill = Bill::where('bill_code',$bill_code)->first();
+    	
     	return view('admin.bills.detail',compact('bill'));
     }
+
 }

@@ -12,4 +12,8 @@ class Middle extends Model
     {
     	return $this->belongsto('App\Models\Size','size_id','id');
     }
+    public function color()
+    {
+    	return $this->belongsto('App\Models\Color','color_id','id');
+    }
 }

@@ -24,3 +24,7 @@ Route::group(['prefix'=>'category-product'],function(){
 	Route::delete('/{cate}','Admin\CategoryProductController@destroy');
 	Route::get('/page-link','Admin\CategoryProductController@page');
 });
+Route::group(['prefix'=>'product'],function(){
+	Route::get('search-product','Api\ProductController@search');
+	Route::post('get-size-price','Api\ProductController@getSizePrice');
+});

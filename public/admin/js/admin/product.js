@@ -25,7 +25,17 @@ $(document).ready(function(){
 						// let listsearch ="";
 						let showsearch = ``;
 						for (const x of data.products) {
-							showsearch +='<tr><td>'+x.id+'</td><td>'+x.name+'</td><td>'+x.source+'</td><td>'+x.time_expired+'</td><td><a class="btn btn-app" class="btn btn-success" data-toggle="modal" data-target="#ModalProduct" id="updateProduct" onclick="onclickupdate(this,'+x.id+')"><i class="fa fa-edit text-primary"></i>Edit</a></td><td><a class="btn btn-app" class="btn btn-success" id="deleteRow" onclick="tabledeleteProduct(this,'+x.id+')"><i class="fas fa-trash-alt text-danger"></i>delete</a> </td></tr>';
+							showsearch +=`<tr><td>`+x.id+`</td>
+											<td>`+x.name+`</td>
+											<td>`+x.source+`</td>
+											<td>`+x.time_expired+`</td>
+											<td><a class="btn btn-app" class="btn btn-success" data-toggle="modal" data-target="#ModalProduct" 
+											id="updateProduct" onclick="onclickupdate(this,`+x.id+`)">
+											<i class="fa fa-edit text-primary"></i>Edit</a></td>
+											<td><a class="btn btn-app" class="btn btn-success" id="deleteRow" onclick="tabledeleteProduct(this,`+x.id+`)">
+											<i class="fas fa-trash-alt text-danger"></i>delete</a> 
+											</td>
+										</tr>`;
 						}
 						$('#search_Show').html(showsearch);
 						

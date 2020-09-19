@@ -3,8 +3,9 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
-
-class MiddleSize extends JsonResource
+use App\Http\Resources\SizeResource;
+use App\Http\Resources\Color;
+class Middle extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -17,7 +18,7 @@ class MiddleSize extends JsonResource
         return ['price'=>$this->price,
                 'stock'=>$this->stock,
                 'middle_id'=>$this->id,
-                'size'=>$this->size
+               
                 ];
     }
 }

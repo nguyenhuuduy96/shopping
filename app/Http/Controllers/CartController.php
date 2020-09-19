@@ -130,6 +130,7 @@ class CartController extends Controller
             $bill_detail->color = $cart->attributes['color'];
             $bill_detail->size = $cart->attributes['size'];
             $bill_detail->quantity = $cart->quantity;
+            $bill_detail->price = $cart->price;
             $bill_detail->total= $cart->quantity * $cart->price;
             $bill_detail->product_id = $cart->attributes['product_id'];
             $bill_detail->bill_id= $bill->id;

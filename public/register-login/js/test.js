@@ -45,8 +45,8 @@ var config = {
                   // console.log(data.user)
                   if (data.phone =='') {
                      
-                      console.log(phoneNumber);
-                      console.log(appVerifier);
+                      // console.log(phoneNumber);
+                      // console.log(appVerifier);
                       // 
                       firebase.auth().signInWithPhoneNumber(phoneNumber, appVerifier)
                           .then(function (confirmationResult) {
@@ -62,7 +62,7 @@ var config = {
                           }).catch(function (error) {
                            
                       });
-                     console.log('ko')
+                     
                   }else{
                     // console.log(data.phone);
                     $('.error').css('display','block');
@@ -99,7 +99,7 @@ var config = {
                 method:'post',
                 data:{_token:CSRF_TOKEN,phone:phoneNumber},
                 success:function(data){
-                  confirm('login success!');
+                  // confirm('login success!');
                    firebase.auth().signOut().then(function() {
                   // Sign-out successful.
                     console.log('Sign-out successful.');
