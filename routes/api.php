@@ -28,3 +28,6 @@ Route::group(['prefix'=>'product'],function(){
 	Route::get('search-product','Api\ProductController@search');
 	Route::post('get-size-price','Api\ProductController@getSizePrice');
 });
+Route::group(['prefix'=>'bill'],function(){
+	Route::post('add-new','Api\BillController@addnew');
+});

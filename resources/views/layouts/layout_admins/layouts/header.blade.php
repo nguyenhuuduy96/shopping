@@ -29,13 +29,13 @@
     <!-- Messages Dropdown Menu -->
     <li class="nav-item dropdown user user-menu " style="line-height: 45px">
       <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-        <img src="{{asset('adminlte/dist/img/user2-160x160.jpg')}}" class="user-image" alt="User Image">
+        <img src="{{asset('admin/dist/img/user2-160x160.jpg')}}" class="user-image" alt="User Image">
         <span class="hidden-xs">Alexander Pierce</span>
       </a>
       <ul class="dropdown-menu">
         <!-- User image -->
         <li class="user-header bg-primary">
-          <img src="{{asset('adminlte/dist/img/user2-160x160.jpg')}}" class="img-circle" alt="User Image">
+          <img src="{{asset('admin/dist/img/user2-160x160.jpg')}}" class="img-circle" alt="User Image">
 
           <p>
             {{Auth::user()->name}}
