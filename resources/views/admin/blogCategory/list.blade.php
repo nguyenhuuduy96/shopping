@@ -1,5 +1,5 @@
 @extends('layouts.layout_admins.main')    
-@section('title','category-product')
+@section('title','category Blog')
 @section('content')
 <div class="container-fluid">
   <div class="row">
@@ -70,45 +70,13 @@
     </div>
   </div>
   {{-- modal category product --}}
-  @include('admin.category_product.form')
+  @include('admin.blogCategory.form')
   @endsection
   @section('js')
-  <script src="{{asset('admin/js/admin/cateProduct.js')}}"></script>
+<script src="{{asset('admin/js/admin/cateBlog.js')}}"></script>
   <script type="text/javascript">
-    window.addEventListener('load', function(e) {
-     $.ajax({
-      url:'../../api/category-product/list',
-      type:'get',
-      success:function(data){
-        console.log(data.length)
-        let countCate= data.length;
-        let TotlaPage = Math.ceil(countCate/2);
-        let showPagaLink =`<nav>
-        <ul class="pagination">
-          <li class="page-item disabled" aria-disabled="true" aria-label="« Previous">
-            <span class="page-link" aria-hidden="true">‹</span>
-          </li>`;
-        for (var i = 1; i <= TotlaPage; i++) {
-          showPagaLink+=`<li class="page-item" aria-current="page"><span class="page-link">`+i+`</span></li> `;
-        }
-        showPagaLink+=` <li class="page-item">
-                  <a class="page-link" rel="next" aria-label="Next »">›</a>
-                  </li>
-                  </ul>
-        </nav>`;
-        document.getElementById('paga-link').innerHTML=showPagaLink;
-        console.log(showPagaLink)
-        // console.log(data)
-        // let list = '<option value="">- chon -</option>';
-        // for(const x of data){
-        //   list+='<option value="'+x.id+'" > '+x.name+'</option>'
-        //   // console.log(x.id)
-        //   // return false;
-        // }
-        // document.getElementById('allsize').innerHTML=list;
-      }
-    })
-   });
+    
+    
 
  </script>
  @endsection

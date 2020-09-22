@@ -10,7 +10,7 @@
 
                     <div class="right-top-bar flex-w h-full">
                         @if(!empty(Auth::user()))
-                        <a href="{{route('list.product')}}" class="flex-c-m trans-04 p-lr-25">
+                        <a href="{{route('admin.dashboard')}}" class="flex-c-m trans-04 p-lr-25">
                             Admin
                         </a>
 

@@ -4,7 +4,7 @@ function newform(){
 	document.getElementById('row_id_cate').value='';
 	document.getElementById('id').value='';
 	$.ajax({
-		url:'../../api/category-product/list',
+		url:'../../api/category-blog/list',
 		type:'get',
 		success:function(data){
 			console.log(data)
@@ -21,7 +21,7 @@ function newform(){
 function update(r,id){
 	let rowid = r.parentNode.parentNode.rowIndex;
 	$.ajax({
-		url:'../../api/category-product/'+id,
+		url:'../../api/category-blog/'+id,
 		type:'get',
 		success:function(data){
 			console.log(data)
@@ -30,7 +30,7 @@ function update(r,id){
 			document.getElementById('id').value=id;
 			document.getElementById('name').value=data.data.name;
 			$.ajax({
-				url:'../api/category-product/list',
+				url:'../api/category-blog/list',
 				type:'get',
 				success:function(allsize){
 					console.log(allsize)
@@ -71,7 +71,7 @@ $(document).ready(function () {
 		console.log(name)
 		// return false;
 		$.ajax({
-			url:'../../api/category-product/save',
+			url:'../../api/category-blog/save',
 			type:'post',
 			data:new FormData(this),
 			contentType:false,
@@ -108,7 +108,7 @@ $(document).ready(function () {
 function DeleteCategory(r,id){
 	let rowid = r.parentNode.parentNode.rowIndex;
 	$.ajax({
-		url:'../../api/category-product/'+id,
+		url:'../../api/category-blog/'+id,
 		type:'delete',
 		success:function(data){
 			document.getElementById("tableCategoryProduct").deleteRow(rowid);

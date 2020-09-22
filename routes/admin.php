@@ -14,9 +14,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('dashboard',function(){
-	return view('admin.dashboard');
+Route::get('dashboard','Admin\DashboarhController@index')->name('admin.dashboard');
+Route::group(['prefix'=>'blog'],function(){
+	Route::get('list','Admin\BlogController@index')->name('admin.list.blog');
+	Route::post('add-and-update','Admin\BlogController@save');
+	Route::get('category','Admin\BlogCategoryController@index')->name('list.cate.blog');
 });
+
 Route::group(['prefix'=>'bill'],function(){
 	Route::get('list','Admin\BillController@index')->name('admin.list.bill');
 	Route::post('confirm','Admin\BillController@confirm');

@@ -54,3 +54,9 @@
   });
   var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
 </script>
+<script>
+  $(function () {
+    // Summernote
+    $('.textarea').summernote()
+  })
+</script>

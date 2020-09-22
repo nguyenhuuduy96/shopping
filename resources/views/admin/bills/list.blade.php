@@ -51,16 +51,16 @@
                   <th>{{ number_format($bill->total, 0, '.', '.') }} đ</th>
                   <th>{{isset($bill->status)?$bill->status->name:''}}</th>
                   <th>
-                    <a class="btn btn-primary" onclick="confirmBill(this,{{$bill->id}})" >
+                    <a class="btn btn-primary" onclick="confirmBill(this,{{$bill->id}},{{$bill->status_id}})" >
                     Xác nhận đơn</a>
-                    <a class="btn btn-danger" onclick="cancelBill(this,{{$bill->id}})">Hủy đơn</a>
+                    <a class="btn btn-danger" onclick="cancelBill(this,{{$bill->id}},{{$bill->status_id}})">Hủy đơn</a>
                   </th>
                 </tr>
                 @endforeach
 
               </tbody>
             </table>
-            {{--  <div class="d-flex justify-content-center mt-2 " id="paga-link"></div> --}}
+             <div class="d-flex justify-content-center mt-2 " id="paga-link">{{$bills->links()}}</div>
           </div>
           <!-- /.card-body -->
 
@@ -75,10 +75,14 @@
   <script  type="text/javascript" charset="utf-8" async defer>
 
 
-function confirmBill(r,id){
+function confirmBill(r,id,status_id){
       let rowid = r.parentNode.parentNode.rowIndex;
       let tableBill = document.getElementById('tablebill');
       console.log(CSRF_TOKEN)
+      if (status_id>2) {
+      alert('đơn hàng đã hoàn thành hoặc bị hủy không thể xác nhận đơn được!');
+      return false;
+      }
       $.ajax({
         url: './confirm',
         type: 'post',
@@ -95,10 +99,14 @@ function confirmBill(r,id){
       }) 
     }
 
-function cancelBill(r,id){
+function cancelBill(r,id,status_id){
       let rowid = r.parentNode.parentNode.rowIndex;
       let tableBill = document.getElementById('tablebill');
       console.log(CSRF_TOKEN)
+      if (status_id>3) {
+      alert('đơn hàng đã hoàn thành không thể hủy đơn được!');
+      return false;
+      }
       $.ajax({
         url: './cancel',
         type: 'post',

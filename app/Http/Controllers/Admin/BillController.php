@@ -13,7 +13,7 @@ class BillController extends Controller
 {
     public function index(Request $request)
     {
-    	$bills = Bill::orderby('updated_at','desc')->get();
+    	$bills = Bill::orderby('updated_at','desc')->paginate(10);
     	// dd($bills);
     	return view('admin.bills.list',compact('bills'));
     }

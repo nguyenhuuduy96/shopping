@@ -26,16 +26,16 @@ $(document).ready(function(){
 						let showsearch = ``;
 						for (const x of data.products) {
 							showsearch +=`<tr><td>`+x.id+`</td>
-											<td>`+x.name+`</td>
-											<td>`+x.source+`</td>
-											<td>`+x.time_expired+`</td>
-											<td><a class="btn btn-app" class="btn btn-success" data-toggle="modal" data-target="#ModalProduct" 
-											id="updateProduct" onclick="onclickupdate(this,`+x.id+`)">
-											<i class="fa fa-edit text-primary"></i>Edit</a></td>
-											<td><a class="btn btn-app" class="btn btn-success" id="deleteRow" onclick="tabledeleteProduct(this,`+x.id+`)">
-											<i class="fas fa-trash-alt text-danger"></i>delete</a> 
-											</td>
-										</tr>`;
+							<td>`+x.name+`</td>
+							<td>`+x.source+`</td>
+							<td>`+x.time_expired+`</td>
+							<td><a class="btn btn-app" class="btn btn-success" data-toggle="modal" data-target="#ModalProduct" 
+							id="updateProduct" onclick="onclickupdate(this,`+x.id+`)">
+							<i class="fa fa-edit text-primary"></i>Edit</a></td>
+							<td><a class="btn btn-app" class="btn btn-success" id="deleteRow" onclick="tabledeleteProduct(this,`+x.id+`)">
+							<i class="fas fa-trash-alt text-danger"></i>delete</a> 
+							</td>
+							</tr>`;
 						}
 						$('#search_Show').html(showsearch);
 						
@@ -61,18 +61,18 @@ $(document).ready(function() {
 	// 			for(const x of data.getColors){
 	// 				list +='<option value="'+x.id+'" > '+x.name+'</option>'
 	// 			}
-				
+
 	// 			// for(const x of data.getsize){
 	// 			// 	list +='<option value="'+x.id+'" > '+x.size+'</option>'
 	// 			// }
 
-				
+
 	// 			showcolor.innerHTML=list;
 	// 			// console.log(list);
 	// 		}
 	// 	});
-		
-		
+
+
 	// })	
 });
 //rest form add new product
@@ -87,10 +87,10 @@ function productFormRest(){
 	$('#date').attr("value","");
 	$('#rowid').attr('value',"");
 	$('#ModalProduct form')[0].reset();
-		$.ajax({
-			url:"get-size-all",
-			method: 'get',
-			success: function(data){
+	$.ajax({
+		url:"get-size-all",
+		method: 'get',
+		success: function(data){
 				// console.log(data.getColors);
 
 				let listColor=`<option selected="selected" value="">-- chọn --</option>`;
@@ -193,8 +193,8 @@ $(document).ready(function(){
     			let test = new FileReader();
     			test.readAsDataURL(x);
     			test.onload = function () {	
-    				if (x.size>maxSize) {
-    					alert('có 1 file anh lớn hơn 2mb đã được loại bỏ vì file filesUpload không được lớn hơn 2 mb')
+    				if (x.size>maxSize || /\.(jpe?g|png|gif|bmp)$/i.test(x.name)==false) {
+    					alert('có 1 file anh lớn hơn 2mb đã được loại bỏ vì file filesUpload không được lớn hơn 2 mb hoăc ko đúng định dạng!')
     				}else{
     					$('#showImage').append(`<div class="col-md-2" id="showImagediv">
     						<img src="`+test.result+`" class="img-rounded img-thumbnail" alt="Cinque Terre" width="100%" height="236"
@@ -213,6 +213,7 @@ $(document).ready(function(){
     		
     	}
     });
+//save
 $(document).ready(function(){
 	$('#formnewproductsubmit').on('submit', function(event){
 		event.preventDefault();
@@ -239,23 +240,23 @@ $(document).ready(function(){
 		}else{
 			$('.errortime_expired').css('display','none');
 		}
-		if (fileimage!=="") {
-			let arrayFiles=fileimage[1].files;
-			for(const image of arrayFiles){
-		        		// if (image.size>maxSize) {
-		        		// 	$('.error_image').html('ko được co file image có dung lượng vượt quá 2M!');
-		        		// 	return false;
-		        		// }
-		        		// let filename ="image/name.jpg";
-		        		if (/\.(jpe?g|png|gif|bmp)$/i.test(image.name)==false) {
-		        			$('.error_image').css('display','block');
-		        			$('.error_image').html('Error định dạng image!');
-		        			return false;
-		        		}
+		// if (fileimage!=="") {
+		// 	let arrayFiles=fileimage[1].files;
+		// 	for(const image of arrayFiles){
+		//         		// if (image.size>maxSize) {
+		//         		// 	$('.error_image').html('ko được co file image có dung lượng vượt quá 2M!');
+		//         		// 	return false;
+		//         		// }
+		//         		// let filename ="image/name.jpg";
+		//         		if (/\.(jpe?g|png|gif|bmp)$/i.test(image.name)==false) {
+		//         			$('.error_image').css('display','block');
+		//         			$('.error_image').html('Error định dạng image!');
+		//         			return false;
+		//         		}
 		        		
-		        	}
+		//         	}
 
-		        }
+		//         }
 		        $('.error_image').css('display','none');
 
 		        let rowid = $('#rowid').val();
@@ -397,8 +398,8 @@ function onclickupdate(r,id){
 						}
 						$('#getsizeup').append(listup);
 						let listColor=`<option selected="selected" value="">-- chọn --</option>`;
-				for(const x of data.colors){
-					listColor +='<option value="'+x.id+'" > '+x.name+'</option>';
+						for(const x of data.colors){
+							listColor +='<option value="'+x.id+'" > '+x.name+'</option>';
 					// console.log(x.name)
 				}
 				let listSize=`<option selected="selected" value="">-- chọn --</option>`;
