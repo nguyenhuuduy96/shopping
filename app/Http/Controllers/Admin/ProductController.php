@@ -77,29 +77,8 @@ class ProductController extends Controller
 		$product->delete();
 		return response()->json(['product'=>'success']);
 	}
-	public function deleteSizeTable(Request $req){
-		Size::find($req->id)->delete();
+	
 
-	}
-	public function getsize(Request $req){
-		$size = Size::find($req->id);
-		return response()->json(['size'=>$size]);
-	}
-	public function savesize(Request $req){
-		if (isset($req->id)) {
-			# code...
-			$size = Size::find($req->id);
-			$size->size=$req->size;
-			$size->save();
-		} else {
-			$size = new Size();
-			$size->size=$req->size;
-			$size->save();
-		}
-		
-		
-		return response()->json(['size'=>$size]);
-	}
     public function save(Request $req){
     	
 
@@ -186,6 +165,57 @@ class ProductController extends Controller
 	
 		return response()->json(['product'=>$product]);
     }
-      	
+    //table size
+    public function getsize(Request $req){
+
+		$size = Size::find($req->id);
+		return response()->json(['size'=>$size]);
+	}
+	public function deleteSizeTable(Request $req){
+		Size::find($req->id)->delete();
+
+	}
+	public function savesize(Request $req){
+		if (isset($req->id)) {
+			# code...
+			$size = Size::find($req->id);
+			$size->size=$req->size;
+			$size->save();
+		} else {
+			$size = new Size();
+			$size->size=$req->size;
+			$size->save();
+		}
+		
+		
+		return response()->json(['size'=>$size]);
+	}
+      //color	
+	public function getcolor(Request $req){
+
+		$color = Color::find($req->id);
+		return response()->json(['color'=>$color]);
+	}
+	public function deleteColorTable(Request $req){
+		// return response()->json(['color'=>$req->all()]);
+		Color::find($req->id)->delete();
+
+	}
+	public function savecolor(Request $req){
+		// return response()->json(['color'=>$req->all()]);
+		if (isset($req->id_color)) {
+			# code...
+			$color = Color::find($req->id_color);
+			$color->name=$req->name_color;
+			$color->save();
+		} else {
+			$color = new Color();
+			$color->name=$req->name_color;
+			$color->save();
+		}
+		
+		
+		return response()->json(['color'=>$color]);
+	}
     
 }

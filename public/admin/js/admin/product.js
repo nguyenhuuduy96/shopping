@@ -43,38 +43,7 @@ $(document).ready(function(){
 				})
 	})
 });
-//onchange <select> <option> color
-$(document).ready(function() {
-	let showcolor = document.getElementById('color_id');
-	// $('#color_id').click(function(){
-	// 	console.log('dsad')
-	
-	// })
-	// showcolor.addEventListener('onchange', function(){
-	// 	$.ajax({
-	// 		url:"get-size-all",
-	// 		method: 'get',
-	// 		success: function(data){
-	// 			// console.log(data.getsize);
 
-	// 			const list=`<option selected="selected" value="">-- chọn --</option>`;
-	// 			for(const x of data.getColors){
-	// 				list +='<option value="'+x.id+'" > '+x.name+'</option>'
-	// 			}
-
-	// 			// for(const x of data.getsize){
-	// 			// 	list +='<option value="'+x.id+'" > '+x.size+'</option>'
-	// 			// }
-
-
-	// 			showcolor.innerHTML=list;
-	// 			// console.log(list);
-	// 		}
-	// 	});
-
-
-	// })	
-});
 //rest form add new product
 function productFormRest(){
 	$('#titleProduct').html('New Product');
@@ -240,6 +209,7 @@ $(document).ready(function(){
 		}else{
 			$('.errortime_expired').css('display','none');
 		}
+
 		// if (fileimage!=="") {
 		// 	let arrayFiles=fileimage[1].files;
 		// 	for(const image of arrayFiles){
@@ -274,7 +244,7 @@ $(document).ready(function(){
 		                	// console.log(data.product);
 		                	// return false;
 		                	// return false;
-		                	confirm("success!");
+		                	alert("success!");
 		                	console.log("success");
 		                	let tableProduct = document.getElementById("example1");
 		                	if (rowid =="") {
@@ -470,7 +440,7 @@ function tabledeleteSize(r,id) {
 	let tableRow = r.parentNode.parentNode.rowIndex;
 	let alertSize = confirm("Are you sure you want to delete!");
 	$.ajax({
-		url:"delete-size-table-row",
+		url:"size/delete-size-table-row",
 		method:"post",
 		data:{_token:CSRF_TOKEN,id:id},
 		success:function(data){
@@ -487,10 +457,11 @@ function tableGetSize(r,id){
 
 	$('.title-size').html('Update size');
 	$('#row_id_size').attr('value',row_i);
+	console.log(id);
 	$.ajax({
-		url:"get-size",
-		method:"get",
-		data:{id:id},
+		url:"size/get-size",
+		method:"post",
+		data:{id:id,_token:CSRF_TOKEN},
 		success:function(data){
 
 			$('.newSize').attr("value",data.size.size);
@@ -518,7 +489,7 @@ $(document).ready(function(){
 		let table = document.getElementById("TableSize");
 		$.ajax({
 
-			url: 'save-size',
+			url: 'size/save-size',
 			method:"post",
 			data: new FormData(this),
 			contentType:false,
@@ -548,11 +519,11 @@ $(document).ready(function(){
 
                }
 
-                    // $('#TableSize').append('<tr><th scope="row">'+data.addsize.id+'</th><td>'+data.addsize.size+'</td><td><a class="btn btn-danger" onclick="tabledeleteSize(this)">delete</a></td><td><a data-toggle="modal" data-target="#AddNewSize" class="btn btn-primary">Update</a></td></tr>');
+                   
                     $('#AddNewSize').modal('hide');
                     $('#submitSize').trigger("reset");
-                    // $('.successSize').html('thêm thành công');
-                    confirm('success');
+                    
+                    alert('success');
                     
                 }
             }); 
@@ -560,17 +531,121 @@ $(document).ready(function(){
 	});
 
 });
-// firebase.auth().onAuthStateChanged(function(user) {
-//     let user = firebase.auth().currentUser;
-//   if (user) {
-//     // User is signed in.
-//     // console.log(user)
-//     user.providerData.forEach(function (profile) {
-//        $('#Logout').html(profile.phoneNumber)
-//         console.log("  phoneNumber: " + profile.phoneNumber);
-//       });
-//   } else {
-//     console.log('no auth')
-//     // No user is signed in.
-//   }
-// });
+//colorr
+function tabledeleteColor(r,id) {
+	// console.log(r);
+	let tableRow = r.parentNode.parentNode.rowIndex;
+	let alertSize = confirm("Are you sure you want to delete!");
+	console.log(tableRow,id)
+	$.ajax({
+		url:"color/delete-color-table-row",
+		method:"post",
+		data:{_token:CSRF_TOKEN,id:id},
+		success:function(data){
+			console.log(data)
+			document.getElementById("TableColor").deleteRow(tableRow);
+		}
+	})
+	
+	
+
+}
+
+function tableGetColor(r,id){
+	let row_i = r.parentNode.parentNode.rowIndex;
+
+	$('.title-color').html('Update color');
+	$('#row_id_color').attr('value',row_i);
+	
+	$.ajax({
+		url:"color/get-color",
+		method:"post",
+		data:{id:id,_token:CSRF_TOKEN},
+		success:function(data){
+
+			$('.newSize').attr("value",data.color.name);
+			$('#id_color').val(data.color.id);
+
+		}
+	})
+	
+}
+
+
+// save color and update color
+$(document).ready(function(){		
+	//add color		
+	$('#submitColor').on('submit', function(event){
+		event.preventDefault();
+		let row_id_color = $('#row_id_color').val();
+		let name_color =$('#name_color').val();
+		if (name_color=="") {
+			$('.errorsColor').html("vui lòng nhập!");
+		} else {
+			$('.errorsColor').css("display","none");
+		}
+		let table = document.getElementById("TableColor");
+		$.ajax({
+
+			url: 'color/save-color',
+			method:"post",
+			data: new FormData(this),
+			contentType:false,
+			cache:false,
+			processData:false,
+			success: function (data) { 
+                	// console.log(data);
+                	// return false;
+                	if (row_id_color=="") {
+
+                   let row = table.insertRow(1);
+                   let cell1 = row.insertCell(0);
+                   let cell2 = row.insertCell(1);
+                   let cell3 = row.insertCell(2);
+                   let cell4 = row.insertCell(3);
+                   cell1.innerHTML = data.color.id;
+                   cell2.innerHTML = data.color.name;
+                   cell3.innerHTML ='<a class="btn btn-danger" onclick="tabledeleteColor(this,'+data.color.id+')">delete</a>';
+                   cell4.innerHTML ='<a data-toggle="modal" data-target="#FormColor" class="btn btn-primary" onclick="tableGetColor(this,'+data.color.id+')">Update</a>';
+               } else {
+               	const cells = table.rows[row_id_color].cells;
+               	cells[0].innerHTML = data.color.id;
+               	cells[1].innerHTML = data.color.name;
+               	cells[2].innerHTML = '<a class="btn btn-danger" onclick="tabledeleteColor(this,'+data.color.id+')">delete</a>';
+               	cells[3].innerHTML ='<a data-toggle="modal" data-target="#FormColor" class="btn btn-primary" onclick="tableGetColor(this,'+data.color.id+')">Update</a>';
+
+               }
+
+                  
+                    $('#FormColor').modal('hide');
+                    $('#submitColor').trigger("reset");
+                    // $('.successSize').html('thêm thành công');
+                    alert('success');
+                    
+                }
+            }); 
+
+	});
+
+});
+$(document).ready(function() {
+	let header = document.getElementById("myDIV");
+	let page_colors = header.getElementsByClassName("page_color");
+	for (let i = 0; i < page_colors.length; i++) {
+		page_colors[i].addEventListener("click", function() {
+			let current = document.getElementsByClassName("active");
+			current[0].className = current[0].className.replace(" active", "");
+			this.className += " active";
+			const id = $(this).val();
+
+			console.log(id);
+
+		});
+	}
+	$('.pre').click(function() {
+		let header = document.getElementById("myDIV");
+		let active = header.getElementsByClassName('active');
+		const id = $('.active').val();
+		console.log(id)
+	});
+});

@@ -41,7 +41,7 @@
 										<th>title</th>
 										<th>author</th>
 										<th>image</th>
-										<th><a data-toggle="modal" data-target="#ModalProduct" onclick=""><i class="fa fa-plus-square text-success"></i> New Product</a></th>
+										<th><a data-toggle="modal" data-target="#ModalBlog" id="new" onclick="restForm()"><i class="fa fa-plus-square text-success"></i> New Product</a></th>
 										
 									</tr>
 								</thead>
@@ -50,10 +50,10 @@
 									<tr>
 										<td>{{$blog->id}}</td>
 										<td>{{$blog->title}}</td>
-										<td>{{$blog->autho}}</td>
-										<td><<img src="{{$blog->image}}" width="50px;" alt=""></td>
-										<td><a class="btn btn-app" class="btn btn-success" data-toggle="modal" data-target="#Modalblog" id="updateblog" onclick=""><i class="fa fa-edit text-primary" ></i>Edit</a>
-											<a class="btn btn-app" class="btn btn-success" id="deleteRow" onclick=""><i class="fas fa-trash-alt text-danger"></i>delete</a> 
+										<td>{{$blog->author}}</td>
+										<td><img src="{{$blog->image_title}}" width="50px;" alt=""></td>
+										<td><a class="btn btn-app" class="btn btn-success" data-toggle="modal" data-target="#ModalBlog" id="updateblog" onclick="Getupdate(this,{{$blog->id}})"><i class="fa fa-edit text-primary" ></i>Edit</a>
+											<a class="btn btn-app" class="btn btn-success" id="deleteRow" onclick="deleteBlog(this,{{$blog->id}})"><i class="fas fa-trash-alt text-danger"></i>delete</a> 
 										</td>
 									</tr>
 									@endforeach
@@ -68,7 +68,7 @@
 
 
 		<!--Modal form products-->
-		<div class="modal fade" id="ModalProduct">
+		<div class="modal fade" id="ModalBlog">
 			<div class="modal-dialog modal-lg">
 				<div class="modal-content">
 
@@ -81,18 +81,17 @@
 					<!-- Modal body -->
 					<div class="modal-body">
 						<div class="container">
-							<form class="row" id="formblogsubmit" class="ShowSearhProduct" enctype="multipart/form-data">
+							<form class="row" id="formblogsubmit" enctype="multipart/form-data">
 								@csrf
 								<div class="col-sm-12" id="getIdproduct">
 
 								</div>
 								<div class="col-sm-12">
 									<div class="form-group" >
-										<div id="product_id">
-
-										</div>
+										
 										<label for="type" >Tiêu đề:</label>
 										<input type="hidden" class="form-control" id="rowid" placeholder="ten san pham" name="rowid" value="" >
+										<input type="hidden" name="id" id="blog_id" value="">
 										<input type="type" class="form-control" id="title" placeholder="tiêu đề" name="title" >
 										<span class="error_title" style="color: red"></span>
 									</div>
@@ -113,6 +112,7 @@
 									<div class="form-group">
 										<label for="date">image:</label>
 										<input type="file" class="form-control" id="image" name="image" >
+										<input type="hidden" name="anh" id="anh" value="">
 										<span class="error_image" style="color: red"></span>
 									</div>
 									

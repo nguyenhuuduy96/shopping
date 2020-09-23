@@ -17,6 +17,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('dashboard','Admin\DashboarhController@index')->name('admin.dashboard');
 Route::group(['prefix'=>'blog'],function(){
 	Route::get('list','Admin\BlogController@index')->name('admin.list.blog');
+	Route::get('list/{blog}','Admin\BlogController@getBlog');
+	Route::delete('list/{blog}','Admin\BlogController@delete');
 	Route::post('add-and-update','Admin\BlogController@save');
 	Route::get('category','Admin\BlogCategoryController@index')->name('list.cate.blog');
 });
@@ -36,11 +38,19 @@ Route::group(['prefix'=>'product'],function(){
 	Route::post('delete-image','Admin\ProductController@deleteImage');
 	Route::post('delete-size-price-stock','Admin\ProductController@DeleteSizePriceStock');
 	Route::post('delete-product','Admin\ProductController@deleteproduct');
-	Route::post('delete-size-table-row','Admin\ProductController@deleteSizeTable');
-	Route::post('get-size','Admin\ProductController@getsize');
-	Route::post('save-size','Admin\ProductController@savesize');
+	
 	Route::get('search-product','Admin\ProductController@searchProduct');
 	Route::post('check','Admin\ProductController@checkphone');
 	Route::get('category','Admin\CategoryProductController@index')->name('list.cate');
+	Route::group(['prefix'=>'size'],function(){
+		Route::post('delete-size-table-row','Admin\ProductController@deleteSizeTable');
+		Route::post('get-size','Admin\ProductController@getsize');
+		Route::post('save-size','Admin\ProductController@savesize');
+	});
+	Route::group(['prefix'=>'color'],function(){
+		Route::post('delete-color-table-row','Admin\ProductController@deleteColorTable');
+		Route::post('get-color','Admin\ProductController@getcolor');
+		Route::post('save-color','Admin\ProductController@savecolor');
+	});
 
 });
