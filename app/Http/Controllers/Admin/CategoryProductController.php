@@ -17,20 +17,32 @@ class CategoryProductController extends Controller
      */
     public function index()
     {
-        $cate = ProductCategory::find(17);
+        // $page = 1;
+        // $skip = $page*2;
+        // $cates= ProductCategory::skip($skip)->take(2)->get();
+        // dd($cates);
         // dd($cate->products_cates,$cate->cates);
         $cates= ProductCategory::paginate(2);
        
         return view('admin.category_product.list',compact('cates'));
         
     }
-    public function allCategory(){
-        return ProductCategory::all();
+    public function allCategory(Request $request){
+        $totalCate = count(ProductCategory::all());
+        $page = isset($request->page)?$request->page-1:0;
+        $skip = $page*2;
+        $cates= ProductCategory::skip($skip)->take(2)->get();
+        $catesShow = JsonCategoryProduct::collection($cates);
+
+         return ['cates'=> $catesShow, 'totalCate'=>$totalCate,'id'=>$request->page];
     }
-    public function page(Request $request){
-        $cates= ProductCategory::paginate(2);
-        return $cates;
+
+    public function nullParent(Request $request){
+        $cates = ProductCategory::whereNull('parent_id')->get();
+        // dd($cates);
+        return JsonCategoryProduct::collection($cates);
     }
+   
 
     /**
      * Store a newly created resource in storage.

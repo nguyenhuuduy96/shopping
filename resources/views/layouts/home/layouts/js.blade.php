@@ -3,6 +3,7 @@
     <script src="{{asset('home/vendor/animsition/js/animsition.min.js')}}"></script>
 <!--===============================================================================================-->
     <script src="{{asset('home/vendor/bootstrap/js/popper.js')}}"></script>
+    <script src="{{asset('home/vendor/bootstrap-4/js/bootstrap.min.js')}}"></script>
     <script src="{{asset('home/vendor/bootstrap/js/bootstrap.min.js')}}"></script>
 <!--===============================================================================================-->
     <script src="{{asset('home/vendor/select2/select2.min.js')}}"></script>

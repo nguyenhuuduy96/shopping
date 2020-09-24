@@ -64,6 +64,9 @@
                             <li>
                                 <a href="#">Contact</a>
                             </li>
+                            <li>
+                                <a href="#">Kiểm tra đơn</a>
+                            </li>
                         </ul>
                     </div>  
 

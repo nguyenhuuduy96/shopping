@@ -5,6 +5,7 @@ namespace App\Http\Resources;
 use Illuminate\Http\Resources\Json\JsonResource;
 use App\Http\Resources\Middle;
 use App\Http\Resources\ColorResource;
+use App\Http\Resources\CategoryProduct;
 class ProductResource extends JsonResource
 {
     /**
@@ -22,7 +23,8 @@ class ProductResource extends JsonResource
                 'time_expired'=>$this->time_expired,
                 'image'=>$this->firstImage,
                 'price'=>$this->firstPrice,
-                'attributes' =>ColorResource::collection($this->colors)
+                'attributes' =>ColorResource::collection($this->colors),
+                'category'=> new CategoryProduct($this->cate)
                 ];
     }
 }

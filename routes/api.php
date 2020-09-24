@@ -22,15 +22,21 @@ Route::group(['prefix'=>'category-product'],function(){
 	Route::get('list','Admin\CategoryProductController@allCategory');
 	Route::get('/{cate}','Admin\CategoryProductController@show');
 	Route::delete('/{cate}','Admin\CategoryProductController@destroy');
-	Route::get('/page-link','Admin\CategoryProductController@page');
+	
 });
+
+
+
 Route::group(['prefix'=>'category-blog'],function(){
 	Route::post('save','Admin\BlogCategoryController@store');
 	Route::get('list','Admin\BlogCategoryController@allCategory');
 	Route::get('/{cate}','Admin\BlogCategoryController@show');
 	Route::delete('/{cate}','Admin\BlogCategoryController@destroy');
-	Route::get('/page-link','Admin\BlogCategoryController@page');
+	
 });
+
+
+
 Route::group(['prefix'=>'product'],function(){
 	Route::get('search-product','Api\ProductController@search');
 	Route::post('get-size-price','Api\ProductController@getSizePrice');
@@ -38,3 +44,4 @@ Route::group(['prefix'=>'product'],function(){
 Route::group(['prefix'=>'bill'],function(){
 	Route::post('add-new','Api\BillController@addnew');
 });
+Route::post('check-bill','Api\BillController@checkBill');

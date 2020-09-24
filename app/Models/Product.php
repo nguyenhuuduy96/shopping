@@ -24,6 +24,9 @@ class Product extends Model
 	public function firstprice(){
 		return $this->hasmany('App\Models\Middle','product_id','id')->orderby('price','asc')->limit(1);
 	}
+	public function cate(){
+		return $this->belongsto('App\Models\ProductCategory','product_category_id','id');
+	}
 	// public function lastPrice($product_id){
 	// 	return Middle::where('product_id',$product_id)->orderby('price','asc')->first();
 	// }

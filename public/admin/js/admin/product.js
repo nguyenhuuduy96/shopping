@@ -313,6 +313,32 @@ function onclickupdate(r,id){
 						$('#date').attr("value",data.product.time_expired);
 						$('#rowid').attr('value',rowproduct);
 						$('#product_id').append('<input type="hidden" name="id" value="'+data.product.id+'">');
+						let list_parent_id ='<option value="">chọn</option>';
+						let list_child_id ='<option value="">chọn</option>';
+						for(const cate of data.cates){
+							if (cate.parent_id == null) {
+								if (cate.id == data.product.product_category_id) {
+									list_parent_id+=`<option value="`+cate.id+`" selected>`+cate.name+`</option>`;
+								}else if (cate.id == data.parent_id.id) {
+									list_parent_id+=`<option value="`+cate.id+`" selected>`+cate.name+`</option>`;
+								} else {
+									list_parent_id+=`<option value="`+cate.id+`">`+cate.name+`</option>`;
+								}
+							} 
+
+							if (cate.parent_id==data.parent_id.id) {
+								if (cate.id == data.product.product_category_id) {
+									list_child_id+=`<option value="`+cate.id+`" selected>`+cate.name+`</option>`;
+								} else {
+									list_child_id+=`<option value="`+cate.id+`">`+cate.name+`</option>`;
+								}
+							} 
+
+							
+						}
+						console.log(list_child_id)
+						$('#parent_id').html(list_parent_id);
+						$('#child_id').html(list_child_id);
 						let listup='';
 						for (const x of data.productColors) {
 							listup +=`<div class="row">
@@ -628,24 +654,28 @@ $(document).ready(function(){
 	});
 
 });
-$(document).ready(function() {
-	let header = document.getElementById("myDIV");
-	let page_colors = header.getElementsByClassName("page_color");
-	for (let i = 0; i < page_colors.length; i++) {
-		page_colors[i].addEventListener("click", function() {
-			let current = document.getElementsByClassName("active");
-			current[0].className = current[0].className.replace(" active", "");
-			this.className += " active";
-			const id = $(this).val();
 
-			console.log(id);
 
-		});
-	}
-	$('.pre').click(function() {
-		let header = document.getElementById("myDIV");
-		let active = header.getElementsByClassName('active');
-		const id = $('.active').val();
-		console.log(id)
-	});
-});
+
+// $(document).ready(function() {
+// 	let header = document.getElementById("page_parent");
+// 	let page_colors = header.getElementsByClassName("page_color");
+// 	for (let i = 0; i < page_colors.length; i++) {
+// 		page_colors[i].addEventListener("click", function() {
+// 			let current = document.getElementsByClassName("active");
+// 			$('li').removeClass("active");
+// 	          this.className += " active";
+// 	          const id = $(this).val();
+// 	          console.log(id)
+
+// 			console.log(id);
+
+// 		});
+// 	}
+// 	$('.pre').click(function() {
+// 		let header = document.getElementById("page_parent");
+// 		let active = header.getElementsByClassName('active');
+// 		const id = $('.active').val();
+// 		console.log(id)
+// 	});
+// });

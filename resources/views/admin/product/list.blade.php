@@ -63,6 +63,7 @@
 								</tfoot>
 							</table>
 						</div>
+						<div>{{$products->links()}}</div>
 						<!-- /.card-body -->
 					</div>
 				</div>

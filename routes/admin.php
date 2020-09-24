@@ -42,6 +42,7 @@ Route::group(['prefix'=>'product'],function(){
 	Route::get('search-product','Admin\ProductController@searchProduct');
 	Route::post('check','Admin\ProductController@checkphone');
 	Route::get('category','Admin\CategoryProductController@index')->name('list.cate');
+	Route::get('/get-cate-null-parent','Admin\CategoryProductController@nullParent');
 	Route::group(['prefix'=>'size'],function(){
 		Route::post('delete-size-table-row','Admin\ProductController@deleteSizeTable');
 		Route::post('get-size','Admin\ProductController@getsize');

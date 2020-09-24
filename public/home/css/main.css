@@ -367,7 +367,7 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
 }
 
 .main-menu > li > a {
-  font-family: Poppins-Medium;
+  font-family: Arial;
   font-size: 14px;
   color: #333;
   padding: 5px 0px;
@@ -736,7 +736,7 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
 }
 
 .main-menu-m > li > a {
-  font-family: Poppins-Medium;
+  font-family: Arial, Helvetica, sans-serif;
   font-size: 14px;
   color: white;
   line-height: 2.8;
@@ -2139,7 +2139,7 @@ input.num-product::-webkit-inner-spin-button {
 /*//////////////////////////////////////////////////////////////////
 [ S-Text 0 - 15 ]*/
 .stext-101 {
-  font-family: Poppins-Medium;
+  font-family: Arial, Helvetica, sans-serif;
   font-size: 15px;
   line-height: 1.466667;
   text-transform: uppercase;
@@ -2189,13 +2189,13 @@ input.num-product::-webkit-inner-spin-button {
 }
 
 .stext-109 {
-  font-family: Poppins-Regular;
+  font-family: Arial, Helvetica, sans-serif;
   font-size: 12px;
   line-height: 1.833333;
 }
 
 .stext-110 {
-  font-family: Poppins-Medium;
+  font-family: Arial, Helvetica, sans-serif;
   font-size: 15px;
   line-height: 1.466667;
 }
@@ -2256,7 +2256,7 @@ input.num-product::-webkit-inner-spin-button {
 /*//////////////////////////////////////////////////////////////////
 [ M-Text 16 - 25 ]*/
 .mtext-101 {
-  font-family: Poppins-Medium;
+  font-family: Arial, Helvetica, sans-serif;
   font-size: 18px;
   line-height: 1.333333;
 }
@@ -2275,7 +2275,7 @@ input.num-product::-webkit-inner-spin-button {
 }
 
 .mtext-104 {
-  font-family: Poppins-Medium;
+  font-family: Arial, Helvetica, sans-serif;
   font-size: 16px;
   line-height: 1.6;
 }

@@ -14,6 +14,7 @@ use App\User;
 use Str;
 use Auth;
 use URL;
+use App\Http\Resources\ProductResource;
 class ProductController extends Controller
 {
     public function list(Request $req){
@@ -36,8 +37,15 @@ class ProductController extends Controller
 		$productColors = $product->colors;
 		$colors= Color::all();
 		$sizes=Size::all();
+		$cates = ProductCategory::all();
 		$images=$product->images;
-		return response()->json(['product'=>$product,'productSizes'=>$productSizes,'sizes'=>$sizes,'images'=>$images,'colors'=>$colors,'productColors'=>$productColors]);
+		$parent_id=!empty($product->cate->cate)?$product->cate->cate:null;
+		
+		return response()->json(['product'=>$product,'productSizes'=>$productSizes,'sizes'=>$sizes,'images'=>$images,'colors'=>$colors,'productColors'=>$productColors,'cates'=>$cates,'parent_id'=>$parent_id]);
+	}
+	public function GetAllCates(){
+		$cates = ProductCategory::all();
+		return response()->json(['cates'=>$cates]);
 	}
 	public function deleteImage(Request $req){
 		$image=FileUpload::find($req->id);

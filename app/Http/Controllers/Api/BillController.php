@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\Bill;
 use App\Models\BillDetail;
 use DB;
+use App\User;
+use App\Http\Resources\UserResource;
 class BillController extends Controller
 {
     public function addnew(Request $request){
@@ -42,5 +44,9 @@ class BillController extends Controller
        		
        	}
        	return ['bill_code'=>$bill->bill_code];
+    }
+    public function checkBill(Request $request){
+      $user = empty(User::where('phone',$request->phone)->first()) ?'' :new UserResource(User::where('phone',$request->phone)->first());
+      return $user;
     }
 }

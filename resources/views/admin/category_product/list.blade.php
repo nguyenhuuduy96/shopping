@@ -33,7 +33,7 @@
             <table id="tableCategoryProduct" class="table table-bordered table-striped">
 
               {{--  <div id="example1"><label>Search:<input type="search" id="searh_product" class="form-control form-control-sm" placeholder="" aria-controls="example1"></label></div> --}}
-              <thead>
+              <thead >
                 <tr>
                   <th>#</th>
                   <th>Name</th>
@@ -61,54 +61,166 @@
 
               </tbody>
             </table>
-            <div class="d-flex justify-content-center mt-2 " id="paga-link"></div>
+            <div class="d-flex justify-content-center mt-2 " id="paga-link">
+            {{--  <nav >
+              <ul class="pagination" id="parent_page">
+                <li class="page-item disabled pre" aria-disabled="true" aria-label="« Previous">
+                  <span class="page-link" aria-hidden="true">‹</span>
+                </li>
+                <li class="page-item page active" value="1"  aria-current="page"><span class="page-link">1</span></li> <li class="page-item page" value="2"  aria-current="page"><span class="page-link">2</span></li> <li class="page-item page" value="3"  aria-current="page"><span class="page-link">3</span></li>  <li class="page-item next">
+                  <a class="page-link" rel="next" aria-label="Next »">›</a>
+                </li>
+              </ul>
+            </nav> --}}
           </div>
-          <!-- /.card-body -->
-
         </div>
+        <!-- /.card-body -->
+
       </div>
     </div>
   </div>
-  {{-- modal category product --}}
-  @include('admin.category_product.form')
-  @endsection
-  @section('js')
-  <script src="{{asset('admin/js/admin/cateProduct.js')}}"></script>
-  <script type="text/javascript">
-    window.addEventListener('load', function(e) {
-     $.ajax({
+</div>
+{{-- modal category product --}}
+@include('admin.category_product.form')
+@endsection
+@section('js')
+<script src="{{asset('admin/js/admin/cateProduct.js')}}"></script>
+<script type="text/javascript">
+  window.addEventListener('load', function(e) {
+    let tableCategoryProduct = document.getElementById('tableCategoryProduct');
+    $.ajax({
       url:'../../api/category-product/list',
       type:'get',
       success:function(data){
-        console.log(data.length)
-        let countCate= data.length;
+        console.log(data)
+        let countCate= data.totalCate;
         let TotlaPage = Math.ceil(countCate/2);
-        let showPagaLink =`<nav>
-        <ul class="pagination">
-          <li class="page-item disabled" aria-disabled="true" aria-label="« Previous">
-            <span class="page-link" aria-hidden="true">‹</span>
-          </li>`;
-        for (var i = 1; i <= TotlaPage; i++) {
-          showPagaLink+=`<li class="page-item" aria-current="page"><span class="page-link">`+i+`</span></li> `;
+        let showPagaLink =`<nav >
+        <ul class="pagination" id="parent_page">
+        <li class="page-item disabled pre" aria-disabled="true" aria-label="« Previous">
+        <span class="page-link" aria-hidden="true">‹</span>
+        </li>
+        <li class="page-item page active" value="1"  aria-current="page"><span class="page-link">1</span></li> `;
+        for (var i = 2; i <= TotlaPage; i++) {
+          showPagaLink+=`<li class="page-item page" value="`+i+`"  aria-current="page"><span class="page-link">`+i+`</span></li> `;
         }
-        showPagaLink+=` <li class="page-item">
-                  <a class="page-link" rel="next" aria-label="Next »">›</a>
-                  </li>
-                  </ul>
+        showPagaLink+=` <li class="page-item next">
+        <a class="page-link" rel="next" aria-label="Next »">›</a>
+        </li>
+        </ul>
         </nav>`;
+        for (var i = data.cates.length - 1; i >= 0; i--) {
+          const cells = tableCategoryProduct.rows[i+1].cells;
+          cells[0].innerHTML = data.cates[i].id;
+          cells[1].innerHTML = data.cates[i].name;
+          cells[2].innerHTML = data.cates[i].parent == null ? 'null':data.cates[i].parent.name;
+          cells[3].innerHTML = `<a class="btn btn-primary" data-toggle="modal" data-target="#modalcategory" onclick="update(this,`+data.cates[i].id+`)">update</a>
+          <a class="btn btn-danger" onclick="DeleteCategory(this,`+data.cates[i].id+`)">delete</a>`;
+        }
         document.getElementById('paga-link').innerHTML=showPagaLink;
-        console.log(showPagaLink)
-        // console.log(data)
-        // let list = '<option value="">- chon -</option>';
-        // for(const x of data){
-        //   list+='<option value="'+x.id+'" > '+x.name+'</option>'
-        //   // console.log(x.id)
-        //   // return false;
-        // }
-        // document.getElementById('allsize').innerHTML=list;
-      }
-    })
-   });
+      // console.log(showPagaLink)
+      let parent_page = document.getElementById("parent_page");
+      let pages = parent_page.getElementsByClassName("page");
+      for (let i = 0 ; i < pages.length; i++) {
+        pages[i].addEventListener("click", function() {
+          
+          $('li').removeClass("active");
+          this.className += " active";
+          const id = $(this).val();
+          console.log(id)
+          $.ajax({
+            url: '../../api/category-product/list',
+            type: 'GET',
+            data:{page:id},
+            success:function(data){
+              console.log(data.id)
+              console.log(data.cates)
+              for (var i = data.cates.length - 1; i >= 0; i--) {
+                const cells = tableCategoryProduct.rows[i+1].cells;
+                cells[0].innerHTML = data.cates[i].id;
+                cells[1].innerHTML = data.cates[i].name;
+                cells[2].innerHTML = data.cates[i].parent == null ? 'null':data.cates[i].parent.name;
+                cells[3].innerHTML = `<a class="btn btn-primary" data-toggle="modal" data-target="#modalcategory" onclick="update(this,`+data.cates[i].id+`)">update</a>
+                <a class="btn btn-danger" onclick="DeleteCategory(this,`+data.cates[i].id+`)">delete</a>`;
+              }
+              
+            }
+            
+          })
+          
+          
+          console.log(id);
 
- </script>
- @endsection
+        });
+      }
+
+      $('.pre').click(function() {
+        let parent_page = document.getElementById("parent_page");
+        let pages = parent_page.getElementsByClassName("page");
+        const id = $('.active').val();
+        const i = id - 2 < 0 ? 0 : id - 2; 
+        $('li').removeClass("active");
+       
+        pages[i].className += " active";
+        
+        console.log(id)
+        $.ajax({
+            url: '../../api/category-product/list',
+            type: 'GET',
+            data:{page:id-1},
+            success:function(data){
+              console.log(data.id)
+              console.log(data.cates)
+              for (var i = data.cates.length - 1; i >= 0; i--) {
+                const cells = tableCategoryProduct.rows[i+1].cells;
+                cells[0].innerHTML = data.cates[i].id;
+                cells[1].innerHTML = data.cates[i].name;
+                cells[2].innerHTML = data.cates[i].parent == null ? 'null':data.cates[i].parent.name;
+                cells[3].innerHTML = `<a class="btn btn-primary" data-toggle="modal" data-target="#modalcategory" onclick="update(this,`+data.cates[i].id+`)">update</a>
+                <a class="btn btn-danger" onclick="DeleteCategory(this,`+data.cates[i].id+`)">delete</a>`;
+              }
+              
+            }
+            
+          })
+      });
+
+
+      $('.next').click(function() {
+        let parent_page = document.getElementById("parent_page");
+        let pages = parent_page.getElementsByClassName("page");
+        const id = $('.active').val();
+        const i = id; 
+        $('li').removeClass("active");
+       
+        pages[i].className += " active";
+        
+        console.log(i)
+        $.ajax({
+            url: '../../api/category-product/list',
+            type: 'GET',
+            data:{page:id+1},
+            success:function(data){
+              console.log(data.id)
+              console.log(data.cates)
+              for (var i = data.cates.length - 1; i >= 0; i--) {
+                const cells = tableCategoryProduct.rows[i+1].cells;
+                cells[0].innerHTML = data.cates[i].id;
+                cells[1].innerHTML = data.cates[i].name;
+                cells[2].innerHTML = data.cates[i].parent == null ? 'null':data.cates[i].parent.name;
+                cells[3].innerHTML = `<a class="btn btn-primary" data-toggle="modal" data-target="#modalcategory" onclick="update(this,`+data.cates[i].id+`)">update</a>
+                <a class="btn btn-danger" onclick="DeleteCategory(this,`+data.cates[i].id+`)">delete</a>`;
+              }
+              
+            }
+            
+          })
+      });
+    }
+  })
+  });
+  $(document).ready(function() {
+
+  });
+</script>
+@endsection

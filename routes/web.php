@@ -40,8 +40,6 @@ Route::post('post-login','AuthController@activelogin');
 Route::get('logout','AuthController@logout')->name('logout');
 
 
-Route::get('test',function(){
-	return view('test');
-});
 Route::post('payment','CartController@payment');
 Route::get('check-out-seccess/{bill_code}','CartController@CheckOutSuccess')->name('check.out.success');
+Route::get('check-bill','HomeCotroller@checkbill')->name('check.bill.home');

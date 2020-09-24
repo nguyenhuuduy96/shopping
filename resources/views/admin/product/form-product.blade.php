@@ -38,8 +38,8 @@
 							</div>
 							<div class="form-group row">
 								<div class="col-sm-5">
-									<label for="date">Danh mục:</label>
-									<select class="form-control" name="product_category_id">
+									<label for="date">Danh mục cha:</label>
+									<select class="form-control" name="parent_id" id="parent_id">
 										<option value="">chọn</option>
 										@foreach($cates as $cate)
 										<option value="{{$cate->id}}">{{$cate->name}}</option>
@@ -47,13 +47,11 @@
 									</select>
 								</div>
 								<div class="col-sm-5 parent_id">
-											{{-- <label for="date">thoi gian het han:</label>
-											<select class="form-control" name="product_category_id">
+											<label for="date">danh mục con:</label>
+											<select class="form-control" name="child_id" id="child_id">
 												<option value="">chọn</option>
-												@foreach($cates as $cate)
-												<option value="{{$cate->id}}">{{$cate->name}}</option>
-												@endforeach
-											</select> --}}
+												
+											</select>
 										</div>
 										
 									</div>

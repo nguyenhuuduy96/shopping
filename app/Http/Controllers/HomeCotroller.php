@@ -79,17 +79,16 @@ class HomeCotroller extends Controller
 
 				
 			});
-			// echo json_encode($check);
+			
 			if (count($check)<1) {
 				array_push($arrayColors, $color);
 			}
 		}
-		// $db= DB::table('products')->Join('middle','products.id','=','middle.product_id')->join('sizes','middle.size_id','=','sizes.id')->select('products.name as name','products.id as product_id','sizes.size as size')->where('size_id',1)
-		// ->get();
-		// dd($db);
-		// dd($arrayColors);
+		
 		return view('home.product-detail',['product'=>$product,'colors'=>$arrayColors]);
 	}
+
+	// get quick view
 	public function QuickView(Request $req){
 		
 		$product = Product::where('id',$req->id)->first();
@@ -154,5 +153,8 @@ class HomeCotroller extends Controller
 		return MiddleSize::collection($middles);
 	}
 	
-	
+	//check bill
+	public function checkbill(){
+		return view('home.checkBill');
+	}
 }

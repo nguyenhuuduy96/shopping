@@ -29,15 +29,17 @@ function update(r,id){
 			document.getElementById('row_id_cate').value=rowid;
 			document.getElementById('id').value=id;
 			document.getElementById('name').value=data.data.name;
+			let parent_id = data.data.parent.id;
+			console.log(parent_id);
 			$.ajax({
-				url:'../api/category-product/list',
+				url:'./get-cate-null-parent',
 				type:'get',
-				success:function(allsize){
-					console.log(allsize)
+				success:function(data){
+					// console.log(data)
 					let list = '<option value="">- chon -</option>';
-					for(const x of allsize){
-						const id = data.data.parent !=null ? data.data.parent.id :'';
-						if (x.id == id) {
+					for(const x of data.data){
+						const id = x.parent !=null ? x.parent.id :'';
+						if (x.id == parent_id) {
 							list+='<option value="'+x.id+'" selected> '+x.name+'</option>'
 						}else{
 							list+='<option value="'+x.id+'"> '+x.name+'</option>'
