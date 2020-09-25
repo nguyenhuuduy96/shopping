@@ -45,6 +45,7 @@
 										<option value="{{$cate->id}}">{{$cate->name}}</option>
 										@endforeach
 									</select>
+									<span class="error_category" style="color: red"></span>
 								</div>
 								<div class="col-sm-5 parent_id">
 											<label for="date">danh mục con:</label>
@@ -52,6 +53,7 @@
 												<option value="">chọn</option>
 												
 											</select>
+											<span class="error_Child" style="color: red"></span>
 										</div>
 										
 									</div>

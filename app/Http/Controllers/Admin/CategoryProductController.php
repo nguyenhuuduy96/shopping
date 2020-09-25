@@ -19,13 +19,20 @@ class CategoryProductController extends Controller
     {
         // $page = 1;
         // $skip = $page*2;
-        // $cates= ProductCategory::skip($skip)->take(2)->get();
+        // $cates= ProductCategory::find(1);
+        // $c= $cates->products_cates;
+        // dd($c);
         // dd($cates);
         // dd($cate->products_cates,$cate->cates);
         $cates= ProductCategory::paginate(2);
        
         return view('admin.category_product.list',compact('cates'));
         
+    }
+    public function getChildCate(Request $request){
+        $cate= ProductCategory::find($request->id);
+        $cates = $cate->cates;
+        return Response()->json(['cates'=>$cates]);
     }
     public function allCategory(Request $request){
         $totalCate = count(ProductCategory::all());

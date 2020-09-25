@@ -39,12 +39,13 @@ class ProductController extends Controller
 		$sizes=Size::all();
 		$cates = ProductCategory::all();
 		$images=$product->images;
-		$parent_id=!empty($product->cate->cate)?$product->cate->cate:null;
+		$parent_id=!empty($product->cate->cate)?$product->cate->cate:['id'=>null];
 		
 		return response()->json(['product'=>$product,'productSizes'=>$productSizes,'sizes'=>$sizes,'images'=>$images,'colors'=>$colors,'productColors'=>$productColors,'cates'=>$cates,'parent_id'=>$parent_id]);
 	}
-	public function GetAllCates(){
-		$cates = ProductCategory::all();
+	public function GetAllCates(Request $req){
+		$check = ProductCategory::find($req->id);
+		$cates =!empty($check->cates)?$check->cates:null;
 		return response()->json(['cates'=>$cates]);
 	}
 	public function deleteImage(Request $req){
@@ -64,7 +65,8 @@ class ProductController extends Controller
 	public function getSizeAll(){
 		$getsize =Size::all();
 		$getColors= Color::all();
-		return response()->json(['getsize'=>$getsize,'getColors'=>$getColors]);
+		$cates = ProductCategory::all();
+		return response()->json(['getsize'=>$getsize,'getColors'=>$getColors,'cates'=>$cates]);
 	}
 	public function checkphone(Request $req){
 		$phone = '0'.$req->phone;
@@ -96,6 +98,7 @@ class ProductController extends Controller
 		$product->time_expired=date("Y-m-d",strtotime($req->date));
 
 		$product->slug = Str::slug($req->name.'-'.microtime());
+		$product->product_category_id = isset($req->child_id)?$req->child_id:$req->parent_id;
 		$product->fill($req->all());
 		// return response()->json(['data'=>$product]);
 		$product->save();

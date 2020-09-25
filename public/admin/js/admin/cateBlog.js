@@ -30,7 +30,7 @@ function update(r,id){
 			document.getElementById('id').value=id;
 			document.getElementById('name').value=data.data.name;
 			$.ajax({
-				url:'../api/category-blog/list',
+				url:'../../api/category-blog/list',
 				type:'get',
 				success:function(allsize){
 					console.log(allsize)

@@ -29,7 +29,7 @@ function update(r,id){
 			document.getElementById('row_id_cate').value=rowid;
 			document.getElementById('id').value=id;
 			document.getElementById('name').value=data.data.name;
-			let parent_id = data.data.parent.id;
+			let parent_id = data.data.parent  == null ? 'null':data.data.parent.id ;
 			console.log(parent_id);
 			$.ajax({
 				url:'./get-cate-null-parent',

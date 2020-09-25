@@ -71,6 +71,20 @@ function productFormRest(){
 				for(const x of data.getsize){
 					listSize +='<option value="'+x.id+'" > '+x.size+'</option>'
 				}
+				let list_parent_id ='<option value="">chọn</option>';
+				let list_child_id ='<option value="" class="child">chọn</option>';
+				for(const cate of data.cates){
+					if (cate.parent_id == null) {
+
+						list_parent_id+=`<option value="`+cate.id+`">`+cate.name+`</option>`;
+
+					}
+
+
+				}
+				// console.log(list_child_id)
+				$('#parent_id').html(list_parent_id);
+				$('#child_id').html(list_child_id);
 
 				
 				$('#color_id').html(listColor);
@@ -191,6 +205,11 @@ $(document).ready(function(){
 		let fileimage =document.getElementsByClassName('image');
 		let maxSize = 1024 * 1024*2;
 		let regex_image="/\.(jpeg|jpg|png|gif|bmp)$/i";
+		let child = document.getElementsByClassName('child');
+		let countChild = child.length;
+		let category = document.getElementById('parent_id').value;
+		let child_id = document.getElementById('child_id').value;
+		console.log(countChild);
 		if( $("#name_product").val() == "" ) {
 			$('.errorName').html('vui long nhập!');
 			return false;
@@ -210,6 +229,21 @@ $(document).ready(function(){
 			$('.errortime_expired').css('display','none');
 		}
 
+		if( category == "" ) {
+			$('.error_category').html('vui lòng chọn danh muc!');
+			return false;
+		}else{
+			$('.error_category').css('display','none');
+		}
+
+		if( countChild >1 &&  child_id =="") {
+			$('.error_Child').html('vui lòng chọn danh muc!');
+			return false;
+		}else{
+			$('.error_Child').css('display','none');
+		}
+
+
 		// if (fileimage!=="") {
 		// 	let arrayFiles=fileimage[1].files;
 		// 	for(const image of arrayFiles){
@@ -223,22 +257,22 @@ $(document).ready(function(){
 		//         			$('.error_image').html('Error định dạng image!');
 		//         			return false;
 		//         		}
-		        		
+
 		//         	}
 
 		//         }
-		        $('.error_image').css('display','none');
+		$('.error_image').css('display','none');
 
-		        let rowid = $('#rowid').val();
-		        $.ajax({
-		        	url:"add-and-update",
-		        	type:"POST",
-		        	data: new FormData(this),
-		        	contentType:false,
-		        	cache:false,
-		        	processData:false,
-		        	success:function(data)
-		        	{
+		let rowid = $('#rowid').val();
+		$.ajax({
+			url:"add-and-update",
+			type:"POST",
+			data: new FormData(this),
+			contentType:false,
+			cache:false,
+			processData:false,
+			success:function(data)
+			{
 		                	// console.log(data.data)
 		                	// return false;
 		                	// console.log(data.product);
@@ -284,8 +318,8 @@ $(document).ready(function(){
 
 			             }
 			         });
-		        
-		    });
+
+	});
 
 });  
 
@@ -314,7 +348,7 @@ function onclickupdate(r,id){
 						$('#rowid').attr('value',rowproduct);
 						$('#product_id').append('<input type="hidden" name="id" value="'+data.product.id+'">');
 						let list_parent_id ='<option value="">chọn</option>';
-						let list_child_id ='<option value="">chọn</option>';
+						let list_child_id ='<option class="child" value="">chọn</option>';
 						for(const cate of data.cates){
 							if (cate.parent_id == null) {
 								if (cate.id == data.product.product_category_id) {
@@ -326,17 +360,17 @@ function onclickupdate(r,id){
 								}
 							} 
 
-							if (cate.parent_id==data.parent_id.id) {
+							if (cate.parent_id==data.parent_id.id && cate.parent_id!==null) {
 								if (cate.id == data.product.product_category_id) {
-									list_child_id+=`<option value="`+cate.id+`" selected>`+cate.name+`</option>`;
+									list_child_id+=`<option class="child" value="`+cate.id+`" selected>`+cate.name+`</option>`;
 								} else {
-									list_child_id+=`<option value="`+cate.id+`">`+cate.name+`</option>`;
+									list_child_id+=`<option class="child" value="`+cate.id+`">`+cate.name+`</option>`;
 								}
 							} 
 
 							
 						}
-						console.log(list_child_id)
+						// console.log(list_child_id)
 						$('#parent_id').html(list_parent_id);
 						$('#child_id').html(list_child_id);
 						let listup='';
@@ -414,7 +448,31 @@ function onclickupdate(r,id){
 			// console.log(id);
 		}
 		
-
+//onchage get danh muc con
+$(document).ready(function() {
+	// $('#parent_id').on('change',function(){
+	// 	let id = $(this).val();
+	// 	console.log(id)
+	// })
+	let event = document.getElementById('parent_id');
+	event.addEventListener('change', function(){
+		let id =event.value;
+		$.ajax({
+			url: './get-child-cate',
+			type: 'POST',
+			data: {_token:CSRF_TOKEN,id:id},
+			success:function(data){
+				let list_child_id ='<option value="" class="child">chọn</option>';
+				for(const cate of data.cates){
+					list_child_id+=`<option value="`+cate.id+`" class="child">`+cate.name+`</option>`;
+				}
+				document.getElementById('child_id').innerHTML=list_child_id;
+			}
+		})
+		
+		
+	})
+});
  // delete image
  function deleteImage(event,id=null){
  	let alertdelete = confirm("Are you sure you want to delete!");
@@ -545,14 +603,14 @@ $(document).ready(function(){
 
                }
 
-                   
-                    $('#AddNewSize').modal('hide');
-                    $('#submitSize').trigger("reset");
-                    
-                    alert('success');
-                    
-                }
-            }); 
+
+               $('#AddNewSize').modal('hide');
+               $('#submitSize').trigger("reset");
+
+               alert('success');
+
+           }
+       }); 
 
 	});
 
@@ -624,27 +682,27 @@ $(document).ready(function(){
                 	// return false;
                 	if (row_id_color=="") {
 
-                   let row = table.insertRow(1);
-                   let cell1 = row.insertCell(0);
-                   let cell2 = row.insertCell(1);
-                   let cell3 = row.insertCell(2);
-                   let cell4 = row.insertCell(3);
-                   cell1.innerHTML = data.color.id;
-                   cell2.innerHTML = data.color.name;
-                   cell3.innerHTML ='<a class="btn btn-danger" onclick="tabledeleteColor(this,'+data.color.id+')">delete</a>';
-                   cell4.innerHTML ='<a data-toggle="modal" data-target="#FormColor" class="btn btn-primary" onclick="tableGetColor(this,'+data.color.id+')">Update</a>';
-               } else {
-               	const cells = table.rows[row_id_color].cells;
-               	cells[0].innerHTML = data.color.id;
-               	cells[1].innerHTML = data.color.name;
-               	cells[2].innerHTML = '<a class="btn btn-danger" onclick="tabledeleteColor(this,'+data.color.id+')">delete</a>';
-               	cells[3].innerHTML ='<a data-toggle="modal" data-target="#FormColor" class="btn btn-primary" onclick="tableGetColor(this,'+data.color.id+')">Update</a>';
+                		let row = table.insertRow(1);
+                		let cell1 = row.insertCell(0);
+                		let cell2 = row.insertCell(1);
+                		let cell3 = row.insertCell(2);
+                		let cell4 = row.insertCell(3);
+                		cell1.innerHTML = data.color.id;
+                		cell2.innerHTML = data.color.name;
+                		cell3.innerHTML ='<a class="btn btn-danger" onclick="tabledeleteColor(this,'+data.color.id+')">delete</a>';
+                		cell4.innerHTML ='<a data-toggle="modal" data-target="#FormColor" class="btn btn-primary" onclick="tableGetColor(this,'+data.color.id+')">Update</a>';
+                	} else {
+                		const cells = table.rows[row_id_color].cells;
+                		cells[0].innerHTML = data.color.id;
+                		cells[1].innerHTML = data.color.name;
+                		cells[2].innerHTML = '<a class="btn btn-danger" onclick="tabledeleteColor(this,'+data.color.id+')">delete</a>';
+                		cells[3].innerHTML ='<a data-toggle="modal" data-target="#FormColor" class="btn btn-primary" onclick="tableGetColor(this,'+data.color.id+')">Update</a>';
 
-               }
+                	}
 
-                  
-                    $('#FormColor').modal('hide');
-                    $('#submitColor').trigger("reset");
+
+                	$('#FormColor').modal('hide');
+                	$('#submitColor').trigger("reset");
                     // $('.successSize').html('thêm thành công');
                     alert('success');
                     
