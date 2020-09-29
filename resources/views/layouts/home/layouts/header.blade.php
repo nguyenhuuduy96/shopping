@@ -50,7 +50,7 @@
                         </li>
 
                         <li>
-                            <a href="#">Shop</a>
+                            <a href="{{route('home.product')}}">Shop</a>
                         </li>
 
                         <li>
@@ -65,7 +65,7 @@
                             <a href="#">Contact</a>
                         </li>
                         <li>
-                            <a href="#">Kiểm tra đơn</a>
+                            <a href="{{route('check.bill.home')}}">Kiểm tra đơn</a>
                         </li>
                     </ul>
                 </div>  

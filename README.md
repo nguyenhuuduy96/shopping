@@ -17,3 +17,5 @@
 7. Cập nhật database command : php artisan migrate
 
 8. Login dùng Firebase check verify number phone javascript
+
+9. Thêm giỏ hàng bằng thư viện darryldecode/cart

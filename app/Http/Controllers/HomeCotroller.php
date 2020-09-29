@@ -22,7 +22,7 @@ class HomeCotroller extends Controller
 		$sizes=Size::all();
 		$products=Product::paginate(16);
 		$product=Product::find(5);
-
+		
 		
 		return view('home.home',['products'=>$products]);
 		
