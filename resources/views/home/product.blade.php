@@ -4,7 +4,7 @@
 <div class="bg0 m-t-100 p-b-140">
 	<div class="container">
 		{{-- search filter --}}
-		<div class="flex-w flex-sb-m p-b-52 ">
+		<div class="flex-w flex-sb-m p-b-5 ">
 			<div class="flex-w flex-l-m filter-tope-group m-tb-10">
 				<a href="/" class="stext-106 cl6 hov-cl1 bor3 trans-04 m-r-32 m-tb-5" data-filter="*">
 					Trang chủ
@@ -78,7 +78,7 @@
 
 					<div class="block2-txt flex-w flex-t p-t-14">
 						<div class="block2-txt-child1 flex-col-l ">
-							<a href="{{route('detail.product',$product->id)}}" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+							<a href="{{route('detail.product',$product->slug)}}" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
 								{{$product->name}}
 							</a>
 
@@ -104,7 +104,7 @@
 		</div>
 
 		<!-- Load more -->
-		<div class="flex-c-m flex-w w-full p-t-45 total-page">
+		<div class="flex-c-m flex-w w-full p-t-20 total-page">
 			{{-- <nav >
 				<ul class="pagination" id="parent_page">
 					<li class="page-item disabled pre" aria-disabled="true" aria-label="« Previous">
@@ -129,7 +129,7 @@
 	});
 </script> --}}
 <script type="text/javascript">
-	window.addEventListener('load', function(){
+window.addEventListener('load', function(){
 		let show = document.getElementById('count-show-product').value;
 		let slug = document.getElementById('slug_cate').value;
 		console.log(slug)
@@ -147,8 +147,10 @@
 				<span class="page-link" aria-hidden="true">‹</span>
 				</li>
 				<li class="page-item page active" value="1"  aria-current="page"><span class="page-link">1</span></li> `;
-				for (var i = 2; i <= data.totalPage; i++) {
-					showPagaLink+=`<li class="page-item page" value="`+i+`"  aria-current="page"><span class="page-link">`+i+`</span></li> `;
+				if(data.totalPage>=2){
+					for (var i = 2; i <= data.totalPage; i++) {
+						showPagaLink+=`<li class="page-item page" value="`+i+`"  aria-current="page"><span class="page-link">`+i+`</span></li> `;
+					}
 				}
 				showPagaLink+=` <li class="page-item next">
 				<a class="page-link" rel="next" aria-label="Next »">›</a>
@@ -173,6 +175,7 @@
 								console.log(data)
 								let show =``;
 								for(const product of data.showProductPage){
+									console.log(product.slug)
 									show+=`<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
 									<!-- Block2 -->
 									<div class="block2">
@@ -186,7 +189,7 @@
 
 									<div class="block2-txt flex-w flex-t p-t-14">
 									<div class="block2-txt-child1 flex-col-l ">
-									<a href="" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+									<a href="../detail-product/`+product.slug+`" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
 									`+product.name+`
 									</a>
 
@@ -218,16 +221,224 @@
 
 						})
 
+
 					});
 				}
+				$('.pre').click(function() {
+					const id = $('.active').val();
+					const i = id - 2 < 0 ? 0 : id - 2; 
+					$('li').removeClass("active");
+				
+					pages[i].className += " active";
+					
+					console.log(id)
+					$.ajax({
+						url: '../get-page-product',
+						type: 'GET',
+						data:{page:id-1,slug:slug,show:show},
+						success:function(data){
+						console.log(data)
+						let show =``;
+								for(const product of data.showProductPage){
+									console.log(product.slug)
+									show+=`<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
+									<!-- Block2 -->
+									<div class="block2">
+									<div class="block2-pic hov-img0">
+									<img src="`+product.image[0].image+`" alt="IMG-PRODUCT">
 
+									<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1 Quick_View" id="`+product.id+`" onclick="modalQV(`+product.id+`)">
+									Quick View
+									</a>
+									</div>
+
+									<div class="block2-txt flex-w flex-t p-t-14">
+									<div class="block2-txt-child1 flex-col-l ">
+									<a href="../detail-product/`+product.slug+`" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+									`+product.name+`
+									</a>
+
+									<span class="stext-105 cl3" id="home_price">
+
+
+
+									</span>
+									</div>
+
+									<div class="block2-txt-child2 flex-r p-t-3">
+									<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
+									<img class="icon-heart1 dis-block trans-04" src="../../home/images/icons/icon-heart-01.png" alt="ICON">
+									<img class="icon-heart2 dis-block trans-04 ab-t-l" src="../../home/images/icons/icon-heart-02.png" alt="ICON">
+									</a>
+									</div>
+									</div>
+									</div>
+									</div>`
+									$('.isotope-grid').html(show);
+									$('.js-show-modal1').on('click',function(e){
+										e.preventDefault();
+										$('.js-modal1').addClass('show-modal1');
+									});
+
+								}
+						
+						
+						}
+						
+					})
+				});
+
+
+				$('.next').click(function() {
+					
+					const id = $('.active').val();
+					const i = id; 
+					$('li').removeClass("active");
+				
+					pages[i].className += " active";
+					
+					console.log(i)
+					$.ajax({
+						url: '../get-page-product',
+							type: 'GET',
+							data:{page:id+1,slug:slug,show:show},
+							success:function(data){
+							console.log(data)
+							let show =``;
+									for(const product of data.showProductPage){
+										console.log(product.slug)
+										show+=`<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
+										<!-- Block2 -->
+										<div class="block2">
+										<div class="block2-pic hov-img0">
+										<img src="`+product.image[0].image+`" alt="IMG-PRODUCT">
+
+										<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1 Quick_View" id="`+product.id+`" onclick="modalQV(`+product.id+`)">
+										Quick View
+										</a>
+										</div>
+
+										<div class="block2-txt flex-w flex-t p-t-14">
+										<div class="block2-txt-child1 flex-col-l ">
+										<a href="../detail-product/`+product.slug+`" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+										`+product.name+`
+										</a>
+
+										<span class="stext-105 cl3" id="home_price">
+
+
+
+										</span>
+										</div>
+
+										<div class="block2-txt-child2 flex-r p-t-3">
+										<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
+										<img class="icon-heart1 dis-block trans-04" src="../../home/images/icons/icon-heart-01.png" alt="ICON">
+										<img class="icon-heart2 dis-block trans-04 ab-t-l" src="../../home/images/icons/icon-heart-02.png" alt="ICON">
+										</a>
+										</div>
+										</div>
+										</div>
+										</div>`
+										$('.isotope-grid').html(show);
+										$('.js-show-modal1').on('click',function(e){
+											e.preventDefault();
+											$('.js-modal1').addClass('show-modal1');
+										});
+
+									}
+							
+							}
+						
+					})
+				});
 
 			}
 
 		})
+
 		
 		
+})
+// số lượng sản phẩm hiển thị trên 1 page
+$(document).ready(function(){
+	let showProduct = document.getElementById('count-show-product');
+	showProduct.addEventListener('change',function(){
+		let show = showProduct.value;
+		let slug = document.getElementById('slug_cate').value;
+		// console.log(show);
+		$.ajax({
+			url: '../get-page-product',
+			type: 'GET',
+			data: {slug:slug,show:show},
+			success: function (data) {
+				
+				let showPagaLink =`<nav >
+				<ul class="pagination" id="product_page">
+				<li class="page-item disabled pre" aria-disabled="true" aria-label="« Previous">
+				<span class="page-link" aria-hidden="true">‹</span>
+				</li>
+				<li class="page-item page active" value="1"  aria-current="page"><span class="page-link">1</span></li> `;
+				if(data.totalPage>=2){
+					for (var i = 2; i <= data.totalPage; i++) {
+						showPagaLink+=`<li class="page-item page" value="`+i+`"  aria-current="page"><span class="page-link">`+i+`</span></li> `;
+					}
+				}
+				showPagaLink+=` <li class="page-item next">
+				<a class="page-link" rel="next" aria-label="Next »">›</a>
+				</li>
+				</ul>
+				</nav>`;
+				$('.total-page').html(showPagaLink)
+				let getShowProductAjax =``;
+				for(const product of data.showProductPage){
+									console.log(product.slug)
+									getShowProductAjax+=`<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
+									<!-- Block2 -->
+									<div class="block2">
+									<div class="block2-pic hov-img0">
+									<img src="`+product.image[0].image+`" alt="IMG-PRODUCT">
+
+									<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1 Quick_View" id="`+product.id+`" onclick="modalQV(`+product.id+`)">
+									Quick View
+									</a>
+									</div>
+
+									<div class="block2-txt flex-w flex-t p-t-14">
+									<div class="block2-txt-child1 flex-col-l ">
+									<a href="../detail-product/`+product.slug+`" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+									`+product.name+`
+									</a>
+
+									<span class="stext-105 cl3" id="home_price">
+
+
+
+									</span>
+									</div>
+
+									<div class="block2-txt-child2 flex-r p-t-3">
+									<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
+									<img class="icon-heart1 dis-block trans-04" src="../../home/images/icons/icon-heart-01.png" alt="ICON">
+									<img class="icon-heart2 dis-block trans-04 ab-t-l" src="../../home/images/icons/icon-heart-02.png" alt="ICON">
+									</a>
+									</div>
+									</div>
+									</div>
+									</div>`;
+							
+									$('.isotope-grid').html(getShowProductAjax);
+									$('.js-show-modal1').on('click',function(e){
+										e.preventDefault();
+										$('.js-modal1').addClass('show-modal1');
+									});
+
+								}
+				
+			}
+		});
 	})
+})
 
 
 

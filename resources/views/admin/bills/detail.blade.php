@@ -67,7 +67,7 @@
           <tbody id="search_Show">
             @foreach($bill->bill_details as $billdetail)
             <tr>
-              <td><a href="{{route('detail.product',$billdetail->product->id)}}"> {{$billdetail->product->name}}</a></td>
+              <td><a href="{{route('detail.product',$billdetail->product->slug)}}"> {{$billdetail->product->name}}</a></td>
               <td>{{$billdetail->color }}</td>
               <td>{{$billdetail->size}}</td>
               <td>{{$billdetail->quantity}}</td>
@@ -322,7 +322,7 @@ function AddProduct(event){
   const vndTotal = new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'VND' }).format(total);
   cell1.innerHTML = `<input class="form-control" type="hidden" name="name[]" class="name" value="`+name+`">
   <input class="form-control" type="hidden" name="product_id[]" class="product_id" value="`+product_id+`"><a 
-  href="../../../detail-product/`+product_id+`">`+name+`</a>`;
+  href="../../../detail-product/`+ArrayColor[3]+`">`+name+`</a>`;
   cell2.innerHTML = `<input class="form-control" type="hidden" name="color[]" class="color" value="`+color+`">`+color+``;
   cell3.innerHTML = `<input class="form-control" type="hidden" name="size[]" class="size" value="`+size+`">`+size+``;
   cell4.innerHTML = `<input class="form-control" type="hidden" name="quantity[]" class="quantity" value="`+quantity+`">`+quantity+``;
@@ -416,7 +416,7 @@ $(document).ready(function(){
 
               let ColorShow = '';
               for(const x of arrayColor){
-               ColorShow += `<option value="`+x.color+' '+x.color_id+' '+product.id+`">`+x.color+`</option>`;
+               ColorShow += `<option value="`+x.color+' '+x.color_id+' '+product.id+' '+product.slug+`">`+x.color+`</option>`;
              }
              showsearch +=`<tr>
              <td>`+product.name+`</td>

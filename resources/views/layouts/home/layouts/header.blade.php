@@ -38,7 +38,7 @@
             <nav class="limiter-menu-desktop container">
 
                 <!-- Logo desktop -->       
-                <a href="/" class="logo">
+                <a href="/" class="logo col-sm-2">
                     <h1>Shop Fashion</h1>
                 </a>
 
@@ -46,23 +46,21 @@
                 <div class="menu-desktop">
                     <ul class="main-menu">
                         <li>
-                            <a href="/">Home</a>
+                            <a href="/">Trang chủ</a>
                         </li>
 
                         <li>
-                            <a href="{{route('home.product')}}">Shop</a>
+                            <a href="{{route('home.product')}}">Sản phẩm</a>
                         </li>
 
                         <li>
-                            <a href="#">Blog</a>
+                            <a href="#">Tin Tức</a>
                         </li>
 
-                        <li>
-                            <a href="#">About</a>
-                        </li>
+                        
 
                         <li>
-                            <a href="#">Contact</a>
+                            <a href="#">Liên hệ</a>
                         </li>
                         <li>
                             <a href="{{route('check.bill.home')}}">Kiểm tra đơn</a>
@@ -165,22 +163,24 @@
 
         <ul class="main-menu-m">
             <li>
-                <a href="/">Home</a>
+                <a href="/">Trang chủ</a>
             </li>
 
             <li>
-                <a href="#">Shop</a>
-            </li>
-            <li>
-                <a href="#">Blog</a>
+                <a href="{{route('home.product')}}">Sản phẩm</a>
             </li>
 
             <li>
-                <a href="#">About</a>
+                <a href="#">Tin Tức</a>
             </li>
 
+            
+
             <li>
-                <a href="#">Contact</a>
+                <a href="#">Liên hệ</a>
+            </li>
+            <li>
+                <a href="{{route('check.bill.home')}}">Kiểm tra đơn</a>
             </li>
         </ul>
     </div>

@@ -90,7 +90,7 @@
                   @foreach($bill->bill_details as $detail)
                   <tr>
 
-                    <td><a href="">{{$detail->product->name}}</a></td>
+                    <td><a href="{{ route('detail.product', $detail->product->slug) }}">{{$detail->product->name}}</a></td>
                     <td>{{$detail->color}}</td>
                     <td>{{$detail->size}}</td>
                     <td>{{$detail->quantity}}</td>

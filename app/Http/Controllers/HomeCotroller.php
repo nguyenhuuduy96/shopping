@@ -53,7 +53,7 @@ class HomeCotroller extends Controller
 	// phân trang product
 	public function getPageProductHome(Request $request){
 		$page = isset($request->page)?$request->page-1:0;
-		$show = isset($request->show)?$request->show:2;
+		$show = isset($request->show)?$request->show:12;
 		$skip = $page*$show;
 		$slug = isset($request->slug)?$request->slug:'';
 		$cate = !empty(ProductCategory::where('slug',$slug)->first())?ProductCategory::where('slug',$slug)->first():null;
@@ -70,18 +70,18 @@ class HomeCotroller extends Controller
 
 		}
 		$showProductPage = ProductResource::collection($productsPage);
-		// dd($totalPage,$products);
+		// dd($totalPage,$productsPage);
 		return response()->json(['totalPage'=>$totalPage,'showProductPage'=>$showProductPage,'cate'=>$cate]);
 		
 		
 	}
-	public function detailproduct(Request $req,$id=null){
-		if (empty($id)) {
+	public function detailproduct(Request $req,$slug=null){
+		if (empty($slug)) {
 			# code...
 			echo "Error link url";
 			die();
 		}
-		$product = Product::find($id);
+		$product = Product::where('slug',$slug)->first();
 		if (empty($product)) {
 			# code...
 			echo "Error link url";
