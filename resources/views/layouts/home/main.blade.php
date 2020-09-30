@@ -190,7 +190,7 @@
 
 <!--===============================================================================================-->  
    @include('layouts.home.layouts.js')
-<script src="{{asset('home/quickview.js')}}"></script>
+
 <script type="text/javascript">
   
 </script>

@@ -393,7 +393,7 @@
 
 @endsection
 @section('js')
-<script type="text/javascript" src="{{asset('home/js/home.js')}}">
-   
-</script>
+<script type="text/javascript" src="{{asset('home/js/home.js')}}"></script>
+ <script src="{{asset('home/quickview.js')}}"></script>  
+
 @endsection

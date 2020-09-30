@@ -1,4 +1,4 @@
-var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+
  $(document).ready(function () {
         $('.Quick_View').click(function(){
             let id = $(this).attr('id');
@@ -233,51 +233,7 @@ $(document).ready(function(){
     })
 })
 //onchange detail price product
-$(document).ready(function(){
-    $('#color_p').change(function(){
-        let color= $('#color_p').val();
-        let color_id = color.split(' ')[0];
-        let product_id = $('#product_detail_id').val();
-        $.ajax({
-                url:'../get-size-quick-view',
-                type:'post',
-                data:{_token:CSRF_TOKEN,product_id:product_id,color_id:color_id},
-                success:function(data){
-                    console.log(data.data)
-                    let list_sizes =`<option value="">Choose an option</option>`;
-                    for(const x of data.data){
-                        if (x.stock<1) {
-                            list_sizes+=`<option value="`+x.size.size+" "+x.middle_id+`" disabled>`+" hết size "+x.size.size+`</option>`
-                        }else{
-                            list_sizes+=`<option value="`+x.size.size+" "+x.middle_id+`">`+x.size.size+`</option>`
-                        }
-                    }
-                    $('#id_size_detail').html(list_sizes)
-                    // let color_list='<option value="">Choose an option</option>';
-                    // for(const x of data.colors){
-                    //     color_list +='<option value="'+x.color_id+" "+x.color+'">'+x.color+'</option>'
-                    // }
-                }
-            })
-    })
-    $('#id_size_detail').change(function(){
-        let id_size_detail= $('#id_size_detail').val();
-        let middle_id = id_size_detail.split(" ")[1];
-        $.ajax({
-                url:'../get-quick-view-price-size',
-                method:'get',
-                data:{id:middle_id},
-                success:function(data){
-                    console.log(data)
-                    const price =new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'VND' }).format(data.price.price);
-                    // console.log(data.price);
-                    const showprice = `<input type="hidden" id="priceCart" name="priceCart" value="`+data.price.price+`">price`;
-                    $('#price_detail').html(showprice);
-                    // console.log(data.id);
-                }
-        })
-    })
-})
+
 //search product
 $(document).ready(function(){
     $('#search-product').on('keyup',function(){

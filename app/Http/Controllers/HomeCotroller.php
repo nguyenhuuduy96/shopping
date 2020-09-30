@@ -36,13 +36,18 @@ class HomeCotroller extends Controller
 	public function product(Request $request,$slug=null){
 		
 	
-		if (isset($slug)) {
-			$cate= ProductCategory::where('slug',$slug)->first();
-			$products= $cate->products;
-		} else {
-			$products=Product::paginate(16);
+		
+		$cate = !empty(ProductCategory::where('slug',$slug)->first())?ProductCategory::where('slug',$slug)->first():null;
+		if (isset($cate)) {
+			$products = !isset($cate->parent_id)?$cate->products_cates:$cate->products;
+			
+			$productsPage=$products->skip(0)->take(2);
+		}else {
+			
+			$productsPage = Product::skip(0)->take(2)->get();
+
 		}
-		return view('home.product',compact('products'));
+		return view('home.product',compact('productsPage','cate'));
 		
 	}
 	// phân trang product
@@ -65,7 +70,8 @@ class HomeCotroller extends Controller
 
 		}
 		$showProductPage = ProductResource::collection($productsPage);
-		return ['totalPage'=>$totalPage,'showProductPage'=>$showProductPage];
+		// dd($totalPage,$products);
+		return response()->json(['totalPage'=>$totalPage,'showProductPage'=>$showProductPage,'cate'=>$cate]);
 		
 		
 	}

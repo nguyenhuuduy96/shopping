@@ -99,3 +99,6 @@
     </script>
 <!--===============================================================================================-->
     <script src="{{asset('home/js/main.js')}}"></script>
+    <script type="text/javascript" charset="utf-8" async defer>
+        var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+    </script>
