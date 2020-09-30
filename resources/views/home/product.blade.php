@@ -6,34 +6,34 @@
 		{{-- search filter --}}
 		<div class="flex-w flex-sb-m p-b-52 ">
 			<div class="flex-w flex-l-m filter-tope-group m-tb-10">
-				<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1" data-filter="*">
+				<a class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter="*">
 					All Products
-				</button>
+					<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
+				</a>
 
-				<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".women">
+				<a class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".women">
 					Women
-				</button>
+					<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
+				</a>
 
-				<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".men">
+				<a class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".men">
 					Men
-				</button>
+				</a>
 
-				<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".bag">
-					Bag
-				</button>
-
-				<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".shoes">
-					Shoes
-				</button>
-
-				<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".watches">
-					Watches
-				</button>
+				
 			</div>
 
 			<div class="flex-w flex-c-m m-tb-10">
 				
-
+				<div ><select class="stext-106 cl6 size-104 bor4 m-r-8 m-tb-4">
+								<option value="12" >Show 12</option>
+								<option value="16">Show 16</option>
+								<option value="32" >Show 32</option>
+								<option value="64" >Show 64</option>
+								<option value="128">Show 128</option>
+								{{-- <option value="-1">Show All</option> --}}
+							</select>
+						</div>
 				<div class="flex-c-m stext-106 cl6 size-105 bor4 pointer hov-btn3 trans-04 m-tb-4 js-show-search">
 					<i class="icon-search cl2 m-r-6 fs-15 trans-04 zmdi zmdi-search"></i>
 					<i class="icon-close-search cl2 m-r-6 fs-15 trans-04 zmdi zmdi-close dis-none"></i>
@@ -43,6 +43,7 @@
 
 			<!-- Search product -->
 			<div class="dis-none panel-search w-full p-t-10 p-b-15">
+				
 				<div class="bor8 dis-flex p-l-15">
 					<button class="size-113 flex-c-m fs-16 cl2 hov-cl1 trans-04">
 						<i class="zmdi zmdi-search"></i>
@@ -121,5 +122,24 @@
 		console.log(price)
 	});
 </script> --}}
+<script type="text/javascript">
+	window.addEventListener('load', function(){
+		$.ajax({
+			url: 'get-page-product',
+			type: 'GET',
+			data: {param1: 'value1'},
+		})
+		.done(function() {
+			console.log("success");
+		})
+		.fail(function() {
+			console.log("error");
+		})
+		.always(function() {
+			console.log("complete");
+		});
+		
+	})
+</script>
 @endsection
 

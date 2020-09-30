@@ -34,15 +34,8 @@ class HomeCotroller extends Controller
 		
 	}
 	public function product(Request $request,$slug=null){
-		// $pass= Hash::make('123456');
-		// $array = [['name'=>'name','email'=>'admin121@gmail.com','password'=>$pass,'created_at'=>'2020-5-25 20:08:20'],['name'=>'name1','email'=>'admin112@gmail.com','password'=>$pass,'created_at'=>'2020-6-25 20:08:20']];
 		
-	 // // DB::table('users')->insert($array);
-		// $year= date('Y');
-		
-		// $users=User::select(DB::raw('count(id) as `count`'),DB::raw("month(created_at) as month"))
-  //       ->groupBy('month')->get();
-		// dd($users);
+	
 		if (isset($slug)) {
 			$cate= ProductCategory::where('slug',$slug)->first();
 			$products= $cate->products;
@@ -50,6 +43,30 @@ class HomeCotroller extends Controller
 			$products=Product::paginate(16);
 		}
 		return view('home.product',compact('products'));
+		
+	}
+	// phân trang product
+	public function getPageProductHome(Request $request){
+		$page = isset($request->page)?$request->page-1:0;
+		$show = isset($request->show)?$request->show:2;
+		$skip = $page*$show;
+		$slug = isset($request->slug)?$request->slug:'';
+		$cate = !empty(ProductCategory::where('slug',$slug)->first())?ProductCategory::where('slug',$slug)->first():null;
+		
+		if (isset($cate)) {
+			$products = !isset($cate->parent_id)?$cate->products_cates:$cate->products;
+			$totalProduct = count($products);
+			$totalPage = ceil($totalProduct / $show);
+			$productsPage=$products->skip($skip)->take($show);
+		}else {
+			$totalProduct = count(Product::all());
+			$totalPage = ceil($totalProduct / $show);
+			$productsPage = Product::skip($skip)->take($show)->get();
+
+		}
+		$showProductPage = ProductResource::collection($productsPage);
+		return ['totalPage'=>$totalPage,'showProductPage'=>$showProductPage];
+		
 		
 	}
 	public function detailproduct(Request $req,$id=null){

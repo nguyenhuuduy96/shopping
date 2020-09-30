@@ -17,4 +17,7 @@ class ProductCategory extends Model
     public function products_cates(){
     	return $this->hasManyThrough('App\Models\Product','App\Models\ProductCategory','parent_id','product_category_id','id');
     }
+    public function products(){
+        return $this->hasMany('App\Models\Product','product_category_id','id');
+    }
 }

@@ -43,3 +43,5 @@ Route::get('logout','AuthController@logout')->name('logout');
 Route::post('payment','CartController@payment');
 Route::get('check-out-seccess/{bill_code}','CartController@CheckOutSuccess')->name('check.out.success');
 Route::get('check-bill','HomeCotroller@checkbill')->name('check.bill.home');
+
+Route::get('get-page-product','HomeCotroller@getPageProductHome');
