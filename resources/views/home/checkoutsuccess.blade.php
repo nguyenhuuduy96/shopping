@@ -70,7 +70,7 @@
             <!-- /.col -->
           </div>
           <!-- /.row -->
-
+          
           <!-- Table row -->
           <div class="row">
             <div class="col-12 table-responsive">
