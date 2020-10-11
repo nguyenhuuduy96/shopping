@@ -259,7 +259,7 @@
                     <div class="blog-item">
                         <div class="hov-img0">
                             <a href="blog-detail.html">
-                                <img src="images/blog-01.jpg" alt="IMG-BLOG">
+                                <img src="{{asset('home/images/blog-01.jpg')}}" alt="IMG-BLOG">
                             </a>
                         </div>
 
@@ -302,8 +302,8 @@
                 <div class="col-sm-6 col-md-4 p-b-40">
                     <div class="blog-item">
                         <div class="hov-img0">
-                            <a href="blog-detail.html">
-                                <img src="images/blog-02.jpg" alt="IMG-BLOG">
+                            <a href="#">
+                                <img src="{{asset('home/images/blog-02.jpg')}}" alt="IMG-BLOG">
                             </a>
                         </div>
 
@@ -331,7 +331,7 @@
                             </div>
 
                             <h4 class="p-b-12">
-                                <a href="blog-detail.html" class="mtext-101 cl2 hov-cl1 trans-04">
+                                <a href="#" class="mtext-101 cl2 hov-cl1 trans-04">
                                     The Great Big List of Men’s Gifts for the Holidays
                                 </a>
                             </h4>
@@ -346,8 +346,8 @@
                 <div class="col-sm-6 col-md-4 p-b-40">
                     <div class="blog-item">
                         <div class="hov-img0">
-                            <a href="blog-detail.html">
-                                <img src="images/blog-03.jpg" alt="IMG-BLOG">
+                            <a href="#">
+                                <img src="{{asset('home/images/blog-03.jpg')}}" alt="IMG-BLOG">
                             </a>
                         </div>
 
