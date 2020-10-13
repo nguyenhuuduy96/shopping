@@ -206,6 +206,7 @@ $(document).ready(function() {
       success:function(data){
         console.log(data)
         window.location = "./"+data.bill_code+"";
+        alert('bill success!')
       }
     })
     
