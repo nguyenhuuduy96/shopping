@@ -32,7 +32,7 @@
 				
 				<div >
 					<select class="stext-106 cl6 size-104 bor4 m-r-8 m-tb-4" id="count-show-product">
-						<option value="2" >Show 12</option>
+						<option value="12" >Show 12</option>
 						<option value="16">Show 16</option>
 						<option value="32" >Show 32</option>
 						<option value="64" >Show 64</option>

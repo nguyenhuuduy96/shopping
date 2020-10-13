@@ -230,7 +230,7 @@ $(document).ready(function() {
           
           const status=``+data.status.name+` <input type="hidden" name="status_id" value="`+data.bill.status_id+`" id="status_id"></span>`;
           $('.status').html(status)
-          
+          alert('confirm bill success!')
         }
       }) 
   })
@@ -253,6 +253,7 @@ $(document).ready(function() {
           
           const status=``+data.status.name+` <input type="hidden" name="status_id" value="`+data.bill.status_id+`" id="status_id"></span>`;
           $('.status').html(status)
+          alert('cancel bill success!')
           
         }
       }) 

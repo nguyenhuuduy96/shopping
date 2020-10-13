@@ -23,29 +23,29 @@
                         @csrf
 						<h4 class="mtext-105 cl2 txt-center p-b-30">
 							Send Us A Message
-							<span >
+							<span class="text-success success" ></span>
 					
-				</span>
+				
 						</h4>
 						<div class="bor8 m-b-20 how-pos4-parent">
 							<input class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" type="text" name="name" id="name" placeholder="Your name ">
 							<img class="how-pos4 pointer-none" src="{{asset('home/images/icons/avatar.png')}}" alt="ICON" width="22" height="18">
 						</div>
-						
+						<span class="text-danger error_name"></span>
 						<div class="bor8 m-b-20 how-pos4-parent">
 							<input class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" type="text" name="email" id="email" placeholder="Your Email Address">
 							<img class="how-pos4 pointer-none" src="{{asset('home/images/icons/icon-email.png')}}" alt="ICON">
 						</div>
-					
+                        <span class="text-danger error_email"></span>
 						<div class="bor8 m-b-20 how-pos4-parent">
 							<input class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" type="text" name="hotline" id="hotline" placeholder="hotline">
 							<img class="how-pos4 pointer-none" src="{{asset('home/images/icons/hotline.png')}}" alt="ICON" width="22" height="18">
 						</div>
-						
+						<span class="text-danger error_hotline"></span>
 						<div class="bor8 m-b-30">
 							<textarea class="stext-111 cl2 plh3 size-120 p-lr-28 p-tb-25" name="content" id="content" placeholder="How Can We Help?"></textarea>
 						</div>
-						
+						<span class="text-danger error_content"></span>
 						<button class="flex-c-m stext-101 cl0 size-121 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer">
 							Submit
 						</button>
@@ -119,8 +119,35 @@
             let email = $('#email').val();
             let hotline = $('#hotline').val();
             let content = $('#content').val();
-            console.log(name,email);
-            console.log('đá')
+            if(name == ""){
+                $('.error_name').html('vui lòng nhập!');
+                $('.error_name').css('display','block')
+                return false;
+            }else{
+                $('.error_name').css('display','none')
+            }
+            if(email == ""){
+                $('.error_email').html('vui lòng nhập!');
+                $('.error_email').css('display','block')
+                return false;
+            }else{
+                $('.error_email').css('display','none')
+            }
+            if(hotline == ""){
+                $('.error_hotline').html('vui lòng nhập!');
+                $('.error_hotline').css('display','block')
+                return false;
+            }else{
+                $('.error_hotline').css('display','none')
+            }
+            if(content == ""){
+                $('.error_content').html('vui lòng nhập!');
+                $('.error_content').css('display','block')
+                return false;
+            }else{
+                $('.error_content').css('display','none')
+            }
+            // return false;
             $.ajax({
                 url:"../send-contact",
                 type:"POST",
@@ -129,7 +156,8 @@
                 cache:false,
                 processData:false,
                 success:function(data){
-                    
+                    $('.success').html('success');
+                    SubmitContact.reset();
                 }
             });
         })
