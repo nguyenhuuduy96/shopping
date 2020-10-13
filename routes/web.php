@@ -30,7 +30,10 @@ Route::group(['prefix'=>'cart'],function(){
 	Route::post('update','CartController@update')->name('cart.update');
 	Route::get('checkout','CartController@checkout');
 });
-
+Route::get('contact', function () {
+	return view('home.contact');
+});
+Route::post('send-contact','ContactController@SenContact');
 
 Route::get('register','AuthController@register')->name('register');
 Route::post('save-register','AuthController@saveregister')->name('save.register');

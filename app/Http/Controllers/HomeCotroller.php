@@ -41,10 +41,10 @@ class HomeCotroller extends Controller
 		if (isset($cate)) {
 			$products = !isset($cate->parent_id)?$cate->products_cates:$cate->products;
 			
-			$productsPage=$products->skip(0)->take(2);
+			$productsPage=$products->skip(0)->take(12);
 		}else {
 			
-			$productsPage = Product::skip(0)->take(2)->get();
+			$productsPage = Product::skip(0)->take(12)->get();
 
 		}
 		return view('home.product',compact('productsPage','cate'));
