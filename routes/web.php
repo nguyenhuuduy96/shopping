@@ -38,6 +38,7 @@ Route::post('send-contact','ContactController@SenContact');
 Route::get('register','AuthController@register')->name('register');
 Route::post('save-register','AuthController@saveregister')->name('save.register');
 Route::get('login','AuthController@login')->name('login');
+Route::post('login','AuthController@postlogin');
 Route::post('check-phone','AuthController@checkPhonevery');
 Route::post('post-login','AuthController@activelogin');
 Route::get('logout','AuthController@logout')->name('logout');

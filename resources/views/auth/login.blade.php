@@ -32,8 +32,8 @@
 
                     <div class="signin-form">
                         <h2 class="form-title">Sign up</h2>
-                        <p class="title">phone Number</p>
-                        <form class="register-form" id="login-form" action="javascript:void(0)">
+                        <p class="title" style="display: none">phone Number</p>
+                        <form class="register-form" id="login-form" action="javascript:void(0)" style="display: none">
                             <div class="form-group" id="emptyForm">
                                 <label for="your_name"><i class="zmdi zmdi-phone material-icons-name"></i></label>
                                 <input type="text" name="phone" id="phone" placeholder="Phone register"/>
@@ -42,16 +42,33 @@
                             <div id="recaptcha-container"></div>
                             <div class="form-group form-button" id="verify">
                                 <!-- <input type="submit" name="signin" id="signin" class="form-submit" value="Log in"/> -->
-                                <button onclick="verify()" class="btn btn-primary" id="sign-in-button">submit</button>
+                                <button onclick="verify()" class="btn btn-primary" id="sign-in-button">sendSMS</button>
                             </div>
                         </form>
-                       
+                        <form method="POST" action="javascript:void(0)" class="register-form" id="login">
+                            <div class="form-group">
+                                <label for="phone_login"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                                <input type="text" name="phone_login" id="phone_login" placeholder="phone number"/>
+                                <span class="error_phone text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="your_pass"><i class="zmdi zmdi-lock"></i></label>
+                                <input type="password" name="your_pass" id="your_pass" placeholder="Password"/>
+                                <span class="error_password text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <input type="checkbox" name="remember-me" id="remember-me" class="agree-term" value="1"/>
+                                <label for="remember-me" class="label-agree-term"><span><span></span></span>Remember me</label>
+                                <p class="error_login text-danger"></p>
+                            </div>
+                            <div class="form-group form-button">
+                                <input type="submit" name="signin" id="signin" class="form-submit" value="Log in"/>
+                            </div>
+                        </form>
                         <div class="social-login">
                             <span class="social-label">Or login with</span>
                             <ul class="socials">
-                                <li><a href="#"><i class="zmdi zmdi-phone material-icons-name text-danger"></i></a></li>
-                                <li><a href="#"><i class="display-flex-center zmdi zmdi-twitter"></i></a></li>
-                                <li><a href="#"><i class="display-flex-center zmdi zmdi-google"></i></a></li>
+                                <a href="javascript:void(0)" class="btn btn-primary login-sms-block" onclick="clickSMS()">Login SMS</a>
                             </ul>
                         </div>
                     </div>

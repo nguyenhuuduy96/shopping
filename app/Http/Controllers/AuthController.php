@@ -20,8 +20,18 @@ class AuthController extends Controller
         }
         
     }
-   public function login(){
+    public function login(){
         return view('auth.login');
+    }
+    public function postlogin(Request $request)
+    {
+        $rem = $request->remember == 1 ? true : false;
+        if(Auth::attempt(['phone' => $request->phone, 'password' => $request->password],$rem)){
+            return response()->json(['error'=>'']);
+            
+        }else{
+            return response()->json(['error'=>'phone number hoac password ko dung!']);
+        }
     }
     public function register(Request $req){
    
