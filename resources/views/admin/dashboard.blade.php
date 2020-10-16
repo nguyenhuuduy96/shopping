@@ -294,7 +294,7 @@
                       <img src="{{asset(isset($product->firstImage[0]->image)?$product->firstImage[0]->image:'img/default.jpg')}}" alt="Product Image" class="img-size-50">
                     </div>
                     <div class="product-info">
-                      <a href="{{route('detail.product',$product->id)}}" class="product-title">{{$product->name}}
+                      <a href="{{route('detail.product',$product->slug)}}" class="product-title">{{$product->name}}
                         <span class="badge badge-warning float-right">{{ number_format(isset($product->firstprice[0]->price)?$product->firstprice[0]->price:'0', 0, '.', '.') }} đ</span></a>
                       
                       

@@ -58,7 +58,7 @@ class AuthController extends Controller
         // $phone ='0'.$req->phone;
         // return response()->json(['user'=>$req->phone]);
         $user = User::where('phone',$req->phone)->first();
-        $user->is_active=1;
+        // $user->is_active=1;
         $user->save();
         Auth::login($user);
         return response()->json(['user'=>Auth::user()]);

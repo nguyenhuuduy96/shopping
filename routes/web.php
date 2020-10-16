@@ -33,6 +33,9 @@ Route::group(['prefix'=>'cart'],function(){
 Route::get('contact', function () {
 	return view('home.contact');
 });
+Route::get('check-is-active', function () {
+	return view('checkIsActive');
+})->name('check');
 Route::post('send-contact','ContactController@SenContact');
 
 Route::get('register','AuthController@register')->name('register');
