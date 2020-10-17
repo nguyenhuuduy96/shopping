@@ -58,10 +58,10 @@ class ProductController extends Controller
 		$middle->delete();
 		// return response()->json(['size'=>$size_id]);
 	}
-	public function searchProduct(Request $req){
-		$products = Product::where('name','like',"%$req->search%")->take(10)->get();
-		return response()->json(['products'=>$products]);
-	}
+	// public function searchProduct(Request $req){
+	// 	$products = Product::where('name','like',"%$req->search%")->take(10)->get();
+	// 	return response()->json(['products'=>$products]);
+	// }
 	public function getSizeAll(){
 		$getsize =Size::all();
 		$getColors= Color::all();

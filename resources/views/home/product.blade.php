@@ -55,7 +55,7 @@
 						<i class="zmdi zmdi-search"></i>
 					</button>
 
-					<input class="mtext-107 cl2 size-114 plh2 p-r-15" type="text" name="search-product" placeholder="Search">
+				<input class="mtext-107 cl2 size-114 plh2 p-r-15" type="text" id="search-product" name="search-product" value="{{isset($_GET['SearchProduct'])?$_GET['SearchProduct']:''}}" placeholder="Search">
 				</div>	
 			</div>
 
@@ -64,7 +64,7 @@
 		</div>
 
 		<div class="row isotope-grid">
-			@foreach($productsPage as $product)
+			{{-- @foreach($productsPage as $product)
 			<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
 				<!-- Block2 -->
 				<div class="block2">
@@ -98,36 +98,19 @@
 					</div>
 				</div>
 			</div>
-			@endforeach
+			@endforeach --}}
 
 			
 		</div>
 
 		<!-- Load more -->
 		<div class="flex-c-m flex-w w-full p-t-20 total-page">
-			{{-- <nav >
-				<ul class="pagination" id="parent_page">
-					<li class="page-item disabled pre" aria-disabled="true" aria-label="« Previous">
-						<span class="page-link" aria-hidden="true">‹</span>
-					</li>
-					<li class="page-item page active" value="1"  aria-current="page"><span class="page-link">1</span></li> <li class="page-item page" value="2"  aria-current="page"><span class="page-link">2</span></li> <li class="page-item page" value="3"  aria-current="page"><span class="page-link">3</span></li>  <li class="page-item next">
-						<a class="page-link" rel="next" aria-label="Next »">›</a>
-					</li>
-				</ul>
-			</nav> --}}
+			
 		</div>
 	</div>
 </div>	
 @endsection
 @section('js')
-{{-- <script type="text/javascript">
-	window.addEventListener('load', function(e) {
-		const priceproduct ={{isset($product->firstprice[0]->price)?$product->firstprice[0]->price:'0'}};
-		const price =new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'VND' }).format(priceproduct);
-		document.getElementById('price_detail').innerHTML=price;
-		console.log(price)
-	});
-</script> --}}
 <script type="text/javascript" src="{{asset('home/js/product.js')}}"></script>
 @endsection
 

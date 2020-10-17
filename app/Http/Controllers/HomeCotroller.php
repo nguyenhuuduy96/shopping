@@ -37,27 +37,36 @@ class HomeCotroller extends Controller
 	
 		
 		$cate = !empty(ProductCategory::where('slug',$slug)->first())?ProductCategory::where('slug',$slug)->first():null;
-		if (isset($cate)) {
-			$products = !isset($cate->parent_id)?$cate->products_cates:$cate->products;
+		// if(isset($request->SearchProduct)){
+		// 	$productsPage = Product::where('name','like',"%$request->SearchProduct%")->take(12)->get();
+		// 	// dd($products);
+		// }else
+		// if (isset($cate)) {
+		// 	$products = !isset($cate->parent_id)?$cate->products_cates:$cate->products;
 			
-			$productsPage=$products->skip(0)->take(12);
-		}else {
+		// 	$productsPage=$products->skip(0)->take(12);
+		// }else {
 			
-			$productsPage = Product::skip(0)->take(12)->get();
+		// 	$productsPage = Product::skip(0)->take(12)->get();
 
-		}
-		return view('home.product',compact('productsPage','cate'));
+		// }
+		return view('home.product',compact('cate'));
 		
 	}
 	// phân trang product
 	public function getPageProductHome(Request $request){
 		$page = isset($request->page)?$request->page-1:0;
 		$show = isset($request->show)?$request->show:12;
+		$search = isset($request->search)?$request->search:'';
 		$skip = $page*$show;
 		$slug = isset($request->slug)?$request->slug:'';
 		$cate = !empty(ProductCategory::where('slug',$slug)->first())?ProductCategory::where('slug',$slug)->first():null;
-		
-		if (isset($cate)) {
+		if(isset($search)){
+			$products = Product::where('name','like',"%$search%")->get();
+			$totalProduct = count($products);
+			$totalPage = ceil($totalProduct / $show);
+			$productsPage=$products->skip($skip)->take($show);
+		}else if (isset($cate)) {
 			$products = !isset($cate->parent_id)?$cate->products_cates:$cate->products;
 			$totalProduct = count($products);
 			$totalPage = ceil($totalProduct / $show);

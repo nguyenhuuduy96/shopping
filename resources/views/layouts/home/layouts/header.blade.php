@@ -35,6 +35,7 @@
         </div>
 
         <div class="wrap-menu-desktop how-shadow1">
+            
             <nav class="limiter-menu-desktop container">
 
                 <!-- Logo desktop -->       
@@ -49,10 +50,29 @@
                             <a href="/">Trang chủ</a>
                         </li>
 
-                        <li>
-                            <a href="{{route('home.product')}}">Sản phẩm</a>
+                       
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="{{route('home.product')}}"  >
+                                Sản phẩm
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-right child">
+                                @foreach ($ProductCates as $cate)
+                                <li>
+                                    <a class="dropdown-item  @if (count($cate->cates)>=1) dropdown-toggle @endif
+                                    " 
+                                        href="{{route('home.product',$cate->slug)}}"> 
+                                        {{$cate->name}} </a>
+                                    @foreach ($cate->cates as $catechild)
+                                    <ul class="submenu submenu-right dropdown-menu">
+                                        <li><a class="dropdown-item" href="{{route('home.product',$catechild->slug)}}"> {{$catechild->name}}</a></a></li>
+                                     </ul>
+                                    @endforeach
+                                </li>
+                                @endforeach
+                              
+                            </ul>
                         </li>
-
+                        
                         <li>
                             <a href="#">Tin Tức</a>
                         </li>
@@ -67,18 +87,16 @@
                         </li>
                     </ul>
                 </div>  
-                <div class="input-group col-sm-3">
-                  <input class="form-control my-0 py-1 red-border" type="text" placeholder="Search" aria-label="Search">
+                <form class="input-group col-sm-3" action="{{route('home.product')}}" method="GET">
+                  <input class="form-control my-0 py-1 red-border" type="text" name="SearchProduct"  placeholder="Search" aria-label="Search">
                   <div class="input-group-append">
-                    <span class="input-group-text red lighten-3" id="basic-text1"><i class="fas fa-search text-grey"
-                        aria-hidden="true"></i></span>
+                    <button class="input-group-text red lighten-3" id="basic-text1"><i class="fas fa-search text-grey"
+                        aria-hidden="true"></i></button>
                     </div>
-                </div>
+                </form>
                 <!-- Icon header -->
                 <div class="wrap-icon-header flex-w flex-r-m">
-                    {{-- <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-modal-search">
-                        <i class="zmdi zmdi-search"></i>
-                    </div> --}}
+                  
 
                     <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart" data-notify="2">
                         <i class="zmdi zmdi-shopping-cart"></i>

@@ -6,6 +6,7 @@ use Illuminate\Support\ServiceProvider;
 use Cart;
 use Illuminate\Support\Facades\View;
 use Auth;
+Use App\Models\ProductCategory;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -35,6 +36,10 @@ class AppServiceProvider extends ServiceProvider
             $cartSubTotal = Cart::getSubTotal();
             // dd($carts);
             $view->with(['carts'=>$carts,'cartSubTotal'=>$cartSubTotal]);
+        });
+        view()->composer('layouts.home.layouts.header', function ($view) {
+            $ProductCates = ProductCategory::wherenull('parent_id')->get();
+            $view->with(['ProductCates'=>$ProductCates]);
         });
     }
 }

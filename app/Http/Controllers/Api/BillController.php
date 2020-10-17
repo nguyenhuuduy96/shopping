@@ -9,6 +9,7 @@ use App\Models\BillDetail;
 use DB;
 use App\User;
 use App\Http\Resources\UserResource;
+use App\Http\Resources\BillResource;
 class BillController extends Controller
 {
     public function addnew(Request $request){
@@ -48,5 +49,34 @@ class BillController extends Controller
     public function checkBill(Request $request){
       $user = empty(User::where('phone',$request->phone)->first()) ?'' :new UserResource(User::where('phone',$request->phone)->first());
       return $user;
-    }
+	}
+	public function getAjaxBillAndPage(Request $request){
+		$page = !empty($request->paga)?$request->paga-1:0;
+		$show = isset($request->show)?$request->show:10;
+		$search = isset($request->search)?$request->search:null;
+		$user = !empty(User::where('phone',$search)->first())?User::where('phone',$search)->first():null;
+		$skip = $page*$show;
+		
+		// return ['bills'=>$search];
+		if ($search !== null && $user !== null) {
+			
+			
+			$totalBill = count($user->bills);
+			$totalPage = ceil($totalBill / $show);
+			$BillPages=$user->bills->skip($skip)->take($show);
+			
+		} else {
+			
+			$bills = Bill::get();
+			$totalBill = count($bills);
+			$totalPage = ceil($totalBill / $show);
+			$BillPages=Bill::skip($skip)->take($show)->get();
+		}
+		// dd($bills);
+		// echo json_encode($BillPages);die();
+		$bills = BillResource::collection($BillPages);
+		// echo json_encode($bills);die();
+		// // return ['bills'=>$bills];
+    	return ['bills'=>$bills,'totalPage'=>$totalPage,'skip'=>$page];
+	}
 }

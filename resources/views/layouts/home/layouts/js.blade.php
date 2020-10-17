@@ -4,7 +4,7 @@
 <!--===============================================================================================-->
     <script src="{{asset('home/vendor/bootstrap/js/popper.js')}}"></script>
     <script src="{{asset('home/vendor/bootstrap-4/js/bootstrap.min.js')}}"></script>
-    <script src="{{asset('home/vendor/bootstrap/js/bootstrap.min.js')}}"></script>
+    {{-- <script src="{{asset('home/vendor/bootstrap/js/bootstrap.min.js')}}"></script> --}}
 <!--===============================================================================================-->
     <script src="{{asset('home/vendor/select2/select2.min.js')}}"></script>
     <script>
@@ -101,4 +101,20 @@
     <script src="{{asset('home/js/main.js')}}"></script>
     <script type="text/javascript" charset="utf-8" async defer>
         var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+        $(document).on('click', '.dropdown-menu', function (e) {
+  e.stopPropagation();
+});
+
+// make it as accordion for smaller screens
+if ($(window).width() < 992) {
+  $('.dropdown-menu a').click(function(e){
+    e.preventDefault();
+      if($(this).next('.submenu').length){
+        $(this).next('.submenu').toggle();
+      }
+      $('.dropdown').on('hide.bs.dropdown', function () {
+     $(this).find('.submenu').hide();
+  })
+  });
+}
     </script>

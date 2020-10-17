@@ -38,10 +38,11 @@ Route::group(['prefix'=>'category-blog'],function(){
 
 
 Route::group(['prefix'=>'product'],function(){
-	Route::get('search-product','Api\ProductController@search');
+	Route::get('get-ajax-product-and-page','Api\ProductController@getAjaxProductAndPage');
 	Route::post('get-size-price','Api\ProductController@getSizePrice');
 });
 Route::group(['prefix'=>'bill'],function(){
 	Route::post('add-new','Api\BillController@addnew');
+	Route::get('get-ajax-bill-page', 'Api\BillController@getAjaxBillAndPage');
 });
 Route::post('check-bill','Api\BillController@checkBill');
