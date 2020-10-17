@@ -24,7 +24,7 @@ $(document).ready(function() {
         //     getAjaxPageAndBill(search, show);
         // }
         getAjaxPageAndBill(search, show);
-        console.log(search, show);
+        // console.log(search, show);
 
     });
 });
@@ -35,7 +35,7 @@ function getAjaxPageAndBill(search, show) {
         method: "get",
         data: { search: search, show: show },
         success: function(data) {
-            console.log(data);
+            // /
             let showPagaLink = `<nav >
                 <ul class="pagination" id="product_page">
                 <li class="page-item disabled pre" aria-disabled="true" aria-label="« Previous">
@@ -134,6 +134,7 @@ function showHtmlBill(bills) {
             style: "currency",
             currency: "VND",
         }).format(x.total);
+        const status = x.status.name == null ? 'null' : x.status.name;
         showsearch +=
             `<tr>
                 <th>
@@ -151,83 +152,63 @@ function showHtmlBill(bills) {
             price +
             `</th>
                 <th>` +
-            x.status.name +
+            status +
             `</th>
         <th>
             <a class="btn btn-primary"
                 onclick="confirmBill(this,` +
             x.id +
             `,` +
-            x.status.name +
+            x.status.id +
             `)">
                 Xác nhận đơn</a>
             <a class="btn btn-danger"
                 onclick="cancelBill(this,` +
             x.id +
             `,` +
-            x.status.name +
+            x.status.id +
             `)">Hủy
                 đơn</a>
         </th>
     </tr>`;
-        // `<tr><td>` +
-        // x.id +
-        //     `</td>
-        // 			<td>` +
-        //     x.name +
-        //     `</td>
-        // 			<td>` +
-        //     x.source +
-        //     `</td>
-        // 			<td>` +
-        //     x.time_expired +
-        //     `</td>
-        // 			<td><a class="btn btn-app" class="btn btn-success" data-toggle="modal" data-target="#ModalProduct"
-        // 			id="updateProduct" onclick="onclickupdate(this,` +
-        //     x.id +
-        //     `)">
-        // 			<i class="fa fa-edit text-primary"></i>Edit</a></td>
-        // 			<td><a class="btn btn-app" class="btn btn-success" id="deleteRow" onclick="tabledeleteProduct(this,` +
-        //     x.id +
-        //     `)">
-        // 			<i class="fas fa-trash-alt text-danger"></i>delete</a>
-        // 			</td>
-        // 			</tr>`;
+
+        $("#search_Show").html(showsearch);
     }
-    // console.log(showsearch)
-    $("#search_Show").html(showsearch);
 }
 
 function confirmBill(r, id, status_id) {
     let rowid = r.parentNode.parentNode.rowIndex;
     let tableBill = document.getElementById("tablebill");
-    console.log(CSRF_TOKEN);
+    // console.log(CSRF_TOKEN);
     if (status_id > 2) {
         alert(
             "đơn hàng đã hoàn thành hoặc bị hủy không thể xác nhận đơn được!"
         );
         return false;
     }
-    $.ajax({
-        url: "./confirm",
-        type: "post",
-        data: {
-            _token: CSRF_TOKEN,
-            id: id,
-        },
-        success: function(data) {
-            console.log(data.bill);
-            console.log(data.status);
-            const cells = tableBill.rows[rowid].cells;
+    if (status_id < 2) {
+        $.ajax({
+            url: "./confirm",
+            type: "post",
+            data: {
+                _token: CSRF_TOKEN,
+                id: id,
+            },
+            success: function(data) {
+                console.log(data.bill);
+                console.log(data.status);
+                const cells = tableBill.rows[rowid].cells;
 
-            cells[3].innerHTML = data.status.name;
-            cells[4].innerHTML =
-                `
-      <a class="btn btn-danger" onclick="cancelBill(this,` +
-                data.bill.id +
-                `)">Cancel</a>`;
-        },
-    });
+                cells[3].innerHTML = data.status.name;
+                cells[4].innerHTML =
+                    `
+          <a class="btn btn-danger" onclick="cancelBill(this,` +
+                    data.bill.id +
+                    `)">Hủy Đơn</a>`;
+            },
+        });
+    }
+
 }
 
 function cancelBill(r, id, status_id) {
