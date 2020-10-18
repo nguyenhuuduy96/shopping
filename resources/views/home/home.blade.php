@@ -1,7 +1,7 @@
 @extends('layouts.home.main')
 @section('title','home')
 @section('slider')
-<section class="section-slide">
+<section class="section-slide m-top-80">
         <div class="wrap-slick1">
             <div class="slick1">
                 <div class="item-slick1" style="background-image: url({{asset('home/images/slide-01.jpg')}});">

@@ -11,7 +11,7 @@
                                 <div class="dataTables_length" id="example1_length">
                                     <label>Show
                                         <select name="example1_length" class="form-control-sm" id="show">
-                                            <option value="2">10</option>
+                                            <option value="10">10</option>
                                             <option value="25">25</option>
                                             <option value="50">50</option>
                                             <option value="100">100</option>

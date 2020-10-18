@@ -22,7 +22,16 @@ $(document).ready(function() {
         getAjaxPageAndProduct(search, show);
     });
 });
-//get ajax page and product
+$(document).ready(function() {
+        let showProduct = document.getElementById('show');
+        showProduct.addEventListener('change', function() {
+            let search = $("#searh_product").val();
+            let show = $("#show").val();
+            console.log(search, show);
+            getAjaxPageAndProduct(search, show);
+        })
+    })
+    //get ajax page and product
 function getAjaxPageAndProduct(search, show) {
     $.ajax({
         url: "../../api/product/get-ajax-product-and-page",

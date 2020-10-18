@@ -25,7 +25,16 @@ $(document).ready(function() {
         // }
         getAjaxPageAndBill(search, show);
         // console.log(search, show);
-
+    });
+});
+// show total bill
+$(document).ready(function() {
+    let showBill = document.getElementById("show");
+    showBill.addEventListener("change", function() {
+        let search = $("#searh_phone").val();
+        let show = $("#show").val();
+        // console.log(search, show);
+        getAjaxPageAndBill(search, show);
     });
 });
 //get ajax page and product
@@ -66,7 +75,7 @@ function getAjaxPageAndBill(search, show) {
                     $("li").removeClass("active");
                     this.className += " active";
                     const id = $(this).val();
-                    console.log(id);
+                    // console.log(id);
                     let page = id;
                     $.ajax({
                         url: "../../api/bill/get-ajax-bill-page",
@@ -109,7 +118,7 @@ function getAjaxPageAndBill(search, show) {
 
                     pages[i].className += " active";
                     let page = id + 1;
-                    console.log(i);
+                    // console.log(i);
                     $.ajax({
                         url: "../../api/bill/get-ajax-bill-page",
                         method: "get",
@@ -134,7 +143,7 @@ function showHtmlBill(bills) {
             style: "currency",
             currency: "VND",
         }).format(x.total);
-        const status = x.status.name == null ? 'null' : x.status.name;
+        const status = x.status.name == null ? "null" : x.status.name;
         showsearch +=
             `<tr>
                 <th>
@@ -195,8 +204,8 @@ function confirmBill(r, id, status_id) {
                 id: id,
             },
             success: function(data) {
-                console.log(data.bill);
-                console.log(data.status);
+                // console.log(data.bill);
+                // console.log(data.status);
                 const cells = tableBill.rows[rowid].cells;
 
                 cells[3].innerHTML = data.status.name;
@@ -208,7 +217,6 @@ function confirmBill(r, id, status_id) {
             },
         });
     }
-
 }
 
 function cancelBill(r, id, status_id) {

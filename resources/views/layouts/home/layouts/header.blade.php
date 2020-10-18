@@ -74,13 +74,13 @@
                         </li>
                         
                         <li>
-                            <a href="#">Tin Tức</a>
+                            <a href="{{route('home.blog')}}">Tin Tức</a>
                         </li>
 
                         
 
                         <li>
-                            <a href="#">Liên hệ</a>
+                        <a href="{{route('contact')}}">Liên hệ</a>
                         </li>
                         <li>
                             <a href="{{route('check.bill.home')}}">Kiểm tra đơn</a>

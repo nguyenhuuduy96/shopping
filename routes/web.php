@@ -17,6 +17,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'HomeCotroller@index')->name('home');
 Route::get('product/{slug?}','HomeCotroller@product')->name('home.product');
 Route::get('detail-product/{id?}','HomeCotroller@detailproduct')->name('detail.product');
+Route::get('blog', 'HomeCotroller@Blog')->name('home.blog');
+Route::get('blog-detail/{id?}', 'HomeCotroller@BlogDetail')->name('home.blog.detail');
 Route::get('get-search','HomeCotroller@getsearch')->name('get.search');
 Route::get('getQuickView','HomeCotroller@QuickView')->name('get.quick.view');
 Route::get('get-quick-view-price-size','HomeCotroller@getQVprice')->name('get.price');
@@ -32,7 +34,7 @@ Route::group(['prefix'=>'cart'],function(){
 });
 Route::get('contact', function () {
 	return view('home.contact');
-});
+})->name('contact');
 Route::get('check-is-active', function () {
 	return view('checkIsActive');
 })->name('check');

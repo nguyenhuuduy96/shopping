@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Blog;
 use App\Models\Image;
 use App\Models\Size;
 use App\Models\Middle;
@@ -52,6 +53,25 @@ class HomeCotroller extends Controller
 		// }
 		return view('home.product',compact('cate'));
 		
+	}
+	// blog 
+	public function Blog(Request $request){
+		$blogs = Blog::paginate(3);
+		$products = Product::take(3)->get();
+		$cates = ProductCategory::all();
+		return view('home.blog',compact('blogs','cates','products'));
+	}
+	public function BlogDetail(Request $request,$slug=null){
+		if (empty($slug)) {
+			# code...
+			echo "Error link url";
+			die();
+		}
+		$blog = Blog::where('slug',$slug)->first();
+		
+		$products = Product::take(3)->get();
+		$cates = ProductCategory::all();
+		return view('home.blogdetail',compact('blog','cates','products'));
 	}
 	// phân trang product
 	public function getPageProductHome(Request $request){

@@ -22,7 +22,13 @@ Route::group(['prefix'=>'blog'],function(){
 	Route::post('add-and-update','Admin\BlogController@save');
 	Route::get('category','Admin\BlogCategoryController@index')->name('list.cate.blog');
 });
-
+Route::group(['prefix' => 'slide-show'], function () {
+	Route::get('list', "Admin\SlideShowController@index")->name('admin.slide');
+	Route::get('list/{id}', "Admin\SlideShowController@show");
+	Route::post('save', "Admin\SlideShowController@save");
+	Route::post('active',"Admin\SlideShowController@Active");
+	Route::delete('list/{id}', "Admin\SlideShowController@delete");
+});
 Route::group(['prefix'=>'bill'],function(){
 	Route::get('list','Admin\BillController@index')->name('admin.list.bill');
 	Route::post('confirm','Admin\BillController@confirm');
