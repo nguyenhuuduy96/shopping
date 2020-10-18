@@ -109,38 +109,41 @@
                     let TotlaPage = Math.ceil(countCate / 2);
                     let showPagaLink =
                         `<nav >
-                                <ul class="pagination" id="parent_page">
-                                <li class="page-item disabled pre" aria-disabled="true" aria-label="« Previous">
-                                <span class="page-link" aria-hidden="true">‹</span>
-                                </li>
-                                <li class="page-item page active" value="1"  aria-current="page"><span class="page-link">1</span></li> `;
+                                    <ul class="pagination" id="parent_page">
+                                    <li class="page-item disabled pre" aria-disabled="true" aria-label="« Previous">
+                                    <span class="page-link" aria-hidden="true">‹</span>
+                                    </li>
+                                    <li class="page-item page active" value="1"  aria-current="page"><span class="page-link">1</span></li> `;
                     for (var i = 2; i <= TotlaPage; i++) {
                         showPagaLink += `<li class="page-item page" value="` + i +
                             `"  aria-current="page"><span class="page-link">` + i + `</span></li> `;
                     }
                     showPagaLink += ` <li class="page-item next">
-                                <a class="page-link" rel="next" aria-label="Next »">›</a>
-                                </li>
-                                </ul>
-                                </nav>`;
+                                    <a class="page-link" rel="next" aria-label="Next »">›</a>
+                                    </li>
+                                    </ul>
+                                    </nav>`;
                     let show = '';
                     for (var i = data.cates.length - 1; i >= 0; i--) {
 
                         let parent_name = data.cates[i].parent == null ? 'null' : data.cates[i].parent
                             .name;
                         show += `<tr>
-                                          <th>` + data.cates[i].id + `</th>
-                                          <th>` + data.cates[i].name + `</th>
-                                          <th>` + parent_name + `</th>
-                                          <th>
-                                            <a class="btn btn-primary" onclick="update(this,` + data.cates[i].id + `)" data-toggle="modal" data-target="#modalcategory">
-                                            update</a>
-                                            <a class="btn btn-danger" onclick="DeleteCategory(this,` + data.cates[i].id + `)">delete</a>
-                                          </th>
-                                        </tr>`;
+                                              <th>` + data.cates[i].id + `</th>
+                                              <th>` + data.cates[i].name + `</th>
+                                              <th>` + parent_name + `</th>
+                                              <th>
+                                                <a class="btn btn-primary" onclick="update(this,` + data.cates[i].id + `)" data-toggle="modal" data-target="#modalcategory">
+                                                update</a>
+                                                <a class="btn btn-danger" onclick="DeleteCategory(this,` + data.cates[i]
+                            .id + `)">delete</a>
+                                              </th>
+                                            </tr>`;
                     }
                     // console.log(show)
+
                     $('#search_Show').html(show);
+
                     document.getElementById('paga-link').innerHTML = showPagaLink;
                     // console.log(showPagaLink)
                     let parent_page = document.getElementById("parent_page");
@@ -152,6 +155,7 @@
                             this.className += " active";
                             const id = $(this).val();
                             console.log(id)
+                            $('#search_Show').empty();
                             $.ajax({
                                 url: '../../api/category-product/list',
                                 type: 'GET',
@@ -161,25 +165,30 @@
                                 success: function(data) {
                                     console.log(data.id)
                                     console.log(data.cates)
+                                    let showpage ="";
                                     for (var i = data.cates.length - 1; i >=
                                         0; i--) {
 
                                         let parent_name = data.cates[i].parent ==
                                             null ? 'null' : data.cates[i].parent
                                             .name;
-                                        show += `<tr>
-                                         <th>` + data.cates[i].id + `</th>
-                                         <th>` + data.cates[i].name + `</th>
-                                         <th>` + parent_name + `</th>
-                                         <th>
-                                           <a class="btn btn-primary" onclick="update(this,` + data.cates[i].id + `)" data-toggle="modal" data-target="#modalcategory">
-                                           update</a>
-                                           <a class="btn btn-danger" onclick="DeleteCategory(this,` + data.cates[i].id + `)">delete</a>
-                                         </th>
-                                       </tr>`;
+                                            
+                                            showpage += `<tr>
+                                             <th>` + data.cates[i].id + `</th>
+                                             <th>` + data.cates[i].name + `</th>
+                                             <th>` + parent_name + `</th>
+                                             <th>
+                                               <a class="btn btn-primary" onclick="update(this,` + data.cates[i].id + `)" data-toggle="modal" data-target="#modalcategory">
+                                               update</a>
+                                               <a class="btn btn-danger" onclick="DeleteCategory(this,` + data.cates[i]
+                                            .id + `)">delete</a>
+                                             </th>
+                                           </tr>`;
                                     }
-                                    console.log(show)
-                                    $('#search_Show').html(show);
+                                    // console.log(show)
+
+                                    document.getElementById('search_Show')
+                                        .innerHTML = showpage;
 
                                 }
 
@@ -210,25 +219,28 @@
                             success: function(data) {
                                 console.log(data.id)
                                 console.log(data.cates)
+                                let showpre ='';
                                 for (var i = data.cates.length - 1; i >=
                                     0; i--) {
 
                                     let parent_name = data.cates[i].parent ==
                                         null ? 'null' : data.cates[i].parent
                                         .name;
-                                    show += `<tr>
-                                         <th>` + data.cates[i].id + `</th>
-                                         <th>` + data.cates[i].name + `</th>
-                                         <th>` + parent_name + `</th>
-                                         <th>
-                                           <a class="btn btn-primary" onclick="update(this,` + data.cates[i].id + `)" data-toggle="modal" data-target="#modalcategory">
-                                           update</a>
-                                           <a class="btn btn-danger" onclick="DeleteCategory(this,` + data.cates[i].id + `)">delete</a>
-                                         </th>
-                                       </tr>`;
+                                       
+                                        showpre += `<tr>
+                                             <th>` + data.cates[i].id + `</th>
+                                             <th>` + data.cates[i].name + `</th>
+                                             <th>` + parent_name + `</th>
+                                             <th>
+                                               <a class="btn btn-primary" onclick="update(this,` + data.cates[i].id + `)" data-toggle="modal" data-target="#modalcategory">
+                                               update</a>
+                                               <a class="btn btn-danger" onclick="DeleteCategory(this,` + data.cates[i]
+                                        .id + `)">delete</a>
+                                             </th>
+                                           </tr>`;
                                 }
                                 // console.log(show)
-                                $('#search_Show').html(show);
+                                $('#search_Show').html(showpre);
 
                             }
 
@@ -241,7 +253,7 @@
                         let pages = parent_page.getElementsByClassName("page");
                         const id = $('.active').val();
                         const i = id;
-                        if (i < pages.length - 1) {
+                        if (i <= pages.length - 1) {
                             $('li').removeClass("active");
 
                             pages[i].className += " active";
@@ -256,25 +268,27 @@
                                 success: function(data) {
                                     console.log(data.id)
                                     console.log(data.cates)
+                                    let shownext ='';
                                     for (var i = data.cates.length - 1; i >=
                                         0; i--) {
 
                                         let parent_name = data.cates[i].parent ==
                                             null ? 'null' : data.cates[i].parent
                                             .name;
-                                        show += `<tr>
-                                     <th>` + data.cates[i].id + `</th>
-                                     <th>` + data.cates[i].name + `</th>
-                                     <th>` + parent_name + `</th>
-                                     <th>
-                                       <a class="btn btn-primary" onclick="update(this,` + data.cates[i].id + `)" data-toggle="modal" data-target="#modalcategory">
-                                       update</a>
-                                       <a class="btn btn-danger" onclick="DeleteCategory(this,` + data.cates[i].id + `)">delete</a>
-                                     </th>
-                                   </tr>`;
+                                            
+                                            shownext += `<tr>
+                                         <th>` + data.cates[i].id + `</th>
+                                         <th>` + data.cates[i].name + `</th>
+                                         <th>` + parent_name + `</th>
+                                         <th>
+                                           <a class="btn btn-primary" onclick="update(this,` + data.cates[i].id + `)" data-toggle="modal" data-target="#modalcategory">
+                                           update</a>
+                                           <a class="btn btn-danger" onclick="DeleteCategory(this,` + data.cates[i].id + `)">delete</a>
+                                         </th>
+                                       </tr>`;
                                     }
                                     // console.log(show)
-                                    $('#search_Show').html(show);
+                                    $('#search_Show').html(shownext);
 
                                 }
 
