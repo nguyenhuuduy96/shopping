@@ -4,6 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 use App\Http\Resources\BillResource;
+use App\Http\Resources\Decentralization;
 class UserResource extends JsonResource
 {
     /**
@@ -16,8 +17,8 @@ class UserResource extends JsonResource
     {
         return ['name'=>$this->name,
                  'phone'=>$this->phone,
-                 'bills'=>  BillResource::collection($this->bills) 
-
+                 'bills'=>  BillResource::collection($this->bills), 
+                 'is_active'=> new Decentralization($this->decentralization)
             ];
     }
 }

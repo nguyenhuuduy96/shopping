@@ -91,11 +91,11 @@
                         <a href="product.html" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
                             <div class="block1-txt-child1 flex-col-l">
                                 <span class="block1-name ltext-102 trans-04 p-b-8">
-                                    Women
+                                    Quần
                                 </span>
 
                                 <span class="block1-info stext-102 trans-04">
-                                    Spring 2018
+                                    2020
                                 </span>
                             </div>
 
@@ -118,11 +118,11 @@
                         <a href="product.html" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
                             <div class="block1-txt-child1 flex-col-l">
                                 <span class="block1-name ltext-102 trans-04 p-b-8">
-                                    Men
+                                    Áo
                                 </span>
 
                                 <span class="block1-info stext-102 trans-04">
-                                    Spring 2018
+                                    2020
                                 </span>
                             </div>
 
@@ -143,7 +143,7 @@
                         <a href="product.html" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
                             <div class="block1-txt-child1 flex-col-l">
                                 <span class="block1-name ltext-102 trans-04 p-b-8">
-                                    Accessories
+                                    Phụ kiện
                                 </span>
 
                                 <span class="block1-info stext-102 trans-04">
@@ -168,30 +168,14 @@
         <div class="container">
             <div class="p-b-32">
                 <h3 class="ltext-105 cl5 txt-center respon1">
-                    Store Overview
+                    SẢN PHẨM MỚI
                 </h3>
             </div>
 
             <!-- Tab01 -->
             <div class="tab01">
                 <!-- Nav tabs -->
-                <ul class="nav nav-tabs" role="tablist">
-                    <li class="nav-item p-b-10">
-                        <a class="nav-link active" data-toggle="tab" href="#best-seller" role="tab">Best Seller</a>
-                    </li>
-
-                    <li class="nav-item p-b-10">
-                        <a class="nav-link" data-toggle="tab" href="#featured" role="tab">Featured</a>
-                    </li>
-
-                    <li class="nav-item p-b-10">
-                        <a class="nav-link" data-toggle="tab" href="#sale" role="tab">Sale</a>
-                    </li>
-
-                    <li class="nav-item p-b-10">
-                        <a class="nav-link" data-toggle="tab" href="#top-rate" role="tab">Top Rate</a>
-                    </li>
-                </ul>
+               
 
                 <!-- Tab panes -->
                 <div class="tab-content p-t-50">
@@ -255,11 +239,12 @@
             </div>
 
             <div class="row">
+                @foreach ($blogs as $blog)
                 <div class="col-sm-6 col-md-4 p-b-40">
                     <div class="blog-item">
                         <div class="hov-img0">
-                            <a href="blog-detail.html">
-                                <img src="{{asset('home/images/blog-01.jpg')}}" alt="IMG-BLOG">
+                            <a href="{{route('home.blog.detail',$blog->slug)}}">
+                                <img src="{{$blog->image_title}}" alt="IMG-BLOG">
                             </a>
                         </div>
 
@@ -267,125 +252,38 @@
                             <div class="stext-107 flex-w p-b-14">
                                 <span class="m-r-3">
                                     <span class="cl4">
-                                        By
+                                        author :
                                     </span>
 
                                     <span class="cl5">
-                                        Nancy Ward
+                                        {{$blog->author}}
                                     </span>
                                 </span>
 
                                 <span>
                                     <span class="cl4">
-                                        on
+                                        {{$blog->updated_at->format('m')}}
                                     </span>
 
                                     <span class="cl5">
-                                        July 22, 2017 
+                                        {{$blog->updated_at->format('Y')}}
                                     </span>
                                 </span>
                             </div>
 
                             <h4 class="p-b-12">
-                                <a href="blog-detail.html" class="mtext-101 cl2 hov-cl1 trans-04">
-                                    8 Inspiring Ways to Wear Dresses in the Winter
+                                <a href="{{route('home.blog.detail',$blog->slug)}}" class="mtext-101 cl2 hov-cl1 trans-04">
+                                   {{$blog->title}}
                                 </a>
                             </h4>
 
-                            <p class="stext-108 cl6">
-                                Duis ut velit gravida nibh bibendum commodo. Suspendisse pellentesque mattis augue id euismod. Interdum et male-suada fames
-                            </p>
                         </div>
                     </div>
                 </div>
+                @endforeach
+                
 
-                <div class="col-sm-6 col-md-4 p-b-40">
-                    <div class="blog-item">
-                        <div class="hov-img0">
-                            <a href="#">
-                                <img src="{{asset('home/images/blog-02.jpg')}}" alt="IMG-BLOG">
-                            </a>
-                        </div>
-
-                        <div class="p-t-15">
-                            <div class="stext-107 flex-w p-b-14">
-                                <span class="m-r-3">
-                                    <span class="cl4">
-                                        By
-                                    </span>
-
-                                    <span class="cl5">
-                                        Nancy Ward
-                                    </span>
-                                </span>
-
-                                <span>
-                                    <span class="cl4">
-                                        on
-                                    </span>
-
-                                    <span class="cl5">
-                                        July 18, 2017
-                                    </span>
-                                </span>
-                            </div>
-
-                            <h4 class="p-b-12">
-                                <a href="#" class="mtext-101 cl2 hov-cl1 trans-04">
-                                    The Great Big List of Men’s Gifts for the Holidays
-                                </a>
-                            </h4>
-
-                            <p class="stext-108 cl6">
-                                Nullam scelerisque, lacus sed consequat laoreet, dui enim iaculis leo, eu viverra ex nulla in tellus. Nullam nec ornare tellus, ac fringilla lacus. Ut sit ame
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-sm-6 col-md-4 p-b-40">
-                    <div class="blog-item">
-                        <div class="hov-img0">
-                            <a href="#">
-                                <img src="{{asset('home/images/blog-03.jpg')}}" alt="IMG-BLOG">
-                            </a>
-                        </div>
-
-                        <div class="p-t-15">
-                            <div class="stext-107 flex-w p-b-14">
-                                <span class="m-r-3">
-                                    <span class="cl4">
-                                        By
-                                    </span>
-
-                                    <span class="cl5">
-                                        Nancy Ward
-                                    </span>
-                                </span>
-
-                                <span>
-                                    <span class="cl4">
-                                        on
-                                    </span>
-
-                                    <span class="cl5">
-                                        July 2, 2017 
-                                    </span>
-                                </span>
-                            </div>
-
-                            <h4 class="p-b-12">
-                                <a href="blog-detail.html" class="mtext-101 cl2 hov-cl1 trans-04">
-                                    5 Winter-to-Spring Fashion Trends to Try Now
-                                </a>
-                            </h4>
-
-                            <p class="stext-108 cl6">
-                                Proin nec vehicula lorem, a efficitur ex. Nam vehicula nulla vel erat tincidunt, sed hendrerit ligula porttitor. Fusce sit amet maximus nunc
-                            </p>
-                        </div>
-                    </div>
-                </div>
+                
             </div>
         </div>
     </section>

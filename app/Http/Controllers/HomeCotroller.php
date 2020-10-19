@@ -22,9 +22,12 @@ class HomeCotroller extends Controller
 	public function index(){
 		$sizes=Size::all();
 		$products=Product::paginate(16);
+		// $cate= ProductCategory::find(8);
+		// dd($cate->cates);
 		$product=Product::find(5);
+		$blogs = Blog::take(3)->get();
 			
-		return view('home.home',['products'=>$products]);
+		return view('home.home',['products'=>$products,'blogs'=>$blogs]);
 		
 	}
 	public function getAjaxHome(Request $request){
@@ -79,18 +82,21 @@ class HomeCotroller extends Controller
 		$show = isset($request->show)?$request->show:12;
 		$search = isset($request->search)?$request->search:'';
 		$skip = $page*$show;
-		$slug = isset($request->slug)?$request->slug:'';
+		$slug = isset($request->slug)?$request->slug:'quan-047934300-1603094721';
 		$cate = !empty(ProductCategory::where('slug',$slug)->first())?ProductCategory::where('slug',$slug)->first():null;
 		if(isset($search)){
 			$products = Product::where('name','like',"%$search%")->get();
 			$totalProduct = count($products);
 			$totalPage = ceil($totalProduct / $show);
 			$productsPage=$products->skip($skip)->take($show);
-		}else if (isset($cate)) {
-			$products = !isset($cate->parent_id)?$cate->products_cates:$cate->products;
+		}
+		if (isset($cate)) {
+			$products = empty($cate->parent_id)?$cate->products_cates:$cate->products;
 			$totalProduct = count($products);
 			$totalPage = ceil($totalProduct / $show);
 			$productsPage=$products->skip($skip)->take($show);
+			
+			// return response()->json(['totalPage'=>$totalPage,'showProductPage'=>$showProductPage,'cate'=>$cate]);
 		}else {
 			$totalProduct = count(Product::all());
 			$totalPage = ceil($totalProduct / $show);
@@ -98,6 +104,7 @@ class HomeCotroller extends Controller
 
 		}
 		$showProductPage = ProductResource::collection($productsPage);
+		// echo json_encode($showProductPage);die();
 		// dd($totalPage,$productsPage);
 		return response()->json(['totalPage'=>$totalPage,'showProductPage'=>$showProductPage,'cate'=>$cate]);
 		

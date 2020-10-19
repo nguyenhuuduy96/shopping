@@ -15,7 +15,7 @@ class CheckIsActive
      */
     public function handle($request, Closure $next)
     {
-        if(Auth::user()->is_active < 1 && Auth::user()->is_active==null){
+        if(Auth::user()->is_active < 2 && Auth::user()->is_active==null){
             return redirect(route('check'));
         }
         return $next($request);

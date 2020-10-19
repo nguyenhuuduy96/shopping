@@ -75,7 +75,7 @@
                                         </td>
                                     </tr>
                                 @endforeach
-                                </tfoot>
+                                </tbody>
                         </table>
                     </div>
                     <div class="d-flex justify-content-center mt-2 " id="paga-link">

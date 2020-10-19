@@ -56,7 +56,7 @@
                         </h4>
 
                         <p class="stext-117 cl6 p-b-26">
-                            {!!Str::limit($blog->content,100,'...')!!}
+                            {!!$blog->content!!}
                         </p>
                     </div>
 

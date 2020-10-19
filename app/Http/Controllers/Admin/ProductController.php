@@ -94,8 +94,10 @@ class ProductController extends Controller
 
     
 		$product = isset($req->id)? Product::find($req->id) : new Product();
-
-		$product->time_expired=date("Y-m-d",strtotime($req->date));
+		if(isset($req->date)){
+			$product->time_expired=date("Y-m-d",strtotime($req->date));
+		}
+		
 
 		$product->slug = Str::slug($req->name.'-'.microtime());
 		$product->product_category_id = isset($req->child_id)?$req->child_id:$req->parent_id;

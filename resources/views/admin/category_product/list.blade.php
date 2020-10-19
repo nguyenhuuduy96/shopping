@@ -98,15 +98,17 @@
 @section('js')
     <script src="{{ asset('admin/js/admin/cateProduct.js') }}"></script>
     <script type="text/javascript">
+    var show = document
         window.addEventListener('load', function(e) {
             let tableCategoryProduct = document.getElementById('tableCategoryProduct');
+
             $.ajax({
                 url: '../../api/category-product/list',
                 type: 'get',
                 success: function(data) {
                     console.log(data)
                     let countCate = data.totalCate;
-                    let TotlaPage = Math.ceil(countCate / 2);
+                    let TotlaPage = Math.ceil(countCate / 10);
                     let showPagaLink =
                         `<nav >
                                     <ul class="pagination" id="parent_page">
@@ -160,7 +162,7 @@
                                 url: '../../api/category-product/list',
                                 type: 'GET',
                                 data: {
-                                    page: id
+                                    page: id,show:show
                                 },
                                 success: function(data) {
                                     console.log(data.id)

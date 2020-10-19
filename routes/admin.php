@@ -29,6 +29,12 @@ Route::group(['prefix' => 'slide-show'], function () {
 	Route::post('active',"Admin\SlideShowController@Active");
 	Route::delete('list/{id}', "Admin\SlideShowController@delete");
 });
+Route::group(['prefix' => 'user'], function () {
+	Route::get('list','Admin\UserController@index')->name('admin.user');
+	Route::post('decentralization', 'Admin\UserController@Active');
+	Route::get('profile','Admin\UserController@Profile')->name('admin.profile');
+	Route::post('save','Admin\UserController@save');
+});
 Route::group(['prefix'=>'bill'],function(){
 	Route::get('list','Admin\BillController@index')->name('admin.list.bill');
 	Route::post('confirm','Admin\BillController@confirm');

@@ -20,14 +20,17 @@ function getAjaxProduct(page, slug, show, search) {
 }
 // show html product
 function showHtmlProduct(products) {
+    console.log(products)
     let show = ``;
     for (const product of products) {
         console.log(product.slug)
+        const image = product.image.length > 0 ? product.image[0].image : '../../../img/default.jpg';
         show += `<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
                     <!-- Block2 -->
                     <div class="block2">
                     <div class="block2-pic hov-img0">
-                    <img src="` + product.image[0].image + `" alt="IMG-PRODUCT">
+                    
+                    <img src="` + image + `" alt="IMG-PRODUCT">
 
                     <a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1 Quick_View" id="` + product.id + `" onclick="modalQV(` + product.id + `)">
                     Quick View
@@ -95,7 +98,7 @@ function getAjaxPageAndProduct(slug, show, search) {
         data: { slug: slug, show: show, search: search },
         success: function(data) {
             console.log(show, slug, search);
-            console.log(data.totalPage)
+            console.log(data.cate)
             console.log(data.showProductPage)
             let showPagaLink = `<nav >
         <ul class="pagination" id="product_page">

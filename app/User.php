@@ -13,6 +13,9 @@ class User extends Authenticatable
     {
         return $this->hasmany('App\Models\Bill','user_id','id');
     }
+    public function decentralization(){
+        return $this->belongsto('App\Models\Decentralization','is_active','id');
+    }
     /**
      * The attributes that are mass assignable.
      *

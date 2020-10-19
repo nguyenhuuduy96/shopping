@@ -58,15 +58,20 @@
                             <ul class="dropdown-menu dropdown-menu-right child">
                                 @foreach ($ProductCates as $cate)
                                 <li>
-                                    <a class="dropdown-item  @if (count($cate->cates)>=1) dropdown-toggle @endif
-                                    " 
-                                        href="{{route('home.product',$cate->slug)}}"> 
-                                        {{$cate->name}} </a>
-                                    @foreach ($cate->cates as $catechild)
-                                    <ul class="submenu submenu-right dropdown-menu">
-                                        <li><a class="dropdown-item" href="{{route('home.product',$catechild->slug)}}"> {{$catechild->name}}</a></a></li>
-                                     </ul>
-                                    @endforeach
+                                    <a class="dropdown-item  
+                                    @if (count($cate->cates)>=1) dropdown-toggle @endif
+                                    " ref="{{route('home.product',$cate->slug)}}"> 
+                                        {{$cate->name}}  </a>
+                                        @if (count($cate->cates)>0)
+                                        <ul class="submenu submenu-right dropdown-menu">
+                                            @foreach ($cate->cates as $item)
+                                                <li><a class="dropdown-item" href="{{route('home.product',$item->slug)}}">{{$item->name}}</a></li>
+                                            @endforeach 
+                                            
+                                        </ul> 
+                                        @endif
+                                        
+                                        
                                 </li>
                                 @endforeach
                               

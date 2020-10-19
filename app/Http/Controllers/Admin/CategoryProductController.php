@@ -37,8 +37,8 @@ class CategoryProductController extends Controller
     public function allCategory(Request $request){
         $totalCate = count(ProductCategory::all());
         $page = isset($request->page)?$request->page-1:0;
-        $skip = $page*2;
-        $cates= ProductCategory::skip($skip)->take(2)->get();
+        $skip = $page*10;
+        $cates= ProductCategory::skip($skip)->take(10)->get();
         $catesShow = JsonCategoryProduct::collection($cates);
 
          return ['cates'=> $catesShow, 'totalCate'=>$totalCate,'id'=>$request->page];

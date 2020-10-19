@@ -38,9 +38,9 @@
                                 </a>
                             </h4>
 
-                            <p class="stext-117 cl6">
+                            {{-- <p class="stext-117 cl6">
                                 {!!Str::limit($blog->content,100,'...')!!}
-                            </p>
+                            </p> --}}
 
                             <div class="flex-w flex-sb-m p-t-18">
                                 <span class="flex-w flex-m stext-111 cl2 p-r-30 m-tb-10">
@@ -70,7 +70,7 @@
                     </div>
                 </div>
             </div>
-
+            
             <div class="col-md-4 col-lg-3 p-b-80">
                 <div class="side-menu">
                     <div class="bor17 of-hidden pos-relative">

@@ -353,12 +353,12 @@ $(document).ready(function() {
         } else {
             $(".errorsource").css("display", "none");
         }
-        if (date == "") {
-            $(".errortime_expired").html("vui lòng chọn thời gian hết hạn!");
-            return false;
-        } else {
-            $(".errortime_expired").css("display", "none");
-        }
+        // if (date == "") {
+        //     $(".errortime_expired").html("vui lòng chọn thời gian hết hạn!");
+        //     return false;
+        // } else {
+        //     $(".errortime_expired").css("display", "none");
+        // }
 
         if (category == "") {
             $(".error_category").html("vui lòng chọn danh muc!");
@@ -374,23 +374,6 @@ $(document).ready(function() {
             $(".error_Child").css("display", "none");
         }
 
-        // if (fileimage!=="") {
-        // 	let arrayFiles=fileimage[1].files;
-        // 	for(const image of arrayFiles){
-        //         		// if (image.size>maxSize) {
-        //         		// 	$('.error_image').html('ko được co file image có dung lượng vượt quá 2M!');
-        //         		// 	return false;
-        //         		// }
-        //         		// let filename ="image/name.jpg";
-        //         		if (/\.(jpe?g|png|gif|bmp)$/i.test(image.name)==false) {
-        //         			$('.error_image').css('display','block');
-        //         			$('.error_image').html('Error định dạng image!');
-        //         			return false;
-        //         		}
-
-        //         	}
-
-        //         }
         $(".error_image").css("display", "none");
 
         let rowid = $("#rowid").val();
@@ -421,7 +404,8 @@ $(document).ready(function() {
                     cell1.innerHTML = data.product.id;
                     cell2.innerHTML = data.product.name;
                     cell3.innerHTML = data.product.source;
-                    cell4.innerHTML = data.product.time_expired;
+                    const time_expireds = data.product.time_expired == null ? null : data.product.time_expired;
+                    cell4.innerHTML = time_expireds;
                     cell5.innerHTML =
                         '<a class="btn btn-app" class="btn btn-success" data-toggle="modal" data-target="#ModalProduct" id="updateProduct" onclick="onclickupdate(this,' +
                         data.product.id +
@@ -435,7 +419,9 @@ $(document).ready(function() {
                     cells[0].innerHTML = data.product.id;
                     cells[1].innerHTML = data.product.name;
                     cells[2].innerHTML = data.product.source;
-                    cells[3].innerHTML = data.product.time_expired;
+                    const time_expireds = data.product.time_expired == null ? null : data.product.time_expired;
+
+                    cells[3].innerHTML = time_expireds;
                     cells[4].innerHTML =
                         '<a class="btn btn-app" class="btn btn-success" data-toggle="modal" data-target="#ModalProduct" id="updateProduct" onclick="onclickupdate(this,' +
                         data.product.id +
