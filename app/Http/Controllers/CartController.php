@@ -84,9 +84,17 @@ class CartController extends Controller
         return response()->json(['cart'=>$cart,'subtotla'=>$subtotla]);
     }
     public function checkout(){
+        
         $carts=Auth::check() ? Cart::session(Auth::user()->id)->getContent() : Cart::getContent();
        
         $subtotla= Cart::getSubTotal();
+        foreach ($carts as $cart) {
+            $middle= Middle::find($cart->id);
+            
+            if($middle->stock <$cart->quantity){
+                return redirect(route('check.quantity'));
+            }
+        }
         return view('home.checkout',compact('carts','subtotla'));
     }
     public function payment(Request $request){

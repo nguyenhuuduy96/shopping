@@ -20,7 +20,8 @@ $(document).ready(function() {
             } else {
                 const showimage =
                     `<img src="` + test.result + `" width="100%">`;
-                $(".image").html(showimage);
+                $('#formImage').attr('src', test.result);
+                // $(".image").html(showimage);
             }
         };
     };
@@ -41,12 +42,12 @@ $(document).ready(function() {
             $(".error_title").css("display", "none");
         }
 
-        if ($("#description").val() == "") {
-            $(".error_description").html("Vui lòng nhập!");
-            return false;
-        } else {
-            $(".error_description").css("display", "none");
-        }
+        // if ($("#description").val() == "") {
+        //     $(".error_description").html("Vui lòng nhập!");
+        //     return false;
+        // } else {
+        //     $(".error_description").css("display", "none");
+        // }
 
         if (image == "" && anh == "") {
             $(".error_image").html("vui lòng chọn ảnh!");
@@ -86,11 +87,11 @@ $(document).ready(function() {
                         `<img src="` +
                         data.slide.image +
                         `" width="50px;" alt="">`;
-                    cell4.innerHTML =
+                    cell4.innerHTML = data.slide.desciption !== null ?
                         data.slide.desciption.substring(0, 30) +
-                        (data.slide.desciption.length > 30 ? "..." : "");
+                        (data.slide.desciption.length > 30 ? "..." : "") : '';
 
-                    if (data.slide.active == 0) {
+                    if (data.slide.active == null || data.slide.active < 1) {
                         cell5.innerHTML += `<a class="btn btn-danger text-white" onclick="active(this,` + data.slide.id + `)">Disable</a>`;
                     } else {
                         cell5.innerHTML += `<a class="btn btn-success text-white" onclick="active(this,` + data.slide.id + `)">Enable</a>`;
@@ -113,9 +114,9 @@ $(document).ready(function() {
                         `<img src="` +
                         data.slide.image +
                         `" width="50px;" alt="">`;
-                    cells[3].innerHTML =
+                    cells[3].innerHTML = data.slide.desciption !== null ?
                         data.slide.desciption.substring(0, 30) +
-                        (data.slide.desciption.length > 30 ? "..." : "");
+                        (data.slide.desciption.length > 30 ? "..." : "") : '';
                     if (data.slide.active == 0) {
                         cells[4].innerHTML = `<a class="btn btn-danger text-white" onclick="active(this,` + data.slide.id + `)">Disable</a>`;
                     } else {
@@ -156,16 +157,22 @@ function Getupdate(r, id) {
             $("#title").val(data.slide.title);
             $("#description").val(data.slide.desciption);
             $("#url").html(data.slide.url);
-            $(".image").html(
-                `<img src="` + data.slide.image +
-                `" width="100%">`
-            );
+
+            $('#formImage').attr('src', data.slide.image);
+
         },
     });
 }
 //rest form
-function restForm() {
+$('.restForm').click(function() {
+    console.log('đáas')
     $("#formsubmit").trigger("reset");
+
+    $('#formImage').attr('src', '../../img/default.jpg');
+})
+
+function restForm() {
+
 }
 //delete
 function deleteSlide(r, id) {

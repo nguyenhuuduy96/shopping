@@ -16,18 +16,18 @@ use DB;
 use App\Http\Resources\ProductResource;
 use App\Models\ProductCategory;
 use Hash;
+use App\Models\SlideShow;
 use App\User;
+
 class HomeCotroller extends Controller
 {
 	public function index(){
 		$sizes=Size::all();
 		$products=Product::paginate(16);
-		// $cate= ProductCategory::find(8);
-		// dd($cate->cates);
-		$product=Product::find(5);
 		$blogs = Blog::take(3)->get();
+		$slides = SlideShow::where('active','>','0')->get();
 			
-		return view('home.home',['products'=>$products,'blogs'=>$blogs]);
+		return view('home.home',['products'=>$products,'blogs'=>$blogs,'slides'=>$slides]);
 		
 	}
 	public function getAjaxHome(Request $request){
@@ -84,14 +84,16 @@ class HomeCotroller extends Controller
 		$skip = $page*$show;
 		$slug = isset($request->slug)?$request->slug:'quan-047934300-1603094721';
 		$cate = !empty(ProductCategory::where('slug',$slug)->first())?ProductCategory::where('slug',$slug)->first():null;
-		if(isset($search)){
+		if(!empty($search)){
 			$products = Product::where('name','like',"%$search%")->get();
 			$totalProduct = count($products);
 			$totalPage = ceil($totalProduct / $show);
 			$productsPage=$products->skip($skip)->take($show);
+			$showProductPage = ProductResource::collection($productsPage);
+			return response()->json(['totalPage'=>$totalPage,'showProductPage'=>$showProductPage,'cate'=>$cate]);
 		}
 		if (isset($cate)) {
-			$products = empty($cate->parent_id)?$cate->products_cates:$cate->products;
+			$products = count($cate->cates)>0?$cate->products_cates:$cate->products;
 			$totalProduct = count($products);
 			$totalPage = ceil($totalProduct / $show);
 			$productsPage=$products->skip($skip)->take($show);
@@ -104,8 +106,8 @@ class HomeCotroller extends Controller
 
 		}
 		$showProductPage = ProductResource::collection($productsPage);
-		// echo json_encode($showProductPage);die();
-		// dd($totalPage,$productsPage);
+		// // echo json_encode($cate);die();
+		// dd($products);
 		return response()->json(['totalPage'=>$totalPage,'showProductPage'=>$showProductPage,'cate'=>$cate]);
 		
 		

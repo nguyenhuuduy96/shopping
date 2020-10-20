@@ -42,8 +42,8 @@
                                     <th>image</th>
                                     <th>Description</th>
                                     <th>Active</th>
-                                    <th><a data-toggle="modal" data-target="#ModalSlide"><i
-                                                class="fa fa-plus-square text-success"></i> New Slide Show</a></th>
+                                    <th><a data-toggle="modal" data-target="#ModalSlide" class="restForm"><i
+                                                class="fa fa-plus-square text-success " ></i> New Slide Show</a></th>
 
                                 </tr>
                             </thead>

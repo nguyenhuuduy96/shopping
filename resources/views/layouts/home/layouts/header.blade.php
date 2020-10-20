@@ -60,7 +60,7 @@
                                 <li>
                                     <a class="dropdown-item  
                                     @if (count($cate->cates)>=1) dropdown-toggle @endif
-                                    " ref="{{route('home.product',$cate->slug)}}"> 
+                                    " href="{{route('home.product',$cate->slug)}}"> 
                                         {{$cate->name}}  </a>
                                         @if (count($cate->cates)>0)
                                         <ul class="submenu submenu-right dropdown-menu">

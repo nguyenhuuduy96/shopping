@@ -88,13 +88,13 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
 /*---------------------------------------------*/
 
 @font-face {
-    font-family: PlayfairDisplay-Regular;
-    src: url('../fonts/PlayfairDisplay/PlayfairDisplay-Regular.ttf');
+    font-family: Arial, Helvetica, sans-serif;
+    src: url('../fonts/PlayfairDisplay/Arial, Helvetica, sans-serif.ttf');
 }
 
 @font-face {
-    font-family: PlayfairDisplay-Bold;
-    src: url('../fonts/PlayfairDisplay/PlayfairDisplay-Bold.ttf');
+    font-family: Arial, Helvetica, sans-serif;
+    src: url('../fonts/PlayfairDisplay/Arial, Helvetica, sans-serif.ttf');
 }
 
 
@@ -2555,14 +2555,14 @@ input.num-product::-webkit-inner-spin-button {
 /*---------------------------------------------*/
 
 .ltext-201 {
-    font-family: PlayfairDisplay-Bold;
+    font-family: Arial, Helvetica, sans-serif;
     font-size: 60px;
     line-height: 1.1;
     text-transform: uppercase;
 }
 
 .ltext-202 {
-    font-family: PlayfairDisplay-Regular;
+    font-family: Arial, Helvetica, sans-serif;
     font-size: 28px;
     line-height: 1.2857;
 }

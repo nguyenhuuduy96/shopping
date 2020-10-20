@@ -18,7 +18,7 @@ class UserResource extends JsonResource
         return ['name'=>$this->name,
                  'phone'=>$this->phone,
                  'bills'=>  BillResource::collection($this->bills), 
-                 'is_active'=> new Decentralization($this->decentralization)
+                //  'is_active'=> new Decentralization($this->decentralization)
             ];
     }
 }

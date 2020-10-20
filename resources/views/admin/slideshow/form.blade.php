@@ -16,7 +16,7 @@
 
                         <div class="col-sm-12 row">
                             <div class="col-sm-4 image">
-                                <img src="{{ asset('img/default.jpg') }}" width="100%">
+                                <img src="{{ asset('img/default.jpg') }}" id="formImage" width="100%">
                             </div>
                             <div class="col-sm-8">
                                 <div class="form-group"><label for="title">Title:</label>

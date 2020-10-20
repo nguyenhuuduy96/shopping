@@ -20,10 +20,10 @@ function getAjaxProduct(page, slug, show, search) {
 }
 // show html product
 function showHtmlProduct(products) {
-    console.log(products)
+    // console.log(products)
     let show = ``;
     for (const product of products) {
-        console.log(product.slug)
+        // console.log(product.slug)
         const image = product.image.length > 0 ? product.image[0].image : '../../../img/default.jpg';
         show += `<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
                     <!-- Block2 -->
@@ -73,7 +73,7 @@ $(document).ready(function() {
         let slug = document.getElementById('slug_cate').value;
         let search = $('#search-product').val();
 
-        // console.log(show);
+        // console.log(search);
         getAjaxPageAndProduct(slug, show, search);
     });
 });
@@ -91,15 +91,15 @@ $(document).ready(function() {
     })
     // get ajax count page and product
 function getAjaxPageAndProduct(slug, show, search) {
-    console.log(show, slug, search);
+    // console.log(show, slug, search);
     $.ajax({
         url: '../get-page-product',
         type: 'GET',
         data: { slug: slug, show: show, search: search },
         success: function(data) {
-            console.log(show, slug, search);
-            console.log(data.cate)
-            console.log(data.showProductPage)
+            // console.log(show, slug, search);
+            // console.log(data.cate)
+            // console.log(data.showProductPage)
             let showPagaLink = `<nav >
         <ul class="pagination" id="product_page">
         <li class="page-item disabled pre" aria-disabled="true" aria-label="« Previous">
@@ -126,7 +126,7 @@ function getAjaxPageAndProduct(slug, show, search) {
                     $('li').removeClass("active");
                     this.className += " active";
                     const id = $(this).val();
-                    console.log(id)
+                    // console.log(id)
                     let page = id;
                     getAjaxProduct(page, slug, show, search)
 

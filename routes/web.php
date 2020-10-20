@@ -54,3 +54,6 @@ Route::get('check-out-seccess/{bill_code}','CartController@CheckOutSuccess')->na
 Route::get('check-bill','HomeCotroller@checkbill')->name('check.bill.home');
 
 Route::get('get-page-product','HomeCotroller@getPageProductHome');
+Route::get('check-quantity', function () {
+	return view('home.errorQuantity');
+})->name('check.quantity');

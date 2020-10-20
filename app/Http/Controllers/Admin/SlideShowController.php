@@ -19,7 +19,7 @@ class SlideShowController extends Controller
         return response()->json(['slide'=>$slide]);
     }
     public function delete($id){
-        SlideShow::destroy(1);
+        SlideShow::destroy($id);
         // $silde->delete();
 
     }
