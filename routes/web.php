@@ -57,3 +57,9 @@ Route::get('get-page-product','HomeCotroller@getPageProductHome');
 Route::get('check-quantity', function () {
 	return view('home.errorQuantity');
 })->name('check.quantity');
+Route::group(['prefix' => 'member','middleware'=>['auth']], function () {
+	Route::get('/','MemberController@index')->name('member');
+	Route::post('save', 'MemberController@save');
+	
+});
+	

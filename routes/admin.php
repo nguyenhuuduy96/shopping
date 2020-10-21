@@ -68,3 +68,6 @@ Route::group(['prefix'=>'product'],function(){
 	});
 
 });
+Route::get('menber',function(){
+	return view('home.member');
+});

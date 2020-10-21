@@ -144,8 +144,9 @@ class HomeCotroller extends Controller
 				array_push($arrayColors, $color);
 			}
 		}
+		$products = Product::where('product_category_id',$product->product_category_id)->take(8)->get();
 		
-		return view('home.product-detail',['product'=>$product,'colors'=>$arrayColors]);
+		return view('home.product-detail',['product'=>$product,'colors'=>$arrayColors,'products'=>$products]);
 	}
 
 	// get quick view

@@ -9,12 +9,13 @@
                 </div>
 
                 <div class="right-top-bar flex-w h-full">
-                    @if(!empty(Auth::user()))
-                    <a href="{{route('admin.dashboard')}}" class="flex-c-m trans-04 p-lr-25">
-                        Admin
-                    </a>
-
-                    <a href="#" class="flex-c-m trans-04 p-lr-25">
+                    @if(Auth::check() )
+                        @if(Auth::user()->is_active > 1))
+                        <a href="{{route('admin.dashboard')}}" class="flex-c-m trans-04 p-lr-25">
+                            Admin
+                        </a>
+                        @endif
+                    <a href="{{route('member')}}" class="flex-c-m trans-04 p-lr-25">
                         {{Auth::user()->name}}
                     </a>
 

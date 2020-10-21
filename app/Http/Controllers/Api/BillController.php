@@ -10,6 +10,8 @@ use DB;
 use App\User;
 use App\Http\Resources\UserResource;
 use App\Http\Resources\BillResource;
+use Auth;
+
 class BillController extends Controller
 {
     public function addnew(Request $request){
@@ -79,4 +81,5 @@ class BillController extends Controller
 		// // return ['bills'=>$bills];
     	return ['bills'=>$bills,'totalPage'=>$totalPage,'skip'=>$page];
 	}
+	
 }

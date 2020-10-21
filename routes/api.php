@@ -45,4 +45,5 @@ Route::group(['prefix'=>'bill'],function(){
 	Route::post('add-new','Api\BillController@addnew');
 	Route::get('get-ajax-bill-page', 'Api\BillController@getAjaxBillAndPage');
 });
+
 Route::post('check-bill','Api\BillController@checkBill');

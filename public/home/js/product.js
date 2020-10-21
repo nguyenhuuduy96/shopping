@@ -23,8 +23,10 @@ function showHtmlProduct(products) {
     // console.log(products)
     let show = ``;
     for (const product of products) {
-        // console.log(product.slug)
+        // console.log(product)
+        // return false;
         const image = product.image.length > 0 ? product.image[0].image : '../../../img/default.jpg';
+        const price = new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'VND' }).format(product.price[0].price);
         show += `<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
                     <!-- Block2 -->
                     <div class="block2">
@@ -44,9 +46,7 @@ function showHtmlProduct(products) {
                     </a>
 
                     <span class="stext-105 cl3" id="home_price">
-
-
-
+                    ` + price + `
                     </span>
                     </div>
 
