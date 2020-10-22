@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('dashboard','Admin\DashboarhController@index')->name('admin.dashboard');
 //Route setting
-Route::get('setting', 'Admin\DashboarhController@setting');
+Route::get('setting', 'Admin\DashboarhController@setting')->name('admin.setting');
 Route::post('save-setting', 'Admin\DashboarhController@SaveSetting');
 Route::post('choose_logo', 'Admin\DashboarhController@ChooseLogo');
 //route blog

@@ -39,9 +39,15 @@ class AppServiceProvider extends ServiceProvider
             $view->with(['carts'=>$carts,'cartSubTotal'=>$cartSubTotal]);
         });
         view()->composer('layouts.home.layouts.header', function ($view) {
+            if (Auth::check()) {
+                $carts = Cart::session(Auth::user()->id)->getContent();
+            }else{
+                $carts = Cart::getContent();
+            }
+            $countCart = count($carts);
             $ProductCates = ProductCategory::wherenull('parent_id')->get();
             $setting = !empty(Setting::first())?Setting::first():null;
-            $view->with(['ProductCates'=>$ProductCates,'setting'=>$setting]);
+            $view->with(['ProductCates'=>$ProductCates,'setting'=>$setting,'countCart'=>$countCart]);
         });
         view()->composer('layouts.home.layouts.footer', function ($view) {
             $setting = !empty(Setting::first())?Setting::first():null;

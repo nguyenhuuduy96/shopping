@@ -53,7 +53,8 @@ class CartController extends Controller
             // Cart::remove($request->middle_id);
             // dd($cart);
             $subtotla = Cart::getSubTotal();
-            return response()->json(['carts'=>$carts,'subtotla'=>$subtotla]);
+            $count = count($carts);
+            return response()->json(['carts'=>$carts,'subtotla'=>$subtotla,'countCart'=>$count]);
     }
     public function delete(Request $request){
         // return response()->json(['cart'=>$request->id]);
@@ -81,6 +82,7 @@ class CartController extends Controller
         
         $cart = Cart::get($request->id);
         $subtotla= Cart::getSubTotal();
+        
         return response()->json(['cart'=>$cart,'subtotla'=>$subtotla]);
     }
     public function checkout(){

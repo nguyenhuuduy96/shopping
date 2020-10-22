@@ -44,7 +44,7 @@ $(document).ready(function() {
             },
             success: function(data) {
 
-
+                $('.js-show-cart').attr('data-notify', data.countCart)
                 let showcart = '';
                 console.log(data.carts['1']);
                 for (const cart in data.carts) {

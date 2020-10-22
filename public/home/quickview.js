@@ -198,8 +198,8 @@ $(document).ready(function() {
                     slug: slug
                 },
                 success: function(data) {
-
-
+                    console.log(data.countCart)
+                    $('.js-show-cart').attr('data-notify', data.countCart)
                     let showcart = '';
 
                     for (const cart in data.carts) {
