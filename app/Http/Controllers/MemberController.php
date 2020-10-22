@@ -9,15 +9,17 @@ use Auth;
 use URL;
 use Str;
 use App\Http\Resources\BillResource;
+use Hash;
 
 class MemberController extends Controller
 {
     public function index(Request $request){
-        // $user = Auth::user()->bills->take(1);
+        Auth::user()->is_active=2;
+        Auth::user()->save();
         // dd($user);
         return view('home.member');
     }
-   
+   //cập thông tin
     public function save(Request $request){
         $user = isset($request->id)? User::find($request->id) : new User();
         $checkEmail = User::where('email',$request->email)->first();
@@ -48,5 +50,14 @@ class MemberController extends Controller
         
         $user->save();
         return response()->json(['user'=>$user,'error'=>""]);
+    }
+    //change password
+    public function saveChangePass(Request $request){
+        if (!(Hash::check($request->get('password'), Auth::user()->password))){
+            return response()->json(['error'=>'Mật khẩu hiện tại không đúng!']);
+        }
+        Auth::user()->password = Hash::make($request->newpassword);
+        Auth::user()->save();
+        return response()->json(['error'=>'']);
     }
 }

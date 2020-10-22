@@ -14,15 +14,18 @@ class SlideShowController extends Controller
         $slides = SlideShow::all();
         return view('admin.slideshow.list',compact('slides'));
     }
+    // lấy chi tiết 1 slide
     public function show($id){
         $slide = SlideShow::find($id);
         return response()->json(['slide'=>$slide]);
     }
+    //xóa
     public function delete($id){
         SlideShow::destroy($id);
         // $silde->delete();
 
     }
+    // kích hoạt hiễn thị ảnh
     public function Active(Request $request)
     {
        

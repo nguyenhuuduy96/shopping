@@ -23,13 +23,12 @@ class ProductController extends Controller
     		$sizes = Size::all();
     		$colors = Color::all();
     		
-    		// $product=Product::find(6);
-    		// $color= $product->colors;
     		$cates= ProductCategory::all();
   
 	return view('admin.product.list',['products'=>$products,'sizes'=>$sizes,'colors'=>$colors,'cates'=>$cates]);
     	
-    }
+	}
+	
     public function getAjaxProduct(Request $req){
 		
 		$product=Product::find($req->id);
@@ -48,20 +47,18 @@ class ProductController extends Controller
 		$cates =!empty($check->cates)?$check->cates:null;
 		return response()->json(['cates'=>$cates]);
 	}
+	// xóa 1 anh
 	public function deleteImage(Request $req){
 		$image=FileUpload::find($req->id);
 		$image->delete();
 	}
+	// xóa 1 màu vs size của bang middle
 	public function DeleteSizePriceStock(Request $req){
 		
 		$middle=Middle::find($req->id);
 		$middle->delete();
-		// return response()->json(['size'=>$size_id]);
 	}
-	// public function searchProduct(Request $req){
-	// 	$products = Product::where('name','like',"%$req->search%")->take(10)->get();
-	// 	return response()->json(['products'=>$products]);
-	// }
+	
 	public function getSizeAll(){
 		$getsize =Size::all();
 		$getColors= Color::all();
@@ -81,6 +78,7 @@ class ProductController extends Controller
 		
 		
 	}
+	// xóa 1 sản phẩm
 	public function deleteproduct(Request $req){
 		
 		$product=Product::find($req->id);
@@ -88,26 +86,16 @@ class ProductController extends Controller
 		return response()->json(['product'=>'success']);
 	}
 	
-
+	// lưu sản phẩm
     public function save(Request $req){
-    	
-
-    
 		$product = isset($req->id)? Product::find($req->id) : new Product();
 		if(isset($req->date)){
 			$product->time_expired=date("Y-m-d",strtotime($req->date));
 		}
-		
-
 		$product->slug = Str::slug($req->name.'-'.microtime());
 		$product->product_category_id = isset($req->child_id)?$req->child_id:$req->parent_id;
 		$product->fill($req->all());
-		// return response()->json(['data'=>$product]);
 		$product->save();
-			
-  //   	$product= Product::find(6);
-		
-		// return response()->json(['product'=>$req->all()]);
 		foreach ($req->color_id as $key => $color) {
 			# code...
 			
@@ -127,15 +115,9 @@ class ProductController extends Controller
 			}
 			
 		}
-		// return response()->json(['product'=>$product->colors]);
 
 		$i=-1;
-		// if($request->file)
-  //       {
-  //         $image = $request->get('image');
-  //         $name = time().'.' . explode('/', explode(':', substr($image, 0, strpos($image, ';')))[1])[1];
-  //         \Image::make($request->get('image'))->save(public_path('images/').$name);
-  //       }
+		
 		if (isset($req->sort)) {
 			foreach ($req->sort as $key => $value) {
 				# code...
@@ -150,20 +132,14 @@ class ProductController extends Controller
 					$i++;
 					
 					$img = new FileUpload();
-					// $ext =$req->image[$i]->extension();
-					// $filename = $req->image[$i]->getClientOriginalName();
-					// // dd($req->image[$i]);
-					// $filename= str::slug(str_replace(".".$ext, "", $filename)."-".str::random(20).".".$ext);
-					// $saveImage =$req->image[$i]->move("img/images",$filename);
-					// $image="img/images/".$filename;
+					
 					
 	        		  $image = $req->file[$i];
 
-			          // $name = str::slug(str::random(40).time()."-".str::random(40)).'.'. explode('/', explode(':', substr($image, 0, strpos($image, ';')))[1])[1];
 			          $name = str::slug(str_replace(time(), '.jpeg', str::random(30))."-".str::random(20).".jpeg");
 
 			          \Image::make($req->file[$i])->save(public_path('img/images/').$name);
-			          // array_push($as, $name);
+			         
         			
 					$img->product_id=$product->id;
 					$img->sort=$value;

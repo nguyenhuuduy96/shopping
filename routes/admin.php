@@ -15,6 +15,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('dashboard','Admin\DashboarhController@index')->name('admin.dashboard');
+//Route setting
+Route::get('setting', 'Admin\DashboarhController@setting');
+Route::post('save-setting', 'Admin\DashboarhController@SaveSetting');
+Route::post('choose_logo', 'Admin\DashboarhController@ChooseLogo');
+//route blog
 Route::group(['prefix'=>'blog'],function(){
 	Route::get('list','Admin\BlogController@index')->name('admin.list.blog');
 	Route::get('list/{blog}','Admin\BlogController@getBlog');
@@ -66,8 +71,6 @@ Route::group(['prefix'=>'product'],function(){
 		Route::post('get-color','Admin\ProductController@getcolor');
 		Route::post('save-color','Admin\ProductController@savecolor');
 	});
+	
 
-});
-Route::get('menber',function(){
-	return view('home.member');
 });

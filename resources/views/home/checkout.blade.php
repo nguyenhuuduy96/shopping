@@ -68,7 +68,7 @@
 			<form class="needs-validation" novalidate action="javascript:void(0)" id="submitaddress">
 
 				<div class="mb-3">
-					<label for="Name">Name </label>
+					<label for="Name">Tên </label>
 					<input type="text" class="form-control" placeholder="name" name="name" id="name"  >
 					<div class="error_name text-danger">
 						Please enter a valid Name address for shipping updates.
@@ -76,7 +76,7 @@
 				</div>
 
 				<div class="mb-3">
-					<label for="Name">Phone </label>
+					<label for="Name">Số điện thoại </label>
 					<input type="text" class="form-control" placeholder="Phone" name="phone" id="phone"  >
 					<div class="error_phone text-danger">
 						Please enter a valid Name address for shipping updates.
@@ -87,21 +87,24 @@
 
 				<div class="row">
 					<div class="col-md-5 mb-3">
-						<label for="country">City</label>
+						<label for="city">Thành phố</label>
 						<select class="custom-select d-block w-100" id="city" name="city">
 							<option value="">Choose...</option>
 							<option >Ha noi</option>
-							
+							<option >Hồ chí Minh</option>
 						</select>
 						<div class="error_city text-danger">
 							Please select a valid City.
 						</div>
 					</div>
 					<div class="col-md-4 mb-3">
-						<label for="state">District</label>
+						<label for="state">Quận huyện</label>
 						<select class="custom-select d-block w-100" id="district" name="district">
 							<option value="">Choose...</option>
-							<option>California</option>
+							<option>Bắc Từ Liêm</option>
+							<option>Nam Từ Liêm</option>
+							<option>Quận 1</option>
+							<option>Quận 2</option>
 						</select>
 						<div class="error_district text-danger">
 							Please provide a valid district.
@@ -111,7 +114,7 @@
 				</div>
 
 				<div class="mb-3">
-					<label for="address">Address</label>
+					<label for="address">Địa chỉ:</label>
 					<input type="text" class="form-control" id="address" placeholder="1234 Main St">
 					<div class="error_address text-danger">
 						Please enter your shipping address.

@@ -40,8 +40,20 @@
             <nav class="limiter-menu-desktop container">
 
                 <!-- Logo desktop -->       
-                <a href="/" class="logo col-sm-2">
+                {{-- <a href="/" class="logo ">
                     <h1>Shop Fashion</h1>
+                </a> --}}
+                <a href="{{route('home')}}" class="logo col-sm-2" >
+                    @if (isset($setting))
+                        @if($setting->choose_logo==0)
+                        {{$setting->logo_text}}
+                        @else
+                        <img src="{{$setting->logo_image}}" alt="IMG-LOGO">
+                        @endif 
+                    @else
+                    <h1>Shop Fashion</h1>
+                    @endif
+                    
                 </a>
 
                 <!-- Menu desktop -->

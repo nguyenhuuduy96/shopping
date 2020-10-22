@@ -12,21 +12,28 @@
                         <ul class="nav nav-pills nav-sidebar flex-column " id="menu-right">
 
                             <li class="nav-item menu-open menu-r font-weight-bold">
-                                <a href="#" class="nav-link text-dark " data-toggle="collapse" data-target="#collapseThree"
+                                <a href="#" class="nav-link text-dark " data-toggle="collapse" data-target="#collapseOne"
                                     aria-expanded="false" aria-controls="collapseThree">
                                     Thông tin tài khoản
                                 </a>
                             </li>
                             <li class="nav-item menu-r">
-                                <a href="#" class="nav-link text-dark" data-toggle="collapse" data-target="#collapseThree"
+                                <a href="#" class="nav-link text-dark" data-toggle="collapse" data-target="#collapseTwo"
                                     aria-expanded="false" aria-controls="collapseThree">
                                     Đơn mua
                                 </a>
 
                             </li>
-                            <li class="nav-item menu-r">
+                            <li class="nav-item menu-r" data-toggle="collapse" data-target="#collapseThree"
+                                aria-expanded="false" aria-controls="collapseThree">
                                 <a href="#" class="nav-link text-dark">
                                     Địa chỉ
+                                </a>
+                            </li>
+                            <li class="nav-item ">
+                                <a href="javascript:void(0)" class="nav-link text-dark" data-toggle="modal"
+                                    data-target="#FormChangePass">
+                                    Đổi mật khẩu
                                 </a>
                             </li>
                             <li class="nav-item ">
@@ -44,7 +51,7 @@
                         <div>
                             <h3 class="title-member">Thông tin tài khoản </h3>
                             <p class="success text-success"></p>
-                            <div id="collapseThree" class="collapse show" aria-labelledby="headingThree"
+                            <div id="collapseOne" class="collapse show" aria-labelledby="headingThree"
                                 data-parent="#accordionExample">
 
                                 <form class="row" action="javascript:void(0)" id="formsubmit">
@@ -120,7 +127,7 @@
                                     </div>
                                 </form>
                             </div>
-                            <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
+                            <div id="collapseTwo" class="collapse" aria-labelledby="headingThree"
                                 data-parent="#accordionExample">
                                 <table id="tablecheckbill" class="table table-bordered table-striped">
                                     <thead>
@@ -133,18 +140,39 @@
                                     </thead>
                                     <tbody id="show_bill">
                                         @foreach (Auth::user()->bills as $bill)
-                                        <tr>
-                                        <td><a href="{{route('check.out.success',$bill->bill_code)}}">{{$bill->bill_code}}</a></td>
-                                            <td>{{$bill->created_at->format('d/m/Y H:i:s')}}</td>
-                                        <td>{{isset($bill->status->name)?$bill->status->name:null}}</td>
-                                            <td>{{ number_format($bill->total, 0, '.', '.') }}
-                                                đ</td>
-                                        </tr>
+                                            <tr>
+                                                <td><a
+                                                        href="{{ route('check.out.success', $bill->bill_code) }}">{{ $bill->bill_code }}</a>
+                                                </td>
+                                                <td>{{ $bill->created_at->format('d/m/Y H:i:s') }}</td>
+                                                <td>{{ isset($bill->status->name) ? $bill->status->name : null }}</td>
+                                                <td>{{ number_format($bill->total, 0, '.', '.') }}
+                                                    đ</td>
+                                            </tr>
                                         @endforeach
 
                                     </tbody>
                                 </table>
-                                
+
+                            </div>
+                            <div id="collapseThree" class="collapse" aria-labelledby="headingTwo"
+                                data-parent="#accordionExample">
+
+                                @foreach (Auth::user()->addresses as $address)
+                                    <div class="row shadow-sm mb-2">
+                                        <div class="col-sm-12 bg-secondary text-white">{{ $address->name }}</div>
+                                        <div class="col-sm-3">
+                                            <p>Tên:</p>
+                                            <p>Địa chỉ: </p>
+                                            <p>Số điện thoại: </p>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <p>{{ $address->name }}</p>
+                                            <p>{{ $address->address }}, {{ $address->district }}, {{ $address->city }}</p>
+                                            <p>{{ $address->phone }}</p>
+                                        </div>
+                                    </div>
+                                @endforeach
                             </div>
                         </div>
                     </div>
@@ -155,115 +183,47 @@
 
         </div>
     </div>
+    
+    {{-- Change pass form --}}
+    <div class="modal fade changePass" id="FormChangePass" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <form method="post" id="submitChangePass" action="javascript:void(0)">
+                    @csrf
+                    <div class="modal-header">
+                        <h4 class="modal-title title-color">Thay đổi mật khẩu</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-4">Mật khẩu hiện tại:</label>
+                        <input type="password" class="form-control col-sm-7" id="password" name="password" value="">
+                        <span class="col-sm-4"></span><span class="text-danger col-sm-7 error_pass"></span>
+
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-4">Mật khẩu mới:</label>
+                        <input type="password" class="form-control col-sm-7" id="newpasswors" name="newpassword" value="">
+                        <span class="col-sm-4"></span><span class="text-danger col-sm-7 error_new_pass"></span>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-4">Nhập lại mật khẩu:</label>
+                        <input type="password" class="form-control col-sm-7" id="Cfpasswors" name="cfpasswors" value="">
+                        <span class="col-sm-4"></span><span class="text-danger col-sm-7 error_cf_pass"></span>
+                    </div>
+                    <input type="submit" value="cập nhật" class="btn btn-primary">
+                    <div class="modal-footer">
+                        <button type="button" class="btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </form>
+
+            </div>
+
+        </div>
+    </div>
 @endsection
 @section('js')
-    <script>
- 
-        let MenuRight = document.getElementById('menu-right');
-        let pages = MenuRight.getElementsByClassName('menu-r');
-        for (let i = 0; i < pages.length; i++) {
-            pages[i].addEventListener("click", function() {
-
-                $('li').removeClass("font-weight-bold");
-                this.className += " font-weight-bold";
-                $('.title-member').html($('.font-weight-bold')[0].innerText);
-                // if (i = 0) {
-                //     $('.title-member').html('Thông tin tài khoản')
-                // } else if (i = 1) {
-                //     $('.title-member').html('Đơn mua')
-                // } else {
-
-                // }
-
-
-
-            });
-        }
-        $(document).ready(function() {
-            $('#formsubmit').on('submit', function(event) {
-                event.preventDefault();
-                let image = $('#image').val();
-                let anh = $('#anh').val();
-                let name = document.getElementById('user_name').value;
-                // console.log(name)
-
-                if (name == "") {
-                    $('.error_name').html('vui long nhập!');
-                    $('.error_name').css('display', 'block');
-                    return false;
-                } else {
-                    $('.error_name').css('display', 'none');
-                }
-
-                if ($("#email").val() == "") {
-                    $('.error_email').html('Vui lòng nhập!');
-                    $('.error_email').css('display', 'block');
-                    return false;
-                } else {
-                    $('.error_email').css('display', 'none');
-                }
-
-                if (image == '' && anh == '') {
-                    $('.error_image').html('vui lòng chọn ảnh!');
-                    $('.error_image').css('display', 'block');
-                    return false;
-                } else {
-                    $('.error_image').css('display', 'none');
-                }
-
-                $.ajax({
-                    url: "member/save",
-                    type: "POST",
-                    data: new FormData(this),
-                    contentType: false,
-                    cache: false,
-                    processData: false,
-                    success: function(data) {
-                        // console.log(data)
-                        if (data.error !== "") {
-                            $('.error_email').html(data.error);
-                            $('.error_email').css('display', 'block');
-                            return false;
-
-                        }
-                        $('.error_email').css('display', 'none');
-                        document.getElementById("email").disabled = true;
-                        $('.success').html('cập nhật thành công!');
-                    }
-                });
-
-            });
-
-        });
-        $(document).ready(function() {
-            let img = document.querySelector('input[type="file"]');
-
-            img.onchange = function() {
-                $('.img').css('display', 'none');
-                let image = img.files[0];
-                let maxSize = 1024 * 1024 * 2;
-
-                let test = new FileReader();
-                test.readAsDataURL(image);
-                test.onload = function() {
-                    if (image.size > maxSize || /\.(jpe?g|png|gif|bmp)$/i.test(image.name) == false) {
-                        $('.error_image').html(
-                            'file filesUpload không được lớn hơn 2 mb và đúng định dạng ảnh!');
-                        $('.error_image').css('display', 'block');
-                        return false;
-                    } else {
-
-                        $('.showimage').attr('src', test.result);
-                        $('.error_image').css('display', 'none');
-                    }
-
-                }
-
-
-
-
-            }
-        });
-
-    </script>
+<script src="{{asset('home/js/member.js')}}"></script>
 @endsection

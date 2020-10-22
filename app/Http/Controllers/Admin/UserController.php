@@ -21,6 +21,7 @@ class UserController extends Controller
     public function Profile(Request $request){
         return view('admin.user.profile');
     }
+    //phân quyền
     public function Active(Request $request){
         
         $user = User::find($request->id);
@@ -41,6 +42,7 @@ class UserController extends Controller
         $decentralization =$user->decentralization;
         return response()->json(['error'=>$error,'decentralization'=>$decentralization]);
     }
+    // cập nhật thông tin tài khoản
     public function save(Request $request){
         $user = isset($request->id)? User::find($request->id) : new User();
         $checkEmail = User::where('email',$request->email)->first();

@@ -7,6 +7,7 @@ use Cart;
 use Illuminate\Support\Facades\View;
 use Auth;
 Use App\Models\ProductCategory;
+Use App\Models\Setting;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -39,7 +40,12 @@ class AppServiceProvider extends ServiceProvider
         });
         view()->composer('layouts.home.layouts.header', function ($view) {
             $ProductCates = ProductCategory::wherenull('parent_id')->get();
-            $view->with(['ProductCates'=>$ProductCates]);
+            $setting = !empty(Setting::first())?Setting::first():null;
+            $view->with(['ProductCates'=>$ProductCates,'setting'=>$setting]);
+        });
+        view()->composer('layouts.home.layouts.footer', function ($view) {
+            $setting = !empty(Setting::first())?Setting::first():null;
+            $view->with(['setting'=>$setting]);
         });
     }
 }

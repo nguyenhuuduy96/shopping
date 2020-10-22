@@ -25,35 +25,19 @@ class HomeCotroller extends Controller
 		$sizes=Size::all();
 		$products=Product::paginate(16);
 		$blogs = Blog::take(3)->get();
-		$slides = SlideShow::where('active','>','0')->get();
-			
+		$slides = SlideShow::where('active','>','0')->get();	
 		return view('home.home',['products'=>$products,'blogs'=>$blogs,'slides'=>$slides]);
 		
 	}
 	public function getAjaxHome(Request $request){
 		$products= Product::take(16)->orderby('created_at','desc')->get();
-
 		return ProductResource::collection($products);
 		
 	}
 	public function product(Request $request,$slug=null){
 		
-	
-		
 		$cate = !empty(ProductCategory::where('slug',$slug)->first())?ProductCategory::where('slug',$slug)->first():null;
-		// if(isset($request->SearchProduct)){
-		// 	$productsPage = Product::where('name','like',"%$request->SearchProduct%")->take(12)->get();
-		// 	// dd($products);
-		// }else
-		// if (isset($cate)) {
-		// 	$products = !isset($cate->parent_id)?$cate->products_cates:$cate->products;
-			
-		// 	$productsPage=$products->skip(0)->take(12);
-		// }else {
-			
-		// 	$productsPage = Product::skip(0)->take(12)->get();
-
-		// }
+	
 		return view('home.product',compact('cate'));
 		
 	}
