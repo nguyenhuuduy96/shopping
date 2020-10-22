@@ -115,7 +115,7 @@
             </ul>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+          <a href="{{route('admin.setting')}}" class="nav-link">
               <i class="fas fa-cogs"></i>
               <p>Setting web</p>
             </a>
