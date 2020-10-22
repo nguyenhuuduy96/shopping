@@ -18,15 +18,16 @@ use App\Models\ProductCategory;
 use Hash;
 use App\Models\SlideShow;
 use App\User;
+use App\Models\Setting;
 
 class HomeCotroller extends Controller
 {
 	public function index(){
-		$sizes=Size::all();
+		$setting = !empty(Setting::first()) ? Setting::first(): null;
 		$products=Product::paginate(16);
 		$blogs = Blog::take(3)->get();
 		$slides = SlideShow::where('active','>','0')->get();	
-		return view('home.home',['products'=>$products,'blogs'=>$blogs,'slides'=>$slides]);
+		return view('home.home',['products'=>$products,'blogs'=>$blogs,'slides'=>$slides,'setting'=>$setting]);
 		
 	}
 	public function getAjaxHome(Request $request){
